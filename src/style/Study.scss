@@ -1,0 +1,55 @@
+@import './colours.scss';
+
+.study {
+  height: calc(100vh - 112px);
+  
+  &__question {
+    padding: 16px 16px 0;
+    margin-bottom: 106px;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    bottom: 56px;
+    height: 50px;
+    left: 0;
+    width: 100%;
+    padding: 16px;
+    background: white;
+    font-size: 10px;
+    letter-spacing: 1px;
+    
+    a {
+      color: $colour-active;
+      font-weight: bold;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+  }
+}
+
+.question {
+  &__header {
+    margin-bottom: 16px;
+
+    h2 {
+      color: $colour-black;
+      font-size: 24px;
+      font-weight: 400;
+    }
+
+    span {
+      color: $colour-inactive;
+      font-size: 14px;
+    }
+  }
+
+  &__subquestions {
+    color: $colour-inactive;
+    margin: 0;
+    font-size: 14px;
+    list-style-type: none;
+  }
+}

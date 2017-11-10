@@ -1,0 +1,28 @@
+@import './colours.scss';
+
+.coreNav {
+  align-items: center;
+  background: #FFFFFF;
+  bottom: 0;
+  box-shadow: 0px -2px 10px 2px rgba(0, 0, 0, .5);
+  display: flex;
+  height: 56px;
+  justify-content: space-around;
+  position: fixed;
+  width: 100%;
+
+  &__item {
+    border: 0;
+    color: #757575;
+    font-size: 14px;
+    text-decoration: none;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &--active {
+      color: $colour-active;
+    }
+  }
+}

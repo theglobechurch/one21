@@ -1,0 +1,22 @@
+@import './colours';
+
+.sermonList {
+  a {
+    text-decoration: none;
+  }
+
+  &__item {
+    border-bottom: 1px solid #ccc;
+    font-size: 14px;
+    padding: 16px;
+
+    &__title {
+      font-size: 16px;
+      font-weight: normal;
+    }
+
+    &__passage {
+      color: $colour-inactive;
+    }
+  }
+}
