@@ -15,8 +15,14 @@ class StudyFooter extends Component {
         )}
 
         {itemNo === 1 && (
-          <Link to={`/`}>
+          <Link to={`/start`}>
             <span>Prev</span>
+          </Link>
+        )}
+
+        {itemNo === 0 && (
+          <Link to={`/`}>
+            <span>Study overview</span>
           </Link>
         )}
 
@@ -28,7 +34,7 @@ class StudyFooter extends Component {
         
         {itemNo === itemCount && (
           <Link to={`/finish`}>
-            <span>Finish</span>
+            <span>Pray</span>
           </Link>
         )}
 

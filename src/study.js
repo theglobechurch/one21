@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import Question from './question';
 import StudyFooter from './studyFooter';
 import './style/Study.css';
@@ -7,18 +7,7 @@ import './style/Study.css';
 class Study extends Component {
   
   componentDidMount() {
-    // if (this.props.view !== 'study') {
-    //   this.props.setView('study');
-    // }
-
-    // if (this.props.title !== this.props.study.name) {
-    //   this.props.setTitle(this.props.study.name);
-    // }
-
-    console.log(this.props);
-
-    if (!this.props.activeStudy || this.props.activeStudy.name !== this.props.study.name) {
-      console.log(`Setting active study: ${this.props.study.name}`)
+    if (!this.props.activeStudy || this.props.activeStudy.name !== this.props.title) {
       this.props.setActiveStudy(this.props.study);
     }
   }
@@ -30,16 +19,41 @@ class Study extends Component {
         <div className="study">
           <Switch>
             <Route exact path="/" render={() => (
-              <div>
-                Start…
-                <StudyFooter itemNo={0} itemCount={study.questions.length} baseRoute={`/study/${study.slug}`} />
-              </div>
+              <section className="study__question question">
+                { study.description ? (
+                  <p>{ study.description }</p>
+                ) : (
+                  <p>No desc present in JSON</p>
+                )}
+
+                <div>
+                  Go to questions: 
+                  <Link
+                    to={{
+                      pathname: `/start`
+                    }}>
+                  Start…
+                  </Link>
+                </div>
+              </section>
+            )} />
+
+            <Route path="/start" render={() => (
+              <section className="study__question question">
+                <p>Stop! Take some time to pray first</p>
+                <p>Now read {study.passage}</p>
+                <StudyFooter itemNo='0' itemCount={study.questions.length} baseRoute={`/study/${study.slug}`} />
+              </section>
             )} />
 
             <Route path="/finish" render={() => (
-              <div>
-                End…
-              </div>
+              <section className="study__question question">
+                <p>Spend some time praying through what you have spoken about today.</p>
+                <footer className="study__footer">
+                  <Link to={`/${study.questions.length-1}`}>Prev</Link>
+                  <Link to={`/`}>End</Link>
+                </footer>
+              </section>
             )} />
 
             <Route path="/:id" render={({ match }) => (

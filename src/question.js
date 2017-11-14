@@ -7,7 +7,6 @@ class Question extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log('yo');
     if (this.props.location !== prevProps.location) {
       window.scrollTo(0, 0)
     }
