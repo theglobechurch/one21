@@ -12,9 +12,6 @@ class SermonListItem extends Component {
           <span className="sermonList__item__date">{ recording_date.format('Do MMMM YYYY') }</span>
           <span className="sermonList__item__passage">{ passage }</span>
         </div>
-        <div className="sermonList__item__star">
-          *
-        </div>
       </div>
     )
   }

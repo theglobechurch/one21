@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 export default class Icon extends Component {
 
   render () {
-
     return (
       <svg className= { this.props.classname }>
         <use
@@ -14,5 +13,4 @@ export default class Icon extends Component {
     )
 
   }
-
 }

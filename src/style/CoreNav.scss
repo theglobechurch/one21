@@ -15,8 +15,19 @@
   &__item {
     border: 0;
     color: #757575;
-    font-size: 14px;
+    font-size: 12px;
     text-decoration: none;
+    letter-spacing: .5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    svg {
+      display: block;
+      width: 22px;
+      max-height: 22px;
+      margin-bottom: 1px;
+    }
 
     &:hover {
       cursor: pointer;
