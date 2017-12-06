@@ -1,14 +1,47 @@
 @import './reset.scss';
+@import './buttons.scss';
+@import './colours.scss';
 
 * {
   box-sizing: border-box;
 }
 
 body {
+  color: $colour-black;
   margin: 0;
   padding: 0;
 }
 
 .container {
   margin: 56px 0;
+}
+
+p {
+  color: $colour-simple-grey;
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 400;
+}
+
+.big_title {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 32px;
+  margin-bottom: 16px;
+}
+
+.pre_title {
+  color: $colour-simple-grey;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+
+.dinky_title {
+  color: $colour-simple-grey;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0.5px;
 }

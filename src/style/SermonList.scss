@@ -6,17 +6,40 @@
   }
 
   &__item {
+    display: flex;
     border-bottom: 1px solid #ccc;
     font-size: 14px;
     padding: 16px;
 
+    &__body {
+      width: 100%;
+    }
+
     &__title {
       font-size: 16px;
       font-weight: normal;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    &__date {
+      display: block;
     }
 
     &__passage {
       color: $colour-inactive;
+    }
+
+    &__star {
+      align-items: center;
+      color: $colour-inactive;
+      display: flex;
+      padding: 0 16px;
+
+      &:hover {
+        color: $colour-inactive-hover
+      }
     }
   }
 }

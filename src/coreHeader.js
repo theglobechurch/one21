@@ -7,7 +7,7 @@ class CoreHeader extends Component {
     return (
       <header className="coreHeader">
 
-        121 (one twenty one)
+        one21
 
         {this.props.title && (
           <span>: {this.props.title}</span>

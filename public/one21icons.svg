@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="s-svg-icon">
+  <symbol id="sound" viewBox="0 0 19 19"><title>Sound</title>
+    <path fill-rule="nonzero" fill="currentColor" d="M0 6.151v6.158h4.105l5.131 5.13V1.02L4.105 6.151H0zM13.854 9.23a4.618 4.618 0 0 0-2.566-4.136v8.261a4.591 4.591 0 0 0 2.566-4.125zm-2.566-9v2.114A7.189 7.189 0 0 1 16.42 9.23a7.189 7.189 0 0 1-5.132 6.886v2.114c4.116-.934 7.184-4.608 7.184-9s-3.068-8.066-7.184-9z"/>
+  </symbol>
+  <symbol id="facebook" viewbox="0 0 20 20"><title>Facebook</title>
+    <path d="M11.722 5c0-.694.373-1.25.84-1.25h2.94V0h-2.94C10.018 0 7.94 2.245 7.94 5v2.5H5v3.75h2.94V20h3.782v-8.75h3.78V7.5h-3.78V5z" fill="currentColor" fill-rule="evenodd"/>
+  </symbol>
+</svg>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import Question from './question';
 import StudyFooter from './studyFooter';
+import Icon from './icon';
 import './style/Study.css';
 
 class Study extends Component {
@@ -19,23 +20,44 @@ class Study extends Component {
         <div className="study">
           <Switch>
             <Route exact path="/" render={() => (
-              <section className="study__question question">
-                { study.description ? (
-                  <p>{ study.description }</p>
-                ) : (
-                  <p>No desc present in JSON</p>
-                )}
+              <main className="study__introduction">
+                <section className="study__introduction__section">
+                  <h2 className="pre_title">{ study.passage }</h2>
+                  <h1 className="big_title">{ study.name }</h1>
 
-                <div>
-                  Go to questions: 
+                  { study.description && (
+                    <p>{ study.description }</p>
+                  )}
+                  
                   <Link
+                    className="btn btn--primary"
                     to={{
                       pathname: `/start`
                     }}>
-                  Start…
+                    Go to questions
                   </Link>
-                </div>
-              </section>
+                </section>
+
+                { study.url && (
+                  <section className="study__introduction__section study__introduction__section--iconed">
+                    <Icon icon="sound" classname="study__icon" />
+                    <h2 className="dinky_title">Catch up</h2>
+                    <p>Missed the sermon on Sunday? Listen back to the recording on the church website</p>
+                    <a href={ study.url } className="btn">
+                      Listen now
+                    </a>
+                  </section>
+                )}
+
+                <section className="study__introduction__section study__introduction__section--iconed">
+                  <Icon icon="facebook" classname="study__icon" />
+                  <h2 className="dinky_title">Share your reflections…</h2>
+                  <p>Something stand out to you from this passage that would be helpful for the church? Share it on the community Facebook group:</p>
+                  <a href="https://www.facebook.com/groups/globechurchcommunity/" className="btn">
+                    Globe Community Group
+                  </a>
+                </section>
+              </main>
             )} />
 
             <Route path="/start" render={() => (
