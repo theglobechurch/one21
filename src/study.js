@@ -25,7 +25,7 @@ class Study extends Component {
                 {study.image && (
                   <img src={study.image} alt="" className="study__introduction__image" />
                 )}
-                
+
                 <section className="study__introduction__section">
                   <h2 className="pre_title">{ study.passage }</h2>
                   <h1 className="big_title">{ study.name }</h1>
@@ -77,7 +77,10 @@ class Study extends Component {
               <section className="study__question question">
                 <p>Spend some time praying through what you have spoken about today.</p>
                 <footer className="study__footer">
-                  <Link to={`/${study.questions.length-1}`}>Prev</Link>
+                  <Link to={`/${study.questions.length-1}`}>
+                    <Icon icon="arrowLeft" classname="study__footer__icon study__footer__icon--left" />
+                    Prev
+                  </Link>
                   <Link to={`/`}>End</Link>
                 </footer>
               </section>

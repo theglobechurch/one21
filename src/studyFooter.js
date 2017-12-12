@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Icon from "./icon";
 import { Link } from 'react-router-dom';
 
 class StudyFooter extends Component {
@@ -10,12 +11,14 @@ class StudyFooter extends Component {
 
         { itemNo > 1 && (
           <Link to={`/${itemNo-1}`}>
+            <Icon icon="arrowLeft" classname="study__footer__icon study__footer__icon--left" />
             <span>Prev</span>
           </Link>
         )}
 
         {itemNo === 1 && (
           <Link to={`/start`}>
+            <Icon icon="arrowLeft" classname="study__footer__icon study__footer__icon--left" />
             <span>Prev</span>
           </Link>
         )}
@@ -29,12 +32,14 @@ class StudyFooter extends Component {
         { itemNo < itemCount && (
           <Link to={`/${itemNo+1}`}>
             <span>Next</span>
+            <Icon icon="arrowRight" classname="study__footer__icon study__footer__icon--right" />
           </Link>
         )}
         
         {itemNo === itemCount && (
           <Link to={`/finish`}>
             <span>Pray</span>
+            <Icon icon="arrowRight" classname="study__footer__icon study__footer__icon--right" />
           </Link>
         )}
 

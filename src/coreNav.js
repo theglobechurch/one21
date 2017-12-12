@@ -7,7 +7,7 @@ class CoreNav extends Component {
 
   render () {
     const { studies } = this.props;
-    let studyLink = `/study/${studies[studies.length - 1].slug}`
+    let studyLink = `/study/${studies[0].slug}`
 
     if (this.props.activeStudy) {
       studyLink = `/study/${ this.props.activeStudy.slug }`;

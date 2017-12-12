@@ -4,7 +4,7 @@
   height: calc(100vh - 112px);
   
   &__question {
-    padding: 16px 16px 0;
+    padding: 16px;
     margin-bottom: 106px;
   }
 
@@ -18,23 +18,40 @@
   }
 
   &__footer {
-    display: flex;
-    justify-content: space-between;
-    position: fixed;
+    background-color: $colour-active;
     bottom: 56px;
-    height: 50px;
-    left: 0;
-    width: 100%;
-    padding: 16px;
-    background: white;
+    display: flex;
     font-size: 10px;
+    height: 50px;
+    justify-content: space-between;
+    left: 0;
     letter-spacing: 1px;
+    padding: 16px;
+    position: fixed;
+    width: 100%;
     
     a {
-      color: $colour-active;
+      align-items: center;
+      color: white;
+      display: inline-flex;
       font-weight: bold;
       text-transform: uppercase;
       text-decoration: none;
+      letter-spacing: 1.5px;
+    }
+
+    &__icon {
+      width: 12px;
+      height: 16px;
+      color: white;
+  
+      &--left {
+        padding-right: 5px;
+      }
+  
+      &--right {
+        padding-left: 5px;
+      }
     }
   }
 }
