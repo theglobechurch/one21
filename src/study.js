@@ -21,6 +21,11 @@ class Study extends Component {
           <Switch>
             <Route exact path="/" render={() => (
               <main className="study__introduction">
+
+                {study.image && (
+                  <img src={study.image} alt="" className="study__introduction__image" />
+                )}
+                
                 <section className="study__introduction__section">
                   <h2 className="pre_title">{ study.passage }</h2>
                   <h1 className="big_title">{ study.name }</h1>

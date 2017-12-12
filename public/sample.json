@@ -1,8 +1,62 @@
 [
   {
+    "name": "You are not defined by your circumstances",
+    "date": "2017-12-03T00:00:00.000Z",
+    "slug": "you-are-not-defined-by-your-circumstances",
+    "description": "\"Stay where you are\" is Paul's call to the Corinthian church. For both them and us this call feels very alien; being discontent is encouraged- get a new job, move to a new place, get a new partner… We're discontent with these things because we place our identity in these things. Paul's message to the Corinthian church is a simple one– stay where you are, remain in the situation that God has put you in because you are not defined by your circumstances, but in Christ.",
+    "image": "http://globe.church/uploads/production/2017/09/07/7f58r6sfe3_the_globe_church_one_corinthians.jpg",
+    "images": {
+      "320": "http://globe.church/uploads/production/2017/09/07/1gop4zqvn6_the_globe_church_one_corinthians.jpg",
+      "640": "http://globe.church/uploads/production/2017/09/07/70taog7qmc_the_globe_church_one_corinthians.jpg",
+      "960": "http://globe.church/uploads/production/2017/09/07/7f58r6sfe3_the_globe_church_one_corinthians.jpg",
+      "1280": "http://globe.church/uploads/production/2017/09/07/22f8uefmq1_the_globe_church_one_corinthians.jpg",
+      "1920": "http://globe.church/uploads/production/2017/09/07/67qt2jw5ez_the_globe_church_one_corinthians.jpg",
+      "2560": "http://globe.church/uploads/production/2017/09/07/7infvvj2fp_the_globe_church_one_corinthians.jpg"
+    },
+    "passage": "1 Corinthians 7:8-40",
+    "url": "http://globe.church/resources/you-are-not-defined-by-your-circumstances",
+    "questions": [
+      {
+        "type": "question",
+        "lead": "Whatever the situation, the Christian belongs to Christ - you were bought at a price. How does knowing this truth enable you to be content in the circumstance that you are in?",
+        "followup": [
+          "What does that look like in your singleness / marriage / dating relationship?",
+          "In this area where do you find contentment hardest to find?",
+          "How can we help one another to be content?",
+          "How would you explain Christian contentment to a friend who isn't a Christian?"
+        ]
+      },
+      {
+        "type": "question",
+        "lead": "Within marriage, love is more than an emotion; it is a commitment. Why should we fight hard for marriage?",
+        "followup": [
+          "How does marriage as a picture of God and the church help our view of commitment?"
+        ]
+      },
+      {
+        "type": "question",
+        "lead": "Paul is keen for single people to remain single; so they can have an undivided attention to serving God (v32-35). As a single or married person, how do you see this in your life?",
+        "followup": [
+          "What does it look like for you to use your time well to serve the Lord?",
+          "How can we help one another to serve the Lord?"
+        ]
+      }
+    ]
+  },
+  {
     "name": "Life without sex?",
     "date": "2017-11-26T00:00:00.000Z",
     "slug": "life-without-sex",
+    "description": "We've seen that the church in Corinth is in a mess, in fact Paul calls their situation a crisis. The issue of sexual immorality is threatening their existence, it's tearing the church apart– that's why Paul's tone is so serious. As we hear from 1 Corinthians 7 we're not going to see the sum total of what the bible says about sex, singleness or marriage, but we are going to see Paul write into a culture that has made sex an idol, and the consequences of that.",
+    "image": "http://globe.church/uploads/production/2017/09/07/7f58r6sfe3_the_globe_church_one_corinthians.jpg",    
+    "images": {
+      "320": "http://globe.church/uploads/production/2017/09/07/1gop4zqvn6_the_globe_church_one_corinthians.jpg",
+      "640": "http://globe.church/uploads/production/2017/09/07/70taog7qmc_the_globe_church_one_corinthians.jpg",
+      "960": "http://globe.church/uploads/production/2017/09/07/7f58r6sfe3_the_globe_church_one_corinthians.jpg",
+      "1280": "http://globe.church/uploads/production/2017/09/07/22f8uefmq1_the_globe_church_one_corinthians.jpg",
+      "1920": "http://globe.church/uploads/production/2017/09/07/67qt2jw5ez_the_globe_church_one_corinthians.jpg",
+      "2560": "http://globe.church/uploads/production/2017/09/07/7infvvj2fp_the_globe_church_one_corinthians.jpg"
+    },
     "passage": "1 Corinthians 7:1-9",
     "url": "http://globe.church/resources/life-without-sex",
     "questions": [
@@ -35,6 +89,16 @@
     "name": "Taking the Gospel where Christ is not Known",
     "date": "2017-11-20T00:00:00.000Z",
     "slug": "taking-the-gospel-where-christ-is-not-known",
+    "description": "There are still so many places where the gospel of Jesus Christ has not been heard and Paul's ministry is focused on reaching them. But if he is going to get there he's going to need a gospel ambition and a costly initiative…",
+    "image": "http://globe.church/uploads/production/2017/11/20/9rhvh9pvh9_20171119.jpg",      
+    "images": {
+      "320": "http://globe.church/uploads/production/2017/11/20/64lt3eof13_20171119.jpg",
+      "640": "http://globe.church/uploads/production/2017/11/20/6bqi25atfv_20171119.jpg",
+      "960": "http://globe.church/uploads/production/2017/11/20/9rhvh9pvh9_20171119.jpg",
+      "1280": "http://globe.church/uploads/production/2017/11/20/68qjllrxgs_20171119.jpg",
+      "1920": "http://globe.church/uploads/production/2017/11/20/2stktam1a1_20171119.jpg",
+      "2560": "http://globe.church/uploads/production/2017/11/20/2qj1xyxi9s_20171119.jpg"
+    },
     "passage": "Romans 15:14-22",
     "url": "http://globe.church/resources/taking-the-gospel-where-christ-is-not-known",
     "questions": [
@@ -71,44 +135,19 @@
     ]
   },
   {
-    "name": "A Kiss on the Lips",
-    "date": "2017-10-14T23:00:00.000Z",
-    "slug": "a-kiss-on-the-lips",
-    "passage": "1 Corinthians 4:14-21",
-    "url": "http://globe.church/resources/a-kiss-on-the-lips",
-    "questions": [
-      {
-        "type": "question",
-        "lead": "Who are your parents in Christ?",
-        "followup": [
-          "Who do you look up to spiritually?",
-          "Who are the people who will correct or challenge you?",
-          "Do you make time to spend with them?",
-          "Are you a parent to anyone?"
-        ]
-      },
-      {
-        "type": "question",
-        "lead": "Jonty spoke about the cross having power, how would you describe the power of the cross?",
-        "followup": [
-          "What impact does this have on your life day to day?",
-          "How would you communicate that to someone who wasn't a Christian"
-        ]
-      },
-      {
-        "type": "question",
-        "lead": "Paul has been warning this church against boasting and making itself impressive. How are you tempted to boast or make yourself look impressive?",
-        "followup": [
-          "What can we do to ensure Jesus is central to our lives and our only boast?",
-          "How can we hold one another to account in this regard?"
-        ]
-      }
-    ]
-  },
-  {
     "name": "Conflict is a Killer",
     "date": "2017-10-28T23:00:00.000Z",
     "slug": "conflict-is-a-killer",
+    "description": "You can feel the shock in Paul's letter here… \"You can't be serious?! You're taking each other to court?\" He isn't surprised that there is conflict, it's about how the conflict is dealt with in the church. Conflict that is handled poorly will cause disaster to the church, but we're going to see that there is an antidote to it.",
+    "image": "http://globe.church/uploads/production/2017/09/07/7f58r6sfe3_the_globe_church_one_corinthians.jpg",
+    "images": {
+      "320": "http://globe.church/uploads/production/2017/09/07/1gop4zqvn6_the_globe_church_one_corinthians.jpg",
+      "640": "http://globe.church/uploads/production/2017/09/07/70taog7qmc_the_globe_church_one_corinthians.jpg",
+      "960": "http://globe.church/uploads/production/2017/09/07/7f58r6sfe3_the_globe_church_one_corinthians.jpg",
+      "1280": "http://globe.church/uploads/production/2017/09/07/22f8uefmq1_the_globe_church_one_corinthians.jpg",
+      "1920": "http://globe.church/uploads/production/2017/09/07/67qt2jw5ez_the_globe_church_one_corinthians.jpg",
+      "2560": "http://globe.church/uploads/production/2017/09/07/7infvvj2fp_the_globe_church_one_corinthians.jpg"
+    },
     "passage": "1 Corinthians 6:1-11",
     "url": "http://globe.church/resources/conflict-is-a-killer",
     "questions": [
@@ -139,36 +178,46 @@
     ]
   },
   {
-    "name": "You are not defined by your circumstances",
-    "description": "\"Stay where you are\" is Paul's call to the Corinthian church. For both them and us this call feels very alien; being discontent is encouraged- get a new job, move to a new place, get a new partner… We're discontent with these things because we place our identity in these things. Paul's message to the Corinthian church is a simple one– stay where you are, remain in the situation that God has put you in because you are not defined by your circumstances, but in Christ.",
-    "date": "2017-12-03T00:00:00.000Z",
-    "slug": "you-are-not-defined-by-your-circumstances",
-    "passage": "1 Corinthians 7:8-40",
-    "url": "http://globe.church/resources/you-are-not-defined-by-your-circumstances",
+    "name": "A Kiss on the Lips",
+    "date": "2017-10-14T23:00:00.000Z",
+    "slug": "a-kiss-on-the-lips",
+    "description": "Proverbs 24:26 says 'An honest answer is like a kiss on the lips'. Criticism is hard, we don't like it, but Paul is writing honestly to the church, calling them to repentance. He isn't interested in making them like him. He is going to correct them when they go wrong… he's going to speak truth.",
+    "image": "http://globe.church/uploads/production/2017/09/07/7f58r6sfe3_the_globe_church_one_corinthians.jpg",      
+    "images": {
+      "320": "http://globe.church/uploads/production/2017/09/07/1gop4zqvn6_the_globe_church_one_corinthians.jpg",
+      "640": "http://globe.church/uploads/production/2017/09/07/70taog7qmc_the_globe_church_one_corinthians.jpg",
+      "960": "http://globe.church/uploads/production/2017/09/07/7f58r6sfe3_the_globe_church_one_corinthians.jpg",
+      "1280": "http://globe.church/uploads/production/2017/09/07/22f8uefmq1_the_globe_church_one_corinthians.jpg",
+      "1920": "http://globe.church/uploads/production/2017/09/07/67qt2jw5ez_the_globe_church_one_corinthians.jpg",
+      "2560": "http://globe.church/uploads/production/2017/09/07/7infvvj2fp_the_globe_church_one_corinthians.jpg"
+    },
+    "passage": "1 Corinthians 4:14-21",
+    "url": "http://globe.church/resources/a-kiss-on-the-lips",
     "questions": [
       {
         "type": "question",
-        "lead": "Whatever the situation, the Christian belongs to Christ - you were bought at a price. How does knowing this truth enable you to be content in the circumstance that you are in?",
+        "lead": "Who are your parents in Christ?",
         "followup": [
-          "What does that look like in your singleness / marriage / dating relationship?",
-          "In this area where do you find contentment hardest to find?",
-          "How can we help one another to be content?",
-          "How would you explain Christian contentment to a friend who isn't a Christian?"
+          "Who do you look up to spiritually?",
+          "Who are the people who will correct or challenge you?",
+          "Do you make time to spend with them?",
+          "Are you a parent to anyone?"
         ]
       },
       {
         "type": "question",
-        "lead": "Within marriage, love is more than an emotion; it is a commitment. Why should we fight hard for marriage?",
+        "lead": "Jonty spoke about the cross having power, how would you describe the power of the cross?",
         "followup": [
-          "How does marriage as a picture of God and the church help our view of commitment?"
+          "What impact does this have on your life day to day?",
+          "How would you communicate that to someone who wasn't a Christian"
         ]
       },
       {
         "type": "question",
-        "lead": "Paul is keen for single people to remain single; so they can have an undivided attention to serving God (v32-35). As a single or married person, how do you see this in your life?",
+        "lead": "Paul has been warning this church against boasting and making itself impressive. How are you tempted to boast or make yourself look impressive?",
         "followup": [
-          "What does it look like for you to use your time well to serve the Lord?",
-          "How can we help one another to serve the Lord?"
+          "What can we do to ensure Jesus is central to our lives and our only boast?",
+          "How can we hold one another to account in this regard?"
         ]
       }
     ]
