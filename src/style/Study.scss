@@ -60,6 +60,12 @@
     
     &__image {
       position: relative;
+      background-position: center center;
+      background-size: cover;
+      height: 190px;
+      position: relative;
+      width: 100%;
+
       &:before {
         content: '';
         background: linear-gradient(135deg, rgba($colour-active, .35) 0%, rgba($colour-inactive, .75) 100%);
@@ -67,11 +73,18 @@
         top: 0;
         bottom: 0;
         width: 100%;
+        z-index: 1;
       }
       
       img {
+        display: block;
+        height: 100%;
+        left: 0;
+        -o-object-fit: cover;
+        object-fit: cover;
+        position: absolute;
+        top: 0;
         width: 100%;
-        max-width: 100%;
       }
     }
 
@@ -80,6 +93,7 @@
       display: flex;
       justify-content: center;
       position: relative;
+      z-index: 2;
 
       &__icon {
         width: 80px;
@@ -125,9 +139,22 @@
   }
 
   &__image {
+    background-position: center center;
+    background-size: cover;
+    height: 190px;
+    position: relative;
     width: 100%;
-    height: auto;
-    max-width: 100%;
+
+    img {
+      display: block;
+      height: 100%;
+      left: 0;
+      -o-object-fit: cover;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
   }
 }
 

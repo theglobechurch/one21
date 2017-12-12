@@ -23,7 +23,9 @@ class Study extends Component {
               <main className="study__introduction">
 
                 {study.image && (
-                  <img src={study.image} alt="" className="study__introduction__image" />
+                  <div className="study__introduction__image">
+                    <img src={study.image} alt="" className="" />
+                  </div>
                 )}
 
                 <section className="study__introduction__section">
