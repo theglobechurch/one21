@@ -66,24 +66,59 @@ class Study extends Component {
             )} />
 
             <Route path="/start" render={() => (
-              <section className="study__question question">
-                <p>Stop! Take some time to pray first</p>
-                <p>Now read {study.passage}</p>
-                <StudyFooter itemNo='0' itemCount={study.questions.length} baseRoute={`/study/${study.slug}`} />
-              </section>
+              <main>
+                <div className="study__lead">
+                  {study.image && (
+                    <div className="study__lead__image">
+                      <img src={study.image} alt="" />
+                    </div>
+                  )}
+                  <div className="study__lead__icons">
+                    <span className="study__lead__icons__icon">
+                      <Icon icon="pray" classname="" />
+                    </span>
+
+                    <span className="study__lead__icons__icon">
+                      <Icon icon="study" classname="" />
+                    </span>
+                  </div>
+                </div>
+                <section className="study__question question question--title-slide">
+                  <h2 className="big_title">Start by praying for<br />this time.</h2>
+                  <h2 className="big_title">Now read<br />{study.passage}</h2>
+                  <a href={ `https://www.biblegateway.com/passage/?search=` + study.passage + `&version=NIVUK` } className="btn" target="_blank" rel="noopener">
+                    View passage
+                  </a>
+                  <StudyFooter itemNo='0' itemCount={study.questions.length} baseRoute={`/study/${study.slug}`} />
+                </section>
+              </main>
             )} />
 
             <Route path="/finish" render={() => (
-              <section className="study__question question">
-                <p>Spend some time praying through what you have spoken about today.</p>
-                <footer className="study__footer">
-                  <Link to={`/${study.questions.length-1}`}>
-                    <Icon icon="arrowLeft" classname="study__footer__icon study__footer__icon--left" />
-                    Prev
-                  </Link>
-                  <Link to={`/`}>End</Link>
-                </footer>
-              </section>
+              <main>
+                <div className="study__lead">
+                  {study.image && (
+                    <div className="study__lead__image">
+                      <img src={study.image} alt="" />
+                    </div>
+                  )}
+                  <div className="study__lead__icons">
+                    <span className="study__lead__icons__icon">
+                      <Icon icon="pray" classname="" />
+                    </span>
+                  </div>
+                </div>
+                <section className="study__question question question--title-slide">
+                  <h2 className="big_title">Spend some time praying through what you have spoken about today.</h2>
+                  <footer className="study__footer">
+                    <Link to={`/${study.questions.length-1}`}>
+                      <Icon icon="arrowLeft" classname="study__footer__icon study__footer__icon--left" />
+                      Prev
+                    </Link>
+                    <Link to={`/`}>End</Link>
+                  </footer>
+                </section>
+              </main>
             )} />
 
             <Route path="/:id" render={({ match }) => (

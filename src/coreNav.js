@@ -13,6 +13,7 @@ class CoreNav extends Component {
       studyLink = `/study/${ this.props.activeStudy.slug }`;
     }
 
+    console.log(this.props);
     return (
       <nav className="coreNav">
 
