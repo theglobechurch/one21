@@ -17,10 +17,20 @@ class Question extends Component {
     window.scrollTo(0, 0);
     return (
       <section className="study__question question">
-        <header className="question__header">
-          <span>Question { itemNo }:</span>
-          <h2>{question.lead}</h2>
-        </header>
+       
+        { question.type === 'question' && (
+          <header className="question__header">
+            <span>Question { itemNo }:</span>
+            <h2>{question.lead}</h2>
+          </header>
+        )}
+       
+        { question.type === 'pause' && (
+          <header className="question__header">
+            <span>Pause</span>
+            <h2>{question.body}</h2>
+          </header>
+        )}
 
         { question.followup && (
           <ul className="question__subquestions">
