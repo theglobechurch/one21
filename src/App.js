@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 
 import './style/App.css';
+import Landing from './landing';
 import Calendar from './calendar';
 import Study from './study';
 import CoreHeader from './coreHeader';
@@ -33,12 +34,16 @@ class App extends Component {
     fetch('http://globe.church/api/one21')
       .then(res => res.json())
       .then(studies => {
-        this.setState({ studies })
+        this.setState({
+          studies: studies,
+          latest_study: studies[0]
+        })
       });
   }
 
   render () {
     const { studies } = this.state;
+
     return (
       <Router path="/">
         <div className="app">
@@ -64,6 +69,14 @@ class App extends Component {
                   study={studies.find(s => s.slug === match.params.studySlug )} />
               )} />
             )}
+
+            <Route exact path="/" render={({ match }) => (
+              <Landing
+                study={ this.state.latest_study }
+                setTitle={ this.setTitle }
+                setView={ this.setView }
+              />
+            )} />
 
           </div>
 

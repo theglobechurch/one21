@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './style/CoreHeader.css';
 
 class CoreHeader extends Component {
@@ -7,7 +8,11 @@ class CoreHeader extends Component {
     return (
       <header className="coreHeader">
 
-        One21
+        <Link to={{
+          pathname: `/`
+        }}>
+          one21
+        </Link>
 
         {this.props.title && (
           <span>: {this.props.title}</span>

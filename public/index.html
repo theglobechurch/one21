@@ -6,18 +6,41 @@
     <link rel="shortcut icon" href="%PUBLIC_URL%/icons/one21icon_128.png">
     <title>One21</title>
     <style type="text/css">
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      
+      .loading {
+        background: url('/images/tablecloth.jpg') repeat center center;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        justify-content: center;
+        align-items: center;
+      }
 
+      .loading__logo { width: 190px; }
+
+      .loading__text {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+        color: white;
+        text-transform: uppercase;
+        font-size: 1.5em;
+        letter-spacing: 0.2em;
+        text-shadow: #3a718b 1px 1px 1px;
+      }
     </style>
   </head>
   <body>
     <div id="root">
-      <div class="App">
-      <div class="App-header">
-        <h2>Home</h2>
+      <div class="loading">
+        <img src="/one21logo.svg" alt="" class="loading__logo" />
+        <p class="loading__text">Loading one21</p>
       </div>
-      <p class="App-intro">
-        Loading site...
-      </p>
     </div>
   </body>
 </html>
