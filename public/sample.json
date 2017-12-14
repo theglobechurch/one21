@@ -4,17 +4,17 @@
     "date": "2017-12-03T00:00:00.000Z",
     "slug": "you-are-not-defined-by-your-circumstances",
     "description": "\"Stay where you are\" is Paul's call to the Corinthian church. For both them and us this call feels very alien; being discontent is encouraged- get a new job, move to a new place, get a new partner… We're discontent with these things because we place our identity in these things. Paul's message to the Corinthian church is a simple one– stay where you are, remain in the situation that God has put you in because you are not defined by your circumstances, but in Christ.",
-    "image": "http://globe.church/uploads/production/2017/09/07/7f58r6sfe3_the_globe_church_one_corinthians.jpg",
     "images": {
-      "320": "http://globe.church/uploads/production/2017/09/07/1gop4zqvn6_the_globe_church_one_corinthians.jpg",
-      "640": "http://globe.church/uploads/production/2017/09/07/70taog7qmc_the_globe_church_one_corinthians.jpg",
-      "960": "http://globe.church/uploads/production/2017/09/07/7f58r6sfe3_the_globe_church_one_corinthians.jpg",
-      "1280": "http://globe.church/uploads/production/2017/09/07/22f8uefmq1_the_globe_church_one_corinthians.jpg",
-      "1920": "http://globe.church/uploads/production/2017/09/07/67qt2jw5ez_the_globe_church_one_corinthians.jpg",
-      "2560": "http://globe.church/uploads/production/2017/09/07/7infvvj2fp_the_globe_church_one_corinthians.jpg"
+      "320": "/uploads/production/2017/09/07/1gop4zqvn6_the_globe_church_one_corinthians.jpg",
+      "640": "/uploads/production/2017/09/07/70taog7qmc_the_globe_church_one_corinthians.jpg",
+      "960": "/uploads/production/2017/09/07/7f58r6sfe3_the_globe_church_one_corinthians.jpg",
+      "1280": "/uploads/production/2017/09/07/22f8uefmq1_the_globe_church_one_corinthians.jpg",
+      "1920": "/uploads/production/2017/09/07/67qt2jw5ez_the_globe_church_one_corinthians.jpg",
+      "2560": "/uploads/production/2017/09/07/7infvvj2fp_the_globe_church_one_corinthians.jpg"
     },
+    "image": "/uploads/production/2017/09/07/7f58r6sfe3_the_globe_church_one_corinthians.jpg",
     "passage": "1 Corinthians 7:8-40",
-    "url": "http://globe.church/resources/you-are-not-defined-by-your-circumstances",
+    "url": "/resources/you-are-not-defined-by-your-circumstances",
     "questions": [
       {
         "type": "question",
@@ -41,24 +41,25 @@
           "How can we help one another to serve the Lord?"
         ]
       }
-    ]
+    ],
+    "base_url": "http://globe.church"
   },
   {
     "name": "Life without sex?",
     "date": "2017-11-26T00:00:00.000Z",
     "slug": "life-without-sex",
     "description": "We've seen that the church in Corinth is in a mess, in fact Paul calls their situation a crisis. The issue of sexual immorality is threatening their existence, it's tearing the church apart– that's why Paul's tone is so serious. As we hear from 1 Corinthians 7 we're not going to see the sum total of what the bible says about sex, singleness or marriage, but we are going to see Paul write into a culture that has made sex an idol, and the consequences of that.",
-    "image": "http://globe.church/uploads/production/2017/09/07/7f58r6sfe3_the_globe_church_one_corinthians.jpg",    
     "images": {
-      "320": "http://globe.church/uploads/production/2017/09/07/1gop4zqvn6_the_globe_church_one_corinthians.jpg",
-      "640": "http://globe.church/uploads/production/2017/09/07/70taog7qmc_the_globe_church_one_corinthians.jpg",
-      "960": "http://globe.church/uploads/production/2017/09/07/7f58r6sfe3_the_globe_church_one_corinthians.jpg",
-      "1280": "http://globe.church/uploads/production/2017/09/07/22f8uefmq1_the_globe_church_one_corinthians.jpg",
-      "1920": "http://globe.church/uploads/production/2017/09/07/67qt2jw5ez_the_globe_church_one_corinthians.jpg",
-      "2560": "http://globe.church/uploads/production/2017/09/07/7infvvj2fp_the_globe_church_one_corinthians.jpg"
+      "320": "/uploads/production/2017/09/07/1gop4zqvn6_the_globe_church_one_corinthians.jpg",
+      "640": "/uploads/production/2017/09/07/70taog7qmc_the_globe_church_one_corinthians.jpg",
+      "960": "/uploads/production/2017/09/07/7f58r6sfe3_the_globe_church_one_corinthians.jpg",
+      "1280": "/uploads/production/2017/09/07/22f8uefmq1_the_globe_church_one_corinthians.jpg",
+      "1920": "/uploads/production/2017/09/07/67qt2jw5ez_the_globe_church_one_corinthians.jpg",
+      "2560": "/uploads/production/2017/09/07/7infvvj2fp_the_globe_church_one_corinthians.jpg"
     },
+    "image": "/uploads/production/2017/09/07/7f58r6sfe3_the_globe_church_one_corinthians.jpg",
     "passage": "1 Corinthians 7:1-9",
-    "url": "http://globe.church/resources/life-without-sex",
+    "url": "/resources/life-without-sex",
     "questions": [
       {
         "type": "question",
@@ -83,24 +84,25 @@
           "How do you respond to Jonty’s challenges around self centred actions; eg demanding sex, masturbation, pornography or even flirting."
         ]
       }
-    ]
+    ],
+    "base_url": "http://globe.church"
   },
   {
     "name": "Taking the Gospel where Christ is not Known",
     "date": "2017-11-20T00:00:00.000Z",
     "slug": "taking-the-gospel-where-christ-is-not-known",
     "description": "There are still so many places where the gospel of Jesus Christ has not been heard and Paul's ministry is focused on reaching them. But if he is going to get there he's going to need a gospel ambition and a costly initiative…",
-    "image": "http://globe.church/uploads/production/2017/11/20/9rhvh9pvh9_20171119.jpg",      
     "images": {
-      "320": "http://globe.church/uploads/production/2017/11/20/64lt3eof13_20171119.jpg",
-      "640": "http://globe.church/uploads/production/2017/11/20/6bqi25atfv_20171119.jpg",
-      "960": "http://globe.church/uploads/production/2017/11/20/9rhvh9pvh9_20171119.jpg",
-      "1280": "http://globe.church/uploads/production/2017/11/20/68qjllrxgs_20171119.jpg",
-      "1920": "http://globe.church/uploads/production/2017/11/20/2stktam1a1_20171119.jpg",
-      "2560": "http://globe.church/uploads/production/2017/11/20/2qj1xyxi9s_20171119.jpg"
+      "320": "/uploads/production/2017/11/20/64lt3eof13_20171119.jpg",
+      "640": "/uploads/production/2017/11/20/6bqi25atfv_20171119.jpg",
+      "960": "/uploads/production/2017/11/20/9rhvh9pvh9_20171119.jpg",
+      "1280": "/uploads/production/2017/11/20/68qjllrxgs_20171119.jpg",
+      "1920": "/uploads/production/2017/11/20/2stktam1a1_20171119.jpg",
+      "2560": "/uploads/production/2017/11/20/2qj1xyxi9s_20171119.jpg"
     },
+    "image": "/uploads/production/2017/11/20/9rhvh9pvh9_20171119.jpg",
     "passage": "Romans 15:14-22",
-    "url": "http://globe.church/resources/taking-the-gospel-where-christ-is-not-known",
+    "url": "/resources/taking-the-gospel-where-christ-is-not-known",
     "questions": [
       {
         "type": "question",
@@ -113,7 +115,7 @@
       },
       {
         "type": "pause",
-        "body": "“When it comes to preaching the gospel don’t just have the ambition; stretch every sinew in your body to see it realised”"
+        "body": "\u003cp class=\"p1\"\u003e“When it comes to preaching the gospel don’t just have the ambition; stretch every sinew in your body to see it realised”\u003c/p\u003e"
       },
       {
         "type": "question",
@@ -132,24 +134,25 @@
           "How can we better support those who have already gone?     "
         ]
       }
-    ]
+    ],
+    "base_url": "http://globe.church"
   },
   {
     "name": "Conflict is a Killer",
     "date": "2017-10-28T23:00:00.000Z",
     "slug": "conflict-is-a-killer",
     "description": "You can feel the shock in Paul's letter here… \"You can't be serious?! You're taking each other to court?\" He isn't surprised that there is conflict, it's about how the conflict is dealt with in the church. Conflict that is handled poorly will cause disaster to the church, but we're going to see that there is an antidote to it.",
-    "image": "http://globe.church/uploads/production/2017/09/07/7f58r6sfe3_the_globe_church_one_corinthians.jpg",
     "images": {
-      "320": "http://globe.church/uploads/production/2017/09/07/1gop4zqvn6_the_globe_church_one_corinthians.jpg",
-      "640": "http://globe.church/uploads/production/2017/09/07/70taog7qmc_the_globe_church_one_corinthians.jpg",
-      "960": "http://globe.church/uploads/production/2017/09/07/7f58r6sfe3_the_globe_church_one_corinthians.jpg",
-      "1280": "http://globe.church/uploads/production/2017/09/07/22f8uefmq1_the_globe_church_one_corinthians.jpg",
-      "1920": "http://globe.church/uploads/production/2017/09/07/67qt2jw5ez_the_globe_church_one_corinthians.jpg",
-      "2560": "http://globe.church/uploads/production/2017/09/07/7infvvj2fp_the_globe_church_one_corinthians.jpg"
+      "320": "/uploads/production/2017/09/07/1gop4zqvn6_the_globe_church_one_corinthians.jpg",
+      "640": "/uploads/production/2017/09/07/70taog7qmc_the_globe_church_one_corinthians.jpg",
+      "960": "/uploads/production/2017/09/07/7f58r6sfe3_the_globe_church_one_corinthians.jpg",
+      "1280": "/uploads/production/2017/09/07/22f8uefmq1_the_globe_church_one_corinthians.jpg",
+      "1920": "/uploads/production/2017/09/07/67qt2jw5ez_the_globe_church_one_corinthians.jpg",
+      "2560": "/uploads/production/2017/09/07/7infvvj2fp_the_globe_church_one_corinthians.jpg"
     },
+    "image": "/uploads/production/2017/09/07/7f58r6sfe3_the_globe_church_one_corinthians.jpg",
     "passage": "1 Corinthians 6:1-11",
-    "url": "http://globe.church/resources/conflict-is-a-killer",
+    "url": "/resources/conflict-is-a-killer",
     "questions": [
       {
         "type": "question",
@@ -175,24 +178,25 @@
           "Do you have any conflicts in your life that you need to resolve?"
         ]
       }
-    ]
+    ],
+    "base_url": "http://globe.church"
   },
   {
     "name": "A Kiss on the Lips",
     "date": "2017-10-14T23:00:00.000Z",
     "slug": "a-kiss-on-the-lips",
     "description": "Proverbs 24:26 says 'An honest answer is like a kiss on the lips'. Criticism is hard, we don't like it, but Paul is writing honestly to the church, calling them to repentance. He isn't interested in making them like him. He is going to correct them when they go wrong… he's going to speak truth.",
-    "image": "http://globe.church/uploads/production/2017/09/07/7f58r6sfe3_the_globe_church_one_corinthians.jpg",      
     "images": {
-      "320": "http://globe.church/uploads/production/2017/09/07/1gop4zqvn6_the_globe_church_one_corinthians.jpg",
-      "640": "http://globe.church/uploads/production/2017/09/07/70taog7qmc_the_globe_church_one_corinthians.jpg",
-      "960": "http://globe.church/uploads/production/2017/09/07/7f58r6sfe3_the_globe_church_one_corinthians.jpg",
-      "1280": "http://globe.church/uploads/production/2017/09/07/22f8uefmq1_the_globe_church_one_corinthians.jpg",
-      "1920": "http://globe.church/uploads/production/2017/09/07/67qt2jw5ez_the_globe_church_one_corinthians.jpg",
-      "2560": "http://globe.church/uploads/production/2017/09/07/7infvvj2fp_the_globe_church_one_corinthians.jpg"
+      "320": "/uploads/production/2017/09/07/1gop4zqvn6_the_globe_church_one_corinthians.jpg",
+      "640": "/uploads/production/2017/09/07/70taog7qmc_the_globe_church_one_corinthians.jpg",
+      "960": "/uploads/production/2017/09/07/7f58r6sfe3_the_globe_church_one_corinthians.jpg",
+      "1280": "/uploads/production/2017/09/07/22f8uefmq1_the_globe_church_one_corinthians.jpg",
+      "1920": "/uploads/production/2017/09/07/67qt2jw5ez_the_globe_church_one_corinthians.jpg",
+      "2560": "/uploads/production/2017/09/07/7infvvj2fp_the_globe_church_one_corinthians.jpg"
     },
+    "image": "/uploads/production/2017/09/07/7f58r6sfe3_the_globe_church_one_corinthians.jpg",
     "passage": "1 Corinthians 4:14-21",
-    "url": "http://globe.church/resources/a-kiss-on-the-lips",
+    "url": "/resources/a-kiss-on-the-lips",
     "questions": [
       {
         "type": "question",
@@ -220,6 +224,7 @@
           "How can we hold one another to account in this regard?"
         ]
       }
-    ]
+    ],
+    "base_url": "http://globe.church"
   }
 ]

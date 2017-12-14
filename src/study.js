@@ -15,6 +15,15 @@ class Study extends Component {
 
   render () {
     const { study } = this.props;
+
+    if (study.url && study.url.substring(0, 4) !== 'http') {
+      study.url = study.base_url + study.url;
+    } 
+
+    if (study.image && study.image.substring(0, 4) !== 'http') {
+      study.image = study.base_url + study.image;
+    } 
+
     return (
       <Router basename={`/study/${study.slug}`}>
         <div className="study">
