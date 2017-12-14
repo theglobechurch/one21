@@ -7,6 +7,7 @@ class Calendar extends Component {
 
   componentDidMount() {
     this.props.setTitle('Calendar');
+    this.props.setView('calendar');
   }
 
   render() {

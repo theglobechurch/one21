@@ -20,7 +20,7 @@ class CoreNav extends Component {
           to={{
             pathname: studyLink
           }}
-          className="coreNav__item">
+          className={"coreNav__item " + (this.props.view === 'study' ? 'coreNav__item--active' : '')}>
           <Icon icon="study" />
           Study
         </Link>
@@ -29,7 +29,7 @@ class CoreNav extends Component {
           to={{
             pathname: '/calendar'
           }}
-          className="coreNav__item">
+          className={"coreNav__item " + (this.props.view === 'calendar' ? 'coreNav__item--active' : '')}>
             <Icon icon="calendar" />
             Calendar
         </Link>

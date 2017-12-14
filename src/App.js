@@ -25,6 +25,10 @@ class App extends Component {
     this.setState({title});
   }
 
+  setView = (view) => {
+    this.setState({view});
+  }
+
   componentDidMount() {
     fetch('http://globe.church/api/one21')
       .then(res => res.json())
@@ -47,6 +51,7 @@ class App extends Component {
               <Calendar
                 studies={studies}
                 setTitle={this.setTitle}
+                setView={this.setView}
                 />
             )} />
 
@@ -55,6 +60,7 @@ class App extends Component {
                 <Study
                   { ...this.state }
                   setActiveStudy={this.setActiveStudy}
+                  setView={this.setView}
                   study={studies.find(s => s.slug === match.params.studySlug )} />
               )} />
             )}

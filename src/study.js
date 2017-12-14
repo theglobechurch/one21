@@ -11,6 +11,7 @@ class Study extends Component {
     if (!this.props.activeStudy || this.props.activeStudy.name !== this.props.title) {
       this.props.setActiveStudy(this.props.study);
     }
+    this.props.setView('study');
   }
 
   render () {
