@@ -31,7 +31,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('http://globe.church/api/one21')
+    fetch('http://www.globe.church/api/one21')
       .then(res => res.json())
       .then(studies => {
         this.setState({
