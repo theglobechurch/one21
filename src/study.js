@@ -134,10 +134,10 @@ class Study extends Component {
             )} />
 
             <Route path="/:id" render={({ match }) => (
-              <div>
+              <main>
                 <Question question={study.questions[parseInt(match.params.id, 10)-1]} itemNo={match.params.id} />
                 <StudyFooter itemNo={match.params.id} itemCount={study.questions.length} baseRoute={`/study/${study.slug}`} />
-              </div>
+              </main>
             )} />
           </Switch>
 
