@@ -18,7 +18,7 @@ class Landing extends Component {
 
     return (
       <main className="landing">
-        <div className="landing__tablecloth"></div>
+        <div className="tablecloth tablecloth--big"></div>
         <img className="landing__logo" src={`/one21logo.svg`} alt="one 21" />
 
         { study && (

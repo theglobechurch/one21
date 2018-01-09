@@ -55,3 +55,17 @@ p {
   line-height: 18px;
   text-decoration: none;
 }
+
+.tablecloth {
+  background: url(/images/tablecloth.jpg) repeat center center;
+  height: 225px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+
+  &--big {
+    height: 300px;
+  }
+}

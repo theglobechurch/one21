@@ -12,6 +12,11 @@ class Study extends Component {
       this.props.setActiveStudy(this.props.study);
     }
     this.props.setView('study');
+    window.scrollTo(0, 0);
+  }
+
+  componentDidUpdate(prevProps) {
+    window.scrollTo(0, 0)
   }
 
   render () {
@@ -28,6 +33,7 @@ class Study extends Component {
     return (
       <Router basename={`/study/${study.slug}`}>
         <div className="study">
+          <div className="tablecloth"></div>
           <Switch>
             <Route exact path="/" render={() => (
               <main className="study__introduction">

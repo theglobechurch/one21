@@ -2,15 +2,6 @@
   margin: 56px 0 92px;
   position: relative;
 
-  &__tablecloth {
-    background: url('/images/tablecloth.jpg') repeat center center;
-    height: 300px;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    z-index: -1;
-  }
-
   &__logo {
     width: 100%;
     max-width: 190px;

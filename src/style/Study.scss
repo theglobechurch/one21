@@ -1,8 +1,16 @@
 @import './colours.scss';
 
 .study {
-  margin: 56px 0;
-  
+  margin: 56px auto;
+  max-width: 550px;
+  background-color: white;
+
+  @media (min-width: 550px) {
+    box-shadow: 0 1px 4px 1px rgba(0, 0, 0, .27);
+    border-radius: 2px;
+    margin: 84px auto;
+  }
+
   &__question {
     padding: 16px;
     margin-bottom: 106px;
@@ -56,7 +64,6 @@
   }
 
   &__lead {
-    margin-top: -56px;
     
     &__image {
       position: relative;
@@ -159,6 +166,8 @@
 }
 
 .question {
+  background-color: white;
+
   &__header {
     margin-bottom: 16px;
 
@@ -170,15 +179,26 @@
 
     span {
       color: $colour-inactive;
+      display: block;
       font-size: 14px;
+      margin-bottom: 5px;
     }
   }
 
   &__subquestions {
     color: $colour-inactive;
     margin: 0;
-    font-size: 14px;
+    font-size: 16px;
+    line-height: 24px;
     list-style-type: none;
+
+    li {
+      padding-top: 24px;
+    }
+
+    li:first-child {
+      padding-top: 0;
+    }
   }
 
   &--title-slide {
