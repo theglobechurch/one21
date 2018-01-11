@@ -23,13 +23,13 @@ class Calendar extends Component {
         <div className="tablecloth"></div>
         { studies ? (
           studies.map(study => (
-            
             <div className="sermonList" key={study.date}>
               <Link to={{
                   pathname: `/study/${study.slug}`
               }}>
                 <SermonListItem
                   {...study}
+                  displayImage={false}
                   />
               </Link>
             </div>
