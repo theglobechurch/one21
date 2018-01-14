@@ -3,18 +3,23 @@
   "name": "one21",
   "icons": [
     {
-      "src": "./icons/one21icon_128.png",
+      "src": "./icons/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "./icons/favicon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "./icons/favicon-128x128.png",
       "sizes": "128x128",
       "type": "image/png"
     },
     {
-      "src": "./icons/one21icon_256.png",
-      "sizes": "256x256",
-      "type": "image/png"
-    },
-    {
-      "src": "./icons/one21icon_512.png",
-      "sizes": "512x512",
+      "src": "./icons/favicon-196x196.png",
+      "sizes": "196x196",
       "type": "image/png"
     }
   ],
