@@ -34,6 +34,15 @@ class CoreNav extends Component {
             Calendar
         </Link>
 
+        <Link
+          to={{
+            pathname: '/guide'
+          }}
+          className={"coreNav__item " + (this.props.view === 'guide' ? 'coreNav__item--active' : '')}>
+            <Icon icon="help" />
+            Guide
+        </Link>
+
       </nav>
     );
   }

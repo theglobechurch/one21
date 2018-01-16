@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route} from 'react-router-dom';
 
 import './style/App.css';
 import Landing from './landing';
+import Guide from './guide';
 import Calendar from './calendar';
 import Study from './study';
 import CoreHeader from './coreHeader';
@@ -55,6 +56,13 @@ class App extends Component {
             <Route path="/calendar" render={({ match }) => (
               <Calendar
                 studies={studies}
+                setTitle={this.setTitle}
+                setView={this.setView}
+                />
+            )} />
+
+            <Route path="/guide" render={({ match }) => (
+              <Guide
                 setTitle={this.setTitle}
                 setView={this.setView}
                 />
