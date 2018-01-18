@@ -1,7 +1,7 @@
 @import './colours.scss';
 
 .study {
-  margin: 56px auto;
+  margin: 56px auto 72px;
   max-width: 550px;
   background-color: white;
 
@@ -137,7 +137,6 @@
 
     &:last-child {
       border: none;
-      padding-bottom: 32px
     }
 
     &--iconed {
