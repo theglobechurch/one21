@@ -19,7 +19,7 @@ class Study extends Component {
     window.scrollTo(0, 0)
   }
 
-  render () {
+  render () { 
     const { study } = this.props;
 
     if (study.url && study.url.substring(0, 4) !== 'http') {
@@ -66,7 +66,7 @@ class Study extends Component {
                     <Icon icon="sound" classname="study__icon" />
                     <h2 className="dinky_title">Catch up</h2>
                     <p>Missed the sermon on Sunday? Listen back to the recording on the church website</p>
-                    <a href={ study.url } className="btn">
+                    <a href={ study.url + `?utm_source=one21&utm_medium=webapp&utm_campaign=study` } className="btn">
                       Listen now
                     </a>
                   </section>
