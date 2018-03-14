@@ -29,7 +29,11 @@ class Study extends Component {
   componentDidUpdate(prevProps) {
     window.scrollTo(0, 0);
   }
-  
+
+  closeBiblePopup() {
+    this.setState({ biblePopup: false });
+  }
+
   toggleBiblePopup(ev) {
     if (ev) {
       ev.preventDefault();
