@@ -171,6 +171,7 @@
 
 .question {
   background-color: white;
+  margin-top: 136px;
 
   &__header {
     margin-bottom: 16px;
@@ -206,6 +207,7 @@
   }
 
   &--title-slide {
+    margin-top: 0;
     padding: 32px 16px;
     text-align: center;
   }

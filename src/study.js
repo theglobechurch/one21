@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import Question from './question';
 import BiblePopup from './biblePopup';
+import StudyHeader from './studyHeader';
 import StudyFooter from './studyFooter';
 import Icon from './icon';
 import './style/Study.css';
@@ -28,11 +29,7 @@ class Study extends Component {
   componentDidUpdate(prevProps) {
     window.scrollTo(0, 0);
   }
-
-  closeBiblePopup() {
-    this.setState({ biblePopup: false });
-  }
-
+  
   toggleBiblePopup(ev) {
     if (ev) {
       ev.preventDefault();
@@ -205,6 +202,11 @@ class Study extends Component {
               path="/:id"
               render={({ match }) => (
                 <main>
+                  <StudyHeader
+                    name={study.name}
+                    passage={study.passage}
+                    toggleBiblePopup={this.toggleBiblePopup.bind(this)}
+                  />
                   <Question
                     question={
                       study.questions[parseInt(match.params.id, 10) - 1]
@@ -223,9 +225,10 @@ class Study extends Component {
 
 
           { this.state.biblePopup && (
+            // ToDo: Check is there is an internet connection…
             <BiblePopup
               passage={study.passage}
-              closeBiblePopup={this.closeBiblePopup.bind(this)}
+              toggleBiblePopup={this.toggleBiblePopup.bind(this)}
             />
           )}
         </div>

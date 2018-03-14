@@ -4,11 +4,6 @@ import './style/BiblePopup.css';
 
 class BiblePopup extends Component {
 
-  onClose(ev) {
-    ev.preventDefault();
-    this.props.closeBiblePopup();
-  }
-
   render() {
     return (
       <div className="biblePopup">
@@ -22,7 +17,7 @@ class BiblePopup extends Component {
         />
         <button
           className="btn"
-          onClick={this.onClose.bind(this)}
+          onClick={this.props.toggleBiblePopup}
         >
           Close
         </button>
@@ -33,7 +28,7 @@ class BiblePopup extends Component {
 
 BiblePopup.propTypes = {
   passage: PropTypes.string.isRequired,
-  closeBiblePopup: PropTypes.func.isRequired
+  toggleBiblePopup: PropTypes.func.isRequired
 }
 
 export default BiblePopup;

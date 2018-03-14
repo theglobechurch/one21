@@ -1,0 +1,38 @@
+@import './colours.scss';
+
+.studyHeader {
+  position: absolute;
+  top: 56px;
+  color: white;
+  background-color: $colour-active;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  width: 100%;
+  left: 0;
+  padding: 5px 16px;
+
+  &__title {
+    max-width: 50%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    @media(min-width: 400px) {
+      max-width: 75%;
+    }
+  }
+
+  &__passage {
+    background: no-repeat;
+    border: none;
+    color: white;
+    font-size: 12px;
+    text-decoration: underline;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
