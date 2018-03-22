@@ -36,11 +36,11 @@ class CoreNav extends Component {
 
         <Link
           to={{
-            pathname: '/guide'
+            pathname: '/help'
           }}
           className={"coreNav__item " + (this.props.view === 'guide' ? 'coreNav__item--active' : '')}>
             <Icon icon="help" />
-            Guide
+            Help
         </Link>
 
       </nav>

@@ -1,0 +1,12 @@
+[
+    {
+        "name": "A better hero",
+        "slug": "a-better-hero",
+        "promote": true
+    },
+    {
+        "name": "Another study",
+        "slug": "another-study",
+        "promote": false
+    }
+]

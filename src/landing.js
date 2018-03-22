@@ -10,7 +10,7 @@ class Landing extends Component {
   }
 
   render() {
-    const { study } = this.props;
+    const { study, guide } = this.props;
 
     if (study && study.image && study.image.substring(0, 4) !== 'http') {
       study.image = study.base_url + study.image;
@@ -31,6 +31,14 @@ class Landing extends Component {
           />
         )}
 
+        { guide && (
+          <Card
+            pretitle="Featured guide:"
+            title={guide.name}
+            cta="Go to guide"
+            link={`/guides/` + guide.slug}
+          />
+        )}
       </main>
     )
   }

@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import Icon from './icon';
 import './style/Study.css';
 
-class Guide extends Component {
+class Help extends Component {
 
   componentDidMount() {
     this.props.setTitle('How to use one21');
-    this.props.setView('guide');
+    this.props.setView('help');
     window.scrollTo(0, 0);
   }
 
@@ -81,4 +81,4 @@ class Guide extends Component {
 
 }
 
-export default Guide;
+export default Help;
