@@ -4,14 +4,9 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import SermonListItem from "./sermonListItem";
 
 export default class Guides extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      biblePopup: false
-    };
-  }
 
   componentDidMount() {
+    this.props.setTitle('Guides');
     this.props.setView("guides");
     window.scrollTo(0, 0);
   }

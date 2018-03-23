@@ -13,7 +13,7 @@ import CoreNav from './coreNav';
 
 class App extends Component {
   state = {
-    studies: null
+    sermons: null
   };
 
   requestJSON(feed_url, onSuccess, onFail) {
@@ -27,8 +27,8 @@ class App extends Component {
   componentDidMount() {
 
     this.requestJSON("/one21.json")
-      .then(studies => {
-        this.setState({ studies: studies, latest_study: studies[0] });
+      .then(sermons => {
+        this.setState({ sermons: sermons, latest_sermon: sermons[0] });
       });
 
     this.requestJSON("/guides.json")
@@ -56,7 +56,7 @@ class App extends Component {
   };
 
   render() {
-    const { studies, guides } = this.state;
+    const { sermons, guides } = this.state;
 
     return (
       <Router path="/">
@@ -70,7 +70,7 @@ class App extends Component {
               path="/calendar"
               render={({ match }) => (
                 <Calendar
-                  studies={studies}
+                  studies={sermons}
                   setTitle={this.setTitle}
                   setView={this.setView}
                 />
@@ -91,7 +91,7 @@ class App extends Component {
               )}
             />
 
-            {studies && (
+            {sermons && (
               <Route
                 path="/study/:studySlug"
                 render={({ match }) => (
@@ -99,7 +99,7 @@ class App extends Component {
                     {...this.state}
                     setActiveStudy={this.setActiveStudy}
                     setView={this.setView}
-                    study={studies.find(s => s.slug === match.params.studySlug)}
+                    study={sermons.find(s => s.slug === match.params.studySlug)}
                   />
                 )}
               />
@@ -111,6 +111,7 @@ class App extends Component {
                 render={({ match }) => (
                   <Guides
                     {...this.state}
+                    setTitle={this.setTitle}
                     setView={this.setView}
                   />
                 )}
@@ -122,7 +123,7 @@ class App extends Component {
               path="/"
               render={({ match }) => (
                 <Landing
-                  study={this.state.latest_study}
+                  study={this.state.latest_sermon}
                   guide={this.state.promoted_guide}
                   setTitle={this.setTitle}
                   setView={this.setView}
@@ -131,7 +132,7 @@ class App extends Component {
             />
           </div>
 
-          {studies && (
+          {sermons && (
             <CoreNav
               {...this.state}
               setView={this.setView}
