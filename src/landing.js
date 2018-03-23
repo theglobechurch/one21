@@ -35,6 +35,7 @@ class Landing extends Component {
           <Card
             pretitle="Featured guide:"
             title={guide.name}
+            description={guide.teaser}
             cta="Go to guide"
             link={`/guides/` + guide.slug}
           />

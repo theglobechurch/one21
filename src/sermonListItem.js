@@ -19,7 +19,9 @@ class SermonListItem extends Component {
         )}
         <div className="sermonList__item__body">
           <h1 className="sermonList__item__title">{ name }</h1>
-          <span className="sermonList__item__date">{ recording_date.format('Do MMMM YYYY') }</span>
+          { date && (
+            <span className="sermonList__item__date">{ recording_date.format('Do MMMM YYYY') }</span>
+          )}
           <span className="sermonList__item__passage">{ passage }</span>
         </div>
       </div>
@@ -31,7 +33,7 @@ export default SermonListItem;
 
 SermonListItem.propTypes = {
   name: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
+  date: PropTypes.string,
   passage: PropTypes.string.isRequired,
   base_url: PropTypes.string,
   displayImage: PropTypes.bool

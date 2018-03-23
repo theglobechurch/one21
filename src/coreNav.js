@@ -3,49 +3,41 @@ import { Link } from 'react-router-dom';
 import Icon from './icon';
 import './style/CoreNav.css';
 
-class CoreNav extends Component {
+export default class CoreNav extends Component {
 
   render () {
-    const { studies } = this.props;
-    let studyLink = `/study/${studies[0].slug}`
-
-    if (this.props.activeStudy) {
-      studyLink = `/study/${ this.props.activeStudy.slug }`;
-    }
 
     return (
       <nav className="coreNav">
 
         <Link
           to={{
-            pathname: studyLink
+            pathname: '/'
           }}
-          className={"coreNav__item " + (this.props.view === 'study' ? 'coreNav__item--active' : '')}>
-          <Icon icon="study" />
-          Study
+          className={"coreNav__item " + (this.props.view === 'landing' ? 'coreNav__item--active' : '')}>
+          <Icon icon="home" />
+          Home
         </Link>
 
         <Link
           to={{
             pathname: '/calendar'
           }}
-          className={"coreNav__item " + (this.props.view === 'calendar' ? 'coreNav__item--active' : '')}>
-            <Icon icon="calendar" />
-            Calendar
+          className={"coreNav__item " + (this.props.view === 'guides' ? 'coreNav__item--active' : '')}>
+            <Icon icon="study" />
+            Guides
         </Link>
 
         <Link
           to={{
-            pathname: '/help'
+            pathname: '/profile'
           }}
-          className={"coreNav__item " + (this.props.view === 'guide' ? 'coreNav__item--active' : '')}>
-            <Icon icon="help" />
-            Help
+          className={"coreNav__item " + (this.props.view === 'profile' ? 'coreNav__item--active' : '')}>
+            <Icon icon="person" />
+            Me
         </Link>
 
       </nav>
     );
   }
 }
-
-export default CoreNav;

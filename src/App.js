@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route} from 'react-router-dom';
 import './style/App.css';
 import Landing from './landing';
 import Help from './help';
+import Profile from './profile';
 import Calendar from './calendar';
 import Study from './study';
 import Guides from './guides';
@@ -60,6 +61,8 @@ class App extends Component {
     return (
       <Router path="/">
         <div className="app">
+
+          /* Todo: Remove if at root (`\`) */
           <CoreHeader title={this.state.title} />
 
           <div className="container">
@@ -71,6 +74,13 @@ class App extends Component {
                   setTitle={this.setTitle}
                   setView={this.setView}
                 />
+              )}
+            />
+
+            <Route
+              path="/profile"
+              render={({ match }) => (
+                <Profile setTitle={this.setTitle} setView={this.setView} />
               )}
             />
 

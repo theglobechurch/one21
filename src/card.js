@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from "prop-types";
 import { Link } from 'react-router-dom';
 import './style/Card.css';
 
-class Card extends Component {
+export default class Card extends Component {
 
   render() {
     return (
@@ -14,8 +15,15 @@ class Card extends Component {
         )}
 
         <div className="card__body">
-          <p className="pre_title">{this.props.pretitle}</p>
+          { this.props.description && (
+            <p className="pre_title">{this.props.pretitle}</p>
+          )}
+
           <h1 className="big_title">{this.props.title}</h1>
+
+          { this.props.description && (
+            <p>{this.props.description}</p>
+          )}
 
           { this.props.link && this.props.cta && (
             <Link
@@ -34,4 +42,10 @@ class Card extends Component {
 
 }
 
-export default Card;
+Card.propTypes = {
+  title: PropTypes.string.isRequired,
+  pretitle: PropTypes.string,
+  description: PropTypes.string,
+  link: PropTypes.string,
+  cta: PropTypes.string
+};
