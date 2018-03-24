@@ -6,7 +6,8 @@ import Landing from './landing';
 import Help from './help';
 import Profile from './profile';
 import Study from './study';
-import Guides from './guides';
+import GuideList from './guidelist';
+import Guide from './guide';
 import CoreHeader from './coreHeader';
 import CoreNav from './coreNav';
 
@@ -55,7 +56,7 @@ class App extends Component {
   };
 
   render() {
-    const { sermons, guides } = this.state;
+    const { sermons } = this.state;
 
     return (
       <Router path="/">
@@ -99,18 +100,31 @@ class App extends Component {
               />
             )}
             
-            {guides && (
+            {sermons && (
               <Route
-                path="/guides"
+                path="/guides/:guideSlug"
                 render={({ match }) => (
-                  <Guides
-                    {...this.state}
+                  <Guide
+                    sermons={{name: "Sermons", slug: 'sermons', description: ['Latest sermons from The Globe Church'], studies: sermons}}
+                    slug={match.params.guideSlug}
                     setTitle={this.setTitle}
                     setView={this.setView}
                   />
                 )}
               />
             )}
+            
+            <Route
+              exact
+              path="/guides"
+              render={({ match }) => (
+                <GuideList
+                  {...this.state}
+                  setTitle={this.setTitle}
+                  setView={this.setView}
+                />
+              )}
+            />
 
             <Route
               exact

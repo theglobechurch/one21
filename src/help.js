@@ -17,7 +17,7 @@ class Help extends Component {
   render() {
     return (
       <main className="landing">
-
+        <div className="tablecloth" />
         <div className="card">
 
           <div className="card__body">
