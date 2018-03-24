@@ -1,26 +1,45 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import Icon from './icon';
+import PropTypes from "prop-types";
 import './style/CoreHeader.css';
 
-class CoreHeader extends Component {
+export default class CoreHeader extends Component {
 
-  render () {
+
+  render() {
+    const { title } = this.props;
     return (
-      <header className="coreHeader">
-
-        <Link to={{
-          pathname: `/`
-        }}>
-          one21
-        </Link>
-
-        {this.props.title && (
-          <span>: {this.props.title}</span>
+      <div>
+        { title && (
+          <header className="coreHeader">
+            <BackButton />
+            one21
+            <span>: { title }</span>
+          </header>
         )}
-
-      </header>
+      </div>
     );
   }
 }
 
-export default CoreHeader;
+CoreHeader.propTypes = {
+  title: PropTypes.string
+};
+
+
+class BackButton extends Component {
+  static contextTypes = {
+    router: PropTypes.object
+  };
+
+  render() {
+    return (
+      <button
+        className="coreHeader__back"
+        onClick={this.context.router.history.goBack}
+      >
+        <Icon icon="pointLeft" classname="coreHeader__back__icon" />
+      </button>
+    );
+  }
+}

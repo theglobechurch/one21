@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
-import { BrowserRouter as Router, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
 import './style/App.css';
 import Landing from './landing';
 import Help from './help';
 import Profile from './profile';
-import Calendar from './calendar';
 import Study from './study';
 import Guides from './guides';
 import CoreHeader from './coreHeader';
@@ -62,18 +61,13 @@ class App extends Component {
       <Router path="/">
         <div className="app">
 
-          /* Todo: Remove if at root (`\`) */
           <CoreHeader title={this.state.title} />
 
           <div className="container">
             <Route
               path="/calendar"
               render={({ match }) => (
-                <Calendar
-                  studies={sermons}
-                  setTitle={this.setTitle}
-                  setView={this.setView}
-                />
+                <Redirect to="/guides"/>
               )}
             />
 

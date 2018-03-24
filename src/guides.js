@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import Card from './card';
+import Calendar from './calendar';
 import SermonListItem from "./sermonListItem";
+import './style/SermonList.css';
 
 export default class Guides extends Component {
 
@@ -16,35 +19,82 @@ export default class Guides extends Component {
   }
 
   render() {
-    const { guides } = this.props;
+    const { sermons, guides, promoted_guide } = this.props;
 
     return (
       <Router basename={`/guides`}>
         <div className="study">
           <div className="tablecloth" />
           <Switch>
+
             <Route
               exact
               path="/"
               render={() => (
                 <main className="study__introduction">
-                  Pick a guide…
-
-                  { guides ? (
-                    guides.map((guide, index) => (
-                      <div className="" key={index}>
-                        <Link to={{
-                          pathname: `/${guide.slug}`
-                        }}>
-                          {guide.name}
-                        </Link>
-                      </div>
-                    ))
-                  ) : (
-                    <div>Loading…</div>
+                  
+                  { sermons && (
+                    <Card
+                      pretitle="The Globe Church"
+                      title="Latest sermons"
+                      cta="Go to sermon calendar"
+                      link="/sermons"
+                    />
                   )}
                   
+                  { promoted_guide && (
+                    <Card
+                      pretitle="Featured guide:"
+                      title={promoted_guide.name}
+                      description={promoted_guide.teaser}
+                      cta="Go to guide"
+                      link={`/` + promoted_guide.slug }
+                    />
+                  )}
+                  
+                  <div className="sermonList">
+                    { sermons && (
+                      <Link to={{
+                        pathname: `/sermons`
+                      }}>
+                        <SermonListItem
+                          name="Latest sermons"
+                          passage="Think about how to apply what you heard on Sunday."
+                          displayImage={false}
+                          />
+                      </Link>
+                    )}
+
+                    { guides && (
+                      guides.map((guide, index) => (
+                        <div className="" key={index}>
+                          <Link to={{
+                              pathname: `/${guide.slug}`
+                          }}>
+                            <SermonListItem
+                              name={ guide.name }
+                              passage={ guide.teaser }
+                              displayImage={false}
+                              />
+                          </Link>
+                        </div>
+                      ))
+                    )}
+                  </div>
+                  
                 </main>
+              )}
+            />
+
+            <Route
+              exact
+              path="/sermons"
+              render={({ match }) => (
+                <Calendar
+                  studies={sermons}
+                  setTitle={this.props.setTitle}
+                  setView={this.props.setView}
+                />
               )}
             />
 
@@ -126,7 +176,7 @@ class Guide extends Component {
                   )}
 
                   { guide.license && (
-                    <div classname="">
+                    <div className="">
                       <p dangerouslySetInnerHTML={{__html: guide.license }}></p>
                     </div>
                   )}

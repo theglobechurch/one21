@@ -21,7 +21,7 @@ export default class CoreNav extends Component {
 
         <Link
           to={{
-            pathname: '/calendar'
+            pathname: '/guides'
           }}
           className={"coreNav__item " + (this.props.view === 'guides' ? 'coreNav__item--active' : '')}>
             <Icon icon="study" />

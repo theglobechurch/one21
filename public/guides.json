@@ -6,8 +6,9 @@
         "promote": true
     },
     {
-        "name": "Another study",
-        "slug": "another-study",
+        "name": "Lessons in Leadership",
+        "slug": "lessons-in-leadership",
+        "teaser": "Read through the book of Titus over six studies.",
         "promote": false
     }
 ]

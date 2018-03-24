@@ -15,7 +15,7 @@ export default class Card extends Component {
         )}
 
         <div className="card__body">
-          { this.props.description && (
+          { this.props.pretitle && (
             <p className="pre_title">{this.props.pretitle}</p>
           )}
 
