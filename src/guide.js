@@ -63,19 +63,21 @@ export default class Guide extends Component {
       <div className="study">
         <div className="tablecloth" />
         <Switch>
-          <Route
-            path="/guides/:guideSlug/:studySlug"
-            render={({match}) => (
-              <Study
-                {...this.state}
-                guideSlug={ match.params.guideSlug }
-                studySlug={ match.params.studySlug }
-                setView={this.props.setView}
-                setTitle={this.props.setTitle}
-                study={this.selectStudy(match.params.studySlug)}
-              />
-            )}
-          />
+          { guide && (
+            <Route
+              path="/guides/:guideSlug/:studySlug"
+              render={({match}) => (
+                <Study
+                  {...this.state}
+                  guideSlug={ match.params.guideSlug }
+                  studySlug={ match.params.studySlug }
+                  setView={this.props.setView}
+                  setTitle={this.props.setTitle}
+                  study={this.selectStudy(match.params.studySlug)}
+                />
+              )}
+            />
+          )}
 
           <Route
             path="/guides/:guideSlug"
