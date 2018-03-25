@@ -25,6 +25,27 @@
     top: 20px;
   }
 
+  &__passage {
+    &:after {
+      content: '…';
+      color: $colour-simple-grey;
+      text-align: center;
+      width: 100%;
+      display: inline-block;
+    }
+
+    &:last-child:after{
+      display: none;
+    }
+
+    & .verse-num {
+      font-size: 50%;
+      top: -5px;
+      position: relative;
+      font-weight: 400;
+    }
+  }
+
   &__footer {
     background-color: $colour-active;
     bottom: 56px;

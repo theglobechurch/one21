@@ -97,6 +97,20 @@ export default class Study extends Component {
                     </section>
                   )}
 
+                  {study.scripture && (
+                    <section className="study__introduction__section study__introduction__section--iconed">
+                      <Icon icon="study" classname="study__icon" />
+                      <h2 className="dinky_title">{ study.passage }</h2>
+                      { study.scripture.map((p, i) => (
+                        <div
+                          className="study__passage"
+                          dangerouslySetInnerHTML={{__html: p}}
+                          key={i}
+                        ></div>
+                      ))}
+                    </section>
+                  )}
+
                   <section className="study__introduction__section study__introduction__section--iconed">
                     <Icon icon="facebook" classname="study__icon" />
                     <h2 className="dinky_title">Share your reflections…</h2>
