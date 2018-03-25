@@ -105,8 +105,9 @@ class App extends Component {
                 path="/guides/:guideSlug"
                 render={({ match }) => (
                   <Guide
-                    sermons={{name: "Sermons", slug: 'sermons', description: ['Latest sermons from The Globe Church'], studies: sermons}}
+                    sermons={{name: "Recent sermons", slug: 'sermons', description: ['Latest sermons from The Globe Church'], studies: sermons}}
                     slug={match.params.guideSlug}
+                    studySlug={match.params.studySlug}
                     setTitle={this.setTitle}
                     setView={this.setView}
                   />

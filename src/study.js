@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import PropTypes from "prop-types";
 import Question from './question';
 import BiblePopup from './biblePopup';
 import StudyHeader from './studyHeader';
@@ -7,7 +8,7 @@ import StudyFooter from './studyFooter';
 import Icon from './icon';
 import './style/Study.css';
 
-class Study extends Component {
+export default class Study extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,13 +17,7 @@ class Study extends Component {
   }
 
   componentDidMount() {
-    if (
-      !this.props.activeStudy ||
-      this.props.activeStudy.name !== this.props.title
-    ) {
-      this.props.setActiveStudy(this.props.study);
-    }
-    this.props.setView("study");
+    this.props.setView("guides");
     window.scrollTo(0, 0);
   }
 
@@ -42,7 +37,7 @@ class Study extends Component {
   }
 
   render() {
-    const { study } = this.props;
+    const { study, guideSlug, studySlug } = this.props;
 
     if (study.url && study.url.substring(0, 4) !== "http") {
       study.url = study.base_url + study.url;
@@ -53,7 +48,7 @@ class Study extends Component {
     }
 
     return (
-      <Router basename={`/study/${study.slug}`}>
+      <Router basename={`/guides/${guideSlug}/${studySlug}`}>
         <div className="study">
           <div className="tablecloth" />
           <Switch>
@@ -243,4 +238,6 @@ class Study extends Component {
   }
 }
 
-export default Study;
+Study.propTypes = {
+  study: PropTypes.object.isRequired
+}

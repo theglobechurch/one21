@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import { Link, Route, Switch } from 'react-router-dom';
+
 import PropTypes from "prop-types";
 import SermonListItem from "./sermonListItem";
+import Study from "./study";
 import './style/SermonList.css';
 
 export default class Guide extends Component {
@@ -14,13 +17,12 @@ export default class Guide extends Component {
     this.props.setView("guides");
 
     // TODO: Only request if not already in state
-    if(this.props.slug === 'sermons') {
+    if (this.isSermon()) {
       this.setState({ guide: this.props.sermons });
       this.props.setTitle('Recent sermons');
     } else {
       this.requestJSON(`/${this.props.slug}.json`).then(guide => {
         this.setState({ guide: guide[0] });
-
         this.props.setTitle(guide[0].name);
       });
     }
@@ -42,45 +44,87 @@ export default class Guide extends Component {
     });
   }
 
+  isSermon() {
+    if (this.props.slug === 'sermons') {
+      return true
+    } else {
+      return false
+    }
+  }
+
+  selectStudy(studySlug) {
+    return this.state.guide.studies.find(s => s.slug === studySlug)
+  }
+
   render() {
     const { guide } = this.state;
     return(
 
       <div className="study">
         <div className="tablecloth" />
-  
-        <main className="study__introduction">
-          {guide ? (
-            <div>
-              <h2>{guide.name}</h2>
-              { guide.description && (
-                guide.description.map((desc, index) => (
-                  <p key={ index }>{ desc }</p>
-                ))
-              )}
+        <Switch>
+          <Route
+            path="/guides/:guideSlug/:studySlug"
+            render={({match}) => (
+              <Study
+                {...this.state}
+                guideSlug={ match.params.guideSlug }
+                studySlug={ match.params.studySlug }
+                setView={this.props.setView}
+                setTitle={this.props.setTitle}
+                study={this.selectStudy(match.params.studySlug)}
+              />
+            )}
+          />
 
-              { guide.studies && (
-                guide.studies.map((study, index) => (
-                  <div className="sermonList" key={index}>
-                    <SermonListItem
-                      {...study}
-                      displayImage={false}
-                      />
+          <Route
+            path="/guides/:guideSlug"
+            render={({match}) => (
+
+              <main className="study__introduction">
+                {guide ? (
+                  <div>
+                    <h2>{guide.name}</h2>
+                    { guide.description && (
+                      guide.description.map((desc, index) => (
+                        <p key={ index }>{ desc }</p>
+                      ))
+                    )}
+
+                    { guide.studies && (
+                      guide.studies.map((study, index) => (
+                        <Link
+                          className="sermonList"
+                          to={{
+                            pathname: `/guides/${this.props.slug}/${study.slug}`
+                          }}
+                          key={index}
+                        >
+                          <SermonListItem
+                            {...study}
+                            displayImage={false}
+                            />
+                        </Link>
+                      ))
+                    )}
+
+                    { guide.license && (
+                      <div className="">
+                        <p dangerouslySetInnerHTML={{__html: guide.license }}></p>
+                      </div>
+                    )}
+
                   </div>
-                ))
-              )}
+                ) : (
+                  <p>Loading guide...</p>
+                )}
+              </main>
 
-              { guide.license && (
-                <div className="">
-                  <p dangerouslySetInnerHTML={{__html: guide.license }}></p>
-                </div>
-              )}
-
-            </div>
-          ) : (
-            <p>Loading guide...</p>
-          )}
-        </main>
+            )}
+          />
+        </Switch>
+        
+  
       </div>
             
     );
