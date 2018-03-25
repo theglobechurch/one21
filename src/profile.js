@@ -5,6 +5,12 @@ import './style/Study.css';
 
 export default class Profile extends Component {
 
+  constructor(props) {
+    super(props);
+    const churchData = JSON.parse(localStorage.getItem('church'));
+    this.state = {churchData}
+  }
+
   componentDidMount() {
     this.props.setTitle('Profile');
     this.props.setView('profile');
@@ -19,7 +25,6 @@ export default class Profile extends Component {
     return (
       <div>
         <div className="tablecloth" />
-        
 
           <div className="card">
 
@@ -46,7 +51,7 @@ export default class Profile extends Component {
                 <h2 className="dinky_title">Church</h2>
                 <p>
                   <em>Coming soon…</em><br />
-                  Church: <strong>The Globe Church</strong>
+                  Church: <strong>{ this.state.churchData.name }</strong>
                 </p>
               </section>
 

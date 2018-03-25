@@ -37,7 +37,14 @@ class App extends Component {
           guides: guides,
           promoted_guide: guides.filter(guide => guide.promote === true)[0]
         });
-      })
+      });
+    
+    // Static set for now…
+    const churchData = JSON.stringify({
+      name: 'The Globe Church',
+      slug: 'theglobechurch'
+    });
+    localStorage.setItem('church', churchData);
   }
 
   setActiveStudy = activeStudy => {
