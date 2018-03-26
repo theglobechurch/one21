@@ -4,6 +4,7 @@ import { Link, Route, Switch } from 'react-router-dom';
 import PropTypes from "prop-types";
 import SermonListItem from "./sermonListItem";
 import Study from "./study";
+import ExpandableText from "./expandableText";
 import './style/SermonList.css';
 
 export default class Guide extends Component {
@@ -61,7 +62,10 @@ export default class Guide extends Component {
     return(
 
       <div className="study">
-        <div className="tablecloth" />
+        <div
+          className="tablecloth"
+        />
+
         <Switch>
           { guide && (
             <Route
@@ -84,14 +88,18 @@ export default class Guide extends Component {
             render={({match}) => (
 
               <main className="study__introduction">
+                
                 {guide ? (
                   <div>
-                    <h2>{guide.name}</h2>
-                    { guide.description && (
-                      guide.description.map((desc, index) => (
-                        <p key={ index }>{ desc }</p>
-                      ))
-                    )}
+                    <section className="study__introduction__section">
+                      <h1 className="big_title">{guide.name}</h1>
+                      { guide.description && (
+                        <ExpandableText
+                          expanded={true}
+                          text={guide.description}
+                        />
+                      )}
+                    </section>
 
                     { guide.studies && (
                       guide.studies.map((study, index) => (
@@ -111,9 +119,12 @@ export default class Guide extends Component {
                     )}
 
                     { guide.license && (
-                      <div className="">
-                        <p dangerouslySetInnerHTML={{__html: guide.license }}></p>
-                      </div>
+                      <section className="study__introduction__section">
+                        <p
+                          className="dinky_text"
+                          dangerouslySetInnerHTML={{__html: guide.license }}
+                        />
+                      </section>
                     )}
 
                   </div>

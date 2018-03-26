@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
 import Icon from './icon';
-import './style/Scripture.css';
+import './style/ExpandableText.css';
 
-export default class Scripture extends Component {
+export default class ExpandableText extends Component {
 
   constructor(props) {
     super(props);
@@ -15,10 +15,10 @@ export default class Scripture extends Component {
 
   componentDidMount() {
     if (this.props.expanded) {
-      this.container = document.querySelector('.scripture__passage');
+      this.container = document.querySelector(".expandableText__container");
 
       if (this.container) {
-        this.container.classList.toggle('scripture__passage--contracted');
+        this.container.classList.toggle("expandableText__container--contracted");
       }
     }
   };
@@ -26,30 +26,28 @@ export default class Scripture extends Component {
   toggleView(ev) {
     if (ev) { ev.preventDefault(); }
     if (this.container) {
-      this.container.classList.toggle('scripture__passage--contracted');
+      this.container.classList.toggle("expandableText__container--contracted");
     }
     this.setState({ expanded: !this.state.expanded });
   }
 
   render() {
-    const { scripture, passageRef } = this.props;
+    const { text } = this.props;
     return (
-      <section className="scripture study__introduction__section study__introduction__section--iconed">
-        <Icon icon="study" classname="study__icon" />
-        <h2 className="dinky_title">{ passageRef }</h2>
-        <div className="scripture__passage">
-          { scripture.map((p, i) => (
-            <div
-              className="scripture__passage__block"
+      <div className="expandableText">
+        <div className="expandableText__container">
+          { text.map((p, i) => (
+            <p
+              className={`expandableText__container__block ` + ( this.props.scripture && `expandableText__container__block--scripture`)}
               dangerouslySetInnerHTML={{__html: p}}
               key={i}
-            ></div>
+            ></p>
           ))}
         </div>
 
         { this.props.expanded && (
           <button
-            className="scripture__button"
+            className="expandableText__button"
             onClick={this.toggleView.bind(this)}
           >
             { this.state.expanded ? (
@@ -60,14 +58,14 @@ export default class Scripture extends Component {
             <Icon icon="arrowRight" />
           </button>
         )}
-      </section>
+      </div>
     );
   }
 
 }
 
-Scripture.propTypes = {
+ExpandableText.propTypes = {
   expanded: PropTypes.bool.isRequired,
-  scripture: PropTypes.array.isRequired,
-  passageRef: PropTypes.string.isRequired
-}
+  scripture: PropTypes.bool,
+  text: PropTypes.array.isRequired
+};

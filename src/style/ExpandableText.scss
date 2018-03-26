@@ -1,7 +1,7 @@
 @import './colours.scss';
 
-.scripture {
-  &__passage {
+.expandableText {
+  &__container {
     &--contracted {
       height: 100px;
       margin-bottom: 10px;
@@ -10,53 +10,55 @@
 
       &:after {
         content: " ";
-        position: absolute;
-        top: 60px;
-        width: 100%;
         background: linear-gradient(to top, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
-        height: 40px;
+        height: 60px;
+        position: absolute;
+        top: 40px;
+        width: 100%;
       }
     }
 
-    &__block {
+    &__block--scripture {
       &:after {
         content: '…';
         color: $colour-simple-grey;
+        display: inline-block;
         text-align: center;
         width: 100%;
-        display: inline-block;
       }
 
       &:last-child:after{
         display: none;
       }
 
-      & .verse-num {
+      & .verse-num,
+      & .chapter-num {
         font-size: 50%;
-        top: -5px;
-        position: relative;
         font-weight: 400;
+        line-height: 16px;
+        position: relative;
+        top: -5px;
       }
     }
   }
 
   &__button {
+    align-items: center;
     background: none;
     border: 0;
     color: $colour-active;
     display: inline-flex;
     font-weight: bold;
-    text-transform: uppercase;
-    text-decoration: none;
     letter-spacing: 1.5px;
-    text-align: left;
-    align-items: center;
     padding: 0;
+    text-align: left;
+    text-decoration: none;
+    text-transform: uppercase;
 
     svg {
-      width: 8px;
       height: 12px;
       margin-left: 5px;
+      width: 8px;
     }
   }
 }

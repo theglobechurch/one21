@@ -5,7 +5,7 @@ import Question from './question';
 import BiblePopup from './biblePopup';
 import StudyHeader from './studyHeader';
 import StudyFooter from './studyFooter';
-import Scripture from './scripture';
+import ExpandableText from "./expandableText";
 import Icon from './icon';
 import './style/Study.css';
 
@@ -99,11 +99,15 @@ export default class Study extends Component {
                   )}
 
                   {study.scripture && (
-                    <Scripture
-                      expanded={true}
-                      passageRef={study.passage}
-                      scripture={study.scripture}
-                    />
+                    <section className="expandableText study__introduction__section study__introduction__section--iconed">
+                      <Icon icon="study" classname="study__icon" />
+                      <h2 className="dinky_title">{study.passage}</h2>
+                      <ExpandableText
+                        expanded={true}
+                        scripture={true}
+                        text={study.scripture}
+                      />
+                    </section>
                   )}
 
                   <section className="study__introduction__section study__introduction__section--iconed">
