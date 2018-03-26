@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
 import './style/App.css';
 import Landing from './landing';
-import Help from './help';
+import About from './about';
 import Profile from './profile';
 import Study from './study';
 import GuideList from './guidelist';
@@ -75,7 +75,13 @@ class App extends Component {
             <Route
               path="/calendar"
               render={({ match }) => (
-                <Redirect to="/guides"/>
+                <Redirect to="/guides" />
+              )}
+            />
+            <Route
+              path="/help"
+              render={({ match }) => (
+                <Redirect to="/about" />
               )}
             />
 
@@ -87,9 +93,9 @@ class App extends Component {
             />
 
             <Route
-              path="/help"
+              path="/about"
               render={({ match }) => (
-                <Help setTitle={this.setTitle} setView={this.setView} />
+                <About setTitle={this.setTitle} setView={this.setView} />
               )}
             />
 
