@@ -2,6 +2,7 @@
     {
         "name": "A better hero",
         "slug": "a-better-hero",
+        "image": "http://localhost:3000/images/a-better-hero-960.jpg",
         "teaser": "Four simple studies which introduce Jesus through the Gospel of Mark.",
         "promote": true
     },

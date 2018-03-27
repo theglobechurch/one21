@@ -26,6 +26,8 @@ class Landing extends Component {
             image={study.image}
             pretitle="Latest sermon:"
             title={study.name}
+            description={study.description}
+            description_limit={true}
             cta="Go to study"
             link={`/study/` + study.slug}
           />
@@ -34,8 +36,10 @@ class Landing extends Component {
         { guide && (
           <Card
             pretitle="Featured guide:"
+            image={guide.image}
             title={guide.name}
             description={guide.teaser}
+            description_limit={true}
             cta="Go to guide"
             link={`/guides/` + guide.slug}
           />

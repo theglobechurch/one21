@@ -13,7 +13,8 @@ export default class Study extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      biblePopup: false
+      biblePopup: false,
+      image: this.props.study.image || this.props.image
     };
   }
 
@@ -39,13 +40,16 @@ export default class Study extends Component {
 
   render() {
     const { study, guideSlug, studySlug } = this.props;
+    let { image } = this.state;
 
     if (study.url && study.url.substring(0, 4) !== "http") {
       study.url = study.base_url + study.url;
     }
 
-    if (study.image && study.image.substring(0, 4) !== "http") {
-      study.image = study.base_url + study.image;
+    console.log(image);
+    if (image && image.substring(0, 4) !== "http") {
+      console.log(study.base_url + image);
+      image = study.base_url + image;
     }
 
     return (
@@ -58,9 +62,9 @@ export default class Study extends Component {
               path="/"
               render={() => (
                 <main className="study__introduction">
-                  {study.image && (
+                  {image && (
                     <div className="study__introduction__image">
-                      <img src={study.image} alt="" className="" />
+                      <img src={image} alt="" className="" />
                     </div>
                   )}
 
@@ -134,9 +138,9 @@ export default class Study extends Component {
               render={() => (
                 <main>
                   <div className="study__lead">
-                    {study.image && (
+                    {image && (
                       <div className="study__lead__image">
-                        <img src={study.image} alt="" />
+                        <img src={image} alt="" />
                       </div>
                     )}
                     <div className="study__lead__icons">
@@ -179,9 +183,9 @@ export default class Study extends Component {
               render={() => (
                 <main>
                   <div className="study__lead">
-                    {study.image && (
+                    {image && (
                       <div className="study__lead__image">
-                        <img src={study.image} alt="" />
+                        <img src={image} alt="" />
                       </div>
                     )}
                     <div className="study__lead__icons">
@@ -252,5 +256,10 @@ export default class Study extends Component {
 }
 
 Study.propTypes = {
-  study: PropTypes.object.isRequired
+  study: PropTypes.object.isRequired,
+  setView: PropTypes.func.isRequired,
+  setTitle: PropTypes.func.isRequired,
+  guideSlug: PropTypes.string.isRequired,
+  studySlug: PropTypes.string.isRequired,
+  image: PropTypes.string
 }

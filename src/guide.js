@@ -4,13 +4,15 @@ import { Link, Route, Switch } from 'react-router-dom';
 import PropTypes from "prop-types";
 import SermonListItem from "./sermonListItem";
 import Study from "./study";
+import Card from "./card";
 import ExpandableText from "./expandableText";
 import './style/SermonList.css';
 
 export default class Guide extends Component {
 
   state = {
-    guide: null
+    guide: null,
+    sermon: false
   }
 
   componentDidMount() {
@@ -19,11 +21,17 @@ export default class Guide extends Component {
 
     // TODO: Only request if not already in state
     if (this.isSermon()) {
-      this.setState({ guide: this.props.sermons });
+      this.setState({
+        guide: this.props.sermons,
+        sermon: true
+      });
       this.props.setTitle('Recent sermons');
     } else {
       this.requestJSON(`/${this.props.slug}.json`).then(guide => {
-        this.setState({ guide: guide[0] });
+        this.setState({
+          guide: guide[0],
+          sermon: false
+        });
         this.props.setTitle(guide[0].name);
       });
     }
@@ -53,6 +61,18 @@ export default class Guide extends Component {
     }
   }
 
+  showListItem(i) {
+    // Checks if the study should be shown in the study list.
+    // If the first item is highlighted then the first should
+    // be skipped
+    const {guide} = this.state;
+    if ((!guide.highlight_first) || (guide.highlight_first && i !== 0)) {
+      return true
+    } else {
+      return false;
+    }
+  }
+
   selectStudy(studySlug) {
     return this.state.guide.studies.find(s => s.slug === studySlug)
   }
@@ -78,6 +98,7 @@ export default class Guide extends Component {
                   setView={this.props.setView}
                   setTitle={this.props.setTitle}
                   study={this.selectStudy(match.params.studySlug)}
+                  image={guide.image}
                 />
               )}
             />
@@ -91,30 +112,54 @@ export default class Guide extends Component {
                 
                 {guide ? (
                   <div>
-                    <section className="study__introduction__section">
-                      <h1 className="big_title">{guide.name}</h1>
-                      { guide.description && (
-                        <ExpandableText
-                          expanded={true}
-                          text={guide.description}
-                        />
-                      )}
-                    </section>
+
+                    <div className="study__introduction__image">
+                      <img src={guide.image} alt="" className="" />
+                    </div>
+
+                    { guide.highlight_first ? (
+                      <Card
+                        className="card--pullUp"
+                        image={guide.studies[0].base_url + guide.studies[0].image}
+                        title={guide.studies[0].name}
+                        description={guide.studies[0].description}
+                        description_limit={true}
+                        cta="Go to study"
+                        link={`/guides/${this.props.slug}/${guide.studies[0].slug}`}
+                      />
+                    ) : (
+                      <section className="study__introduction__section">
+                        <h1 className="big_title">{guide.name}</h1>
+                        { guide.description && !this.state.sermon ? (
+                          <ExpandableText
+                            expanded={true}
+                            text={guide.description}
+                          />
+                        ) : (
+                          <p>
+                            {guide.description}
+                          </p>
+                        )}
+                      </section>
+                    )}
 
                     { guide.studies && (
                       guide.studies.map((study, index) => (
-                        <Link
-                          className="sermonList"
-                          to={{
-                            pathname: `/guides/${this.props.slug}/${study.slug}`
-                          }}
-                          key={index}
-                        >
-                          <SermonListItem
-                            {...study}
-                            displayImage={false}
-                            />
-                        </Link>
+                        <div key={index}>
+                          { this.showListItem(index) && (
+                            <Link
+                              className="sermonList"
+                              to={{
+                                pathname: `/guides/${this.props.slug}/${study.slug}`
+                              }}
+                            >
+                              <SermonListItem
+                                {...study}
+                                displayImage={false}
+                                />
+                            </Link>
+                          )}
+                        </div>
                       ))
                     )}
 

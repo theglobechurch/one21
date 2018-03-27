@@ -10,6 +10,11 @@
     width: auto;
   }
 
+  &--pullUp {
+    position: relative;
+    margin-top: -25px;
+  }
+
   header img {
     width: 100%;
     border-radius: 2px 2px 0 0;

@@ -29,7 +29,7 @@ export default class GuideList extends Component {
             { sermons && (
               <Card
                 pretitle="The Globe Church"
-                title="Latest sermons"
+                title="Sermons"
                 cta="Go to sermon calendar"
                 link="/guides/sermons"
               />
@@ -37,6 +37,7 @@ export default class GuideList extends Component {
             
             { promoted_guide && (
               <Card
+                image={promoted_guide.image}
                 pretitle="Featured guide:"
                 title={promoted_guide.name}
                 description={promoted_guide.teaser}

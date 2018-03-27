@@ -75,18 +75,7 @@
       background-position: center center;
       background-size: cover;
       height: 190px;
-      position: relative;
       width: 100%;
-
-      &:before {
-        content: '';
-        background: linear-gradient(135deg, rgba($colour-active, .35) 0%, rgba($colour-inactive, .75) 100%);
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        width: 100%;
-        z-index: 1;
-      }
       
       img {
         display: block;

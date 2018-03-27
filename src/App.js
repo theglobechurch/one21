@@ -118,7 +118,14 @@ class App extends Component {
                 path="/guides/:guideSlug"
                 render={({ match }) => (
                   <Guide
-                    sermons={{name: "Recent sermons", slug: 'sermons', description: ['Latest sermons from The Globe Church'], studies: sermons}}
+                    sermons={{
+                      name: "Recent sermons",
+                      slug: 'sermons',
+                      image: 'http://localhost:3000/images/globe-banner-960.jpg',
+                      description: ['Latest sermons from The Globe Church'],
+                      highlight_first: true,
+                      studies: sermons
+                    }}
                     slug={match.params.guideSlug}
                     studySlug={match.params.studySlug}
                     setTitle={this.setTitle}
