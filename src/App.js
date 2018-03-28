@@ -5,7 +5,6 @@ import './style/App.css';
 import Landing from './landing';
 import About from './about';
 import Profile from './profile';
-import Study from './study';
 import GuideList from './guidelist';
 import Guide from './guide';
 import CoreHeader from './coreHeader';
@@ -83,18 +82,10 @@ class App extends Component {
           <CoreHeader title={this.state.title} />
 
           <div className="container">
-            <Route
-              path="/calendar"
-              render={({ match }) => (
-                <Redirect to="/guides" />
-              )}
-            />
-            <Route
-              path="/help"
-              render={({ match }) => (
-                <Redirect to="/about" />
-              )}
-            />
+            <Route path="/calendar" render={() => (<Redirect to="/guides" />)} />
+            <Route path="/help" render={() => (<Redirect to="/about" />)} />
+            <Route path="/study/:slug" render={({ match }) => (<Redirect to={`/guides/sermons/` + match.params.slug } />)} />
+            <Route path="/study/" render={() => (<Redirect to="/guides/sermons" />)} />
 
             <Route
               path="/profile"
@@ -109,20 +100,6 @@ class App extends Component {
                 <About setTitle={this.setTitle} setView={this.setView} />
               )}
             />
-
-            {sermons && (
-              <Route
-                path="/study/:studySlug"
-                render={({ match }) => (
-                  <Study
-                    {...this.state}
-                    setActiveStudy={this.setActiveStudy}
-                    setView={this.setView}
-                    study={sermons.find(s => s.slug === match.params.studySlug)}
-                  />
-                )}
-              />
-            )}
             
             {sermons && (
               <Route
