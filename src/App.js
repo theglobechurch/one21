@@ -13,7 +13,7 @@ import CoreNav from './coreNav';
 class App extends Component {
   state = {
     sermons: null,
-    church: { name: 'Your church' }
+    church: null,
   };
 
   requestJSON(feed_url, onSuccess, onFail) {
@@ -73,7 +73,7 @@ class App extends Component {
   };
 
   render() {
-    const { sermons } = this.state;
+    const { church, sermons } = this.state;
 
     return (
       <Router path="/">
@@ -101,7 +101,7 @@ class App extends Component {
               )}
             />
             
-            {sermons && (
+            {sermons && church && (
               <Route
                 path="/guides/:guideSlug"
                 render={({ match }) => (
