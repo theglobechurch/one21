@@ -112,10 +112,12 @@ export default class Guide extends Component {
                 
                 {guide ? (
                   <div>
-
-                    <div className="study__introduction__image">
-                      <img src={guide.image} alt="" className="" />
-                    </div>
+                    
+                    {guide.image && (
+                      <div className="study__introduction__image">
+                        <img src={guide.image} alt="" className="" />
+                      </div>
+                    )}
 
                     { guide.highlight_first ? (
                       // ToDo: Update API to return images without needing the base_url joining

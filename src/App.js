@@ -13,7 +13,8 @@ import CoreNav from './coreNav';
 
 class App extends Component {
   state = {
-    sermons: null
+    sermons: null,
+    church: { name: 'Your church' }
   };
 
   requestJSON(feed_url, onSuccess, onFail) {
@@ -27,8 +28,25 @@ class App extends Component {
   componentDidMount() {
 
     this.requestJSON("/one21.json")
-      .then(sermons => {
-        this.setState({ sermons: sermons, latest_sermon: sermons[0] });
+      .then(churchFeed => {
+        if (churchFeed.isArray) {
+          // Original (legacy) One21 feed
+          this.setState({
+            sermons: churchFeed,
+            latest_sermon: churchFeed[0]
+          });
+        } else {
+          // New church feed
+          this.setState({
+            sermons: churchFeed.studies,
+            latest_sermon: churchFeed.studies[0]
+          });
+
+          const church = churchFeed;
+          delete church.studies
+          localStorage.setItem('church', JSON.stringify(church));
+          this.setState({church});
+        }
       });
 
     this.requestJSON("/guides.json")
@@ -38,13 +56,6 @@ class App extends Component {
           promoted_guide: guides.filter(guide => guide.promote === true)[0]
         });
       });
-    
-    // Static set for now…
-    const churchData = JSON.stringify({
-      name: 'The Globe Church',
-      slug: 'theglobechurch'
-    });
-    localStorage.setItem('church', churchData);
   }
 
   setActiveStudy = activeStudy => {
@@ -119,10 +130,10 @@ class App extends Component {
                 render={({ match }) => (
                   <Guide
                     sermons={{
-                      name: "Recent sermons",
+                      name: "Sermons",
                       slug: 'sermons',
-                      image: 'http://localhost:3000/images/globe-banner-960.jpg',
-                      description: ['Latest sermons from The Globe Church'],
+                      image: this.state.church.image,
+                      description: [`Latest sermons from ` + this.state.church.name],
                       highlight_first: true,
                       studies: sermons
                     }}
