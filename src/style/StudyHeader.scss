@@ -1,22 +1,25 @@
 @import './colours.scss';
 
 .studyHeader {
-  position: absolute;
-  top: 56px;
+  align-items: center;
+  background-color: rgba($colour-active, .8);
   color: white;
-  background-color: $colour-active;
   display: flex;
-  justify-content: space-between;
   font-size: 12px;
-  width: 100%;
+  height: 40px;
+  justify-content: space-between;
   left: 0;
   padding: 5px 16px;
+  position: absolute;
+  top: 58px;
+  width: 100%;
+  z-index: 1;
 
   &__title {
     max-width: 50%;
     overflow: hidden;
-    white-space: nowrap;
     text-overflow: ellipsis;
+    white-space: nowrap;
 
     @media(min-width: 400px) {
       max-width: 75%;
@@ -27,9 +30,9 @@
     background: no-repeat;
     border: none;
     color: white;
+    cursor: pointer;
     font-size: 12px;
     text-decoration: underline;
-    cursor: pointer;
 
     &:hover {
       text-decoration: none;

@@ -60,11 +60,7 @@ export default class Study extends Component {
               path="/"
               render={() => (
                 <main className="study__introduction">
-                  {image && (
-                    <div className="study__introduction__image">
-                      <img src={image} alt="" className="" />
-                    </div>
-                  )}
+                  { image && <StudyLeadImage image={image} /> }
 
                   <section className="study__introduction__section">
                     <h2 className="pre_title">{study.passage}</h2>
@@ -111,7 +107,7 @@ export default class Study extends Component {
                       />
                     </section>
                   )}
-                  
+
                 </main>
               )}
             />
@@ -121,11 +117,7 @@ export default class Study extends Component {
               render={() => (
                 <main>
                   <div className="study__lead">
-                    {image && (
-                      <div className="study__lead__image">
-                        <img src={image} alt="" />
-                      </div>
-                    )}
+                    { image && <StudyLeadImage image={image} /> }
                     <div className="study__lead__icons">
                       <span className="study__lead__icons__icon">
                         <Icon icon="pray" classname="" />
@@ -166,11 +158,7 @@ export default class Study extends Component {
               render={() => (
                 <main>
                   <div className="study__lead">
-                    {image && (
-                      <div className="study__lead__image">
-                        <img src={image} alt="" />
-                      </div>
-                    )}
+                    { image && <StudyLeadImage image={image} /> }
                     <div className="study__lead__icons">
                       <span className="study__lead__icons__icon">
                         <Icon icon="pray" classname="" />
@@ -206,6 +194,7 @@ export default class Study extends Component {
                     passage={study.passage}
                     toggleBiblePopup={this.toggleBiblePopup.bind(this)}
                   />
+                  { image && <StudyLeadImage image={image} /> }
                   <Question
                     question={
                       study.questions[parseInt(match.params.id, 10) - 1]
@@ -238,6 +227,17 @@ export default class Study extends Component {
   }
 }
 
+class StudyLeadImage extends Component {
+  render () {
+    const { image } = this.props;
+    return (
+      <div className="study__introduction__image">
+        <img src={image} alt="" />
+      </div>
+    );
+  }
+}
+
 Study.propTypes = {
   study: PropTypes.object.isRequired,
   setView: PropTypes.func.isRequired,
@@ -245,4 +245,8 @@ Study.propTypes = {
   guideSlug: PropTypes.string.isRequired,
   studySlug: PropTypes.string.isRequired,
   image: PropTypes.string
+}
+
+StudyLeadImage.propTypes = {
+  image: PropTypes.string.isRequired
 }
