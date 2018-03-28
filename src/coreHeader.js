@@ -1,23 +1,19 @@
 import React, { Component } from 'react';
-import Icon from './icon';
 import PropTypes from "prop-types";
+import Icon from './icon';
 import './style/CoreHeader.css';
 
 export default class CoreHeader extends Component {
-
-
   render() {
     const { title } = this.props;
+
+    if (!title) return null;
+
     return (
-      <div>
-        { title && (
-          <header className="coreHeader">
-            <BackButton />
-            one21
-            <span>: { title }</span>
-          </header>
-        )}
-      </div>
+      <header className="coreHeader">
+        <BackButton />
+        { title }
+      </header>
     );
   }
 }
@@ -25,7 +21,6 @@ export default class CoreHeader extends Component {
 CoreHeader.propTypes = {
   title: PropTypes.string
 };
-
 
 class BackButton extends Component {
   static contextTypes = {

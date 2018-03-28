@@ -52,28 +52,29 @@ export default class GuideList extends Component {
             }}>
               <SermonListItem
                 name="Latest sermons"
-                passage="Think about how to apply what you heard on Sunday."
+                passage="Think through how to apply what you heard on Sunday."
                 displayImage={false}
                 />
             </Link>
           )}
-
-          { guides && (
-            guides.map((guide, index) => (
-              <div className="" key={index}>
-                <Link to={{
-                    pathname: `/guides/${guide.slug}`
-                }}>
-                  <SermonListItem
-                    name={ guide.name }
-                    passage={ guide.teaser }
-                    displayImage={false}
-                    />
-                </Link>
-              </div>
-            ))
-          )}
         </div>
+
+        { guides && (
+          guides.map((guide, index) => (
+            <div className="sermonList" key={index}>
+              <Link to={{
+                  pathname: `/guides/${guide.slug}`
+              }}>
+                <SermonListItem
+                  name={ guide.name }
+                  passage={ guide.teaser }
+                  displayImage={false}
+                  />
+              </Link>
+            </div>
+          ))
+        )}
+        
           
       </div>
 
