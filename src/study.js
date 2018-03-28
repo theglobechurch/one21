@@ -46,9 +46,7 @@ export default class Study extends Component {
       study.url = study.base_url + study.url;
     }
 
-    console.log(image);
     if (image && image.substring(0, 4) !== "http") {
-      console.log(study.base_url + image);
       image = study.base_url + image;
     }
 
@@ -113,22 +111,7 @@ export default class Study extends Component {
                       />
                     </section>
                   )}
-
-                  <section className="study__introduction__section study__introduction__section--iconed">
-                    <Icon icon="facebook" classname="study__icon" />
-                    <h2 className="dinky_title">Share your reflections…</h2>
-                    <p>
-                      Something stand out to you from this passage that would be
-                      helpful for the church? Share it on the community Facebook
-                      group:
-                    </p>
-                    <a
-                      href="https://www.facebook.com/groups/globechurchcommunity/"
-                      className="btn"
-                    >
-                      Globe Community Group
-                    </a>
-                  </section>
+                  
                 </main>
               )}
             />

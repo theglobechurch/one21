@@ -118,9 +118,10 @@ export default class Guide extends Component {
                     </div>
 
                     { guide.highlight_first ? (
+                      // ToDo: Update API to return images without needing the base_url joining
                       <Card
                         className="card--pullUp"
-                        image={guide.studies[0].base_url + guide.studies[0].image}
+                        image={guide.studies[0].image}
                         title={guide.studies[0].name}
                         description={guide.studies[0].description}
                         description_limit={true}
