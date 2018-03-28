@@ -34,11 +34,18 @@ class App extends Component {
   componentDidMount() {
     fetch('https://www.globe.church/api/one21')
       .then(res => res.json())
-      .then(studies => {
-        this.setState({
-          studies: studies,
-          latest_study: studies[0]
-        })
+      .then(feed => {
+        if (feed instanceof Array) {
+          this.setState({
+            studies: feed,
+            latest_study: feed[0]
+          });
+        } else {
+          this.setState({
+            sermons: feed.studies,
+            latest_sermon: feed.studies[0]
+          });
+        }
       });
   }
 
