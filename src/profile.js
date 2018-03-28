@@ -30,14 +30,16 @@ export default class Profile extends Component {
           <p>One21 is a tool to help the church think through what we hear in a sermon on Sunday and discuss how we put it into practice in all aspects of our lives.</p>
         </section>
 
-        <section className="study__introduction__section study__introduction__section--iconed">
-          <Icon icon="church" classname="study__icon" />
-          <h2 className="dinky_title">Church</h2>
-          <p>
-            <em>Coming soon…</em><br />
-            Church: <strong>{ this.state.churchData.name }</strong>
-          </p>
-        </section>
+        { this.state.churchData && (
+          <section className="study__introduction__section study__introduction__section--iconed">
+            <Icon icon="church" classname="study__icon" />
+            <h2 className="dinky_title">Church</h2>
+            <p>
+              <em>Coming soon…</em><br />
+              Church: <strong>{ this.state.churchData.name }</strong>
+            </p>
+          </section>
+        )}
 
         <section className="study__introduction__section study__introduction__section--iconed">
           <Icon icon="study" classname="study__icon" />

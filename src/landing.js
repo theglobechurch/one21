@@ -29,7 +29,7 @@ class Landing extends Component {
             description={study.description}
             description_limit={true}
             cta="Go to study"
-            link={`/study/` + study.slug}
+            link={`/guides/sermons/` + study.slug}
           />
         )}
 

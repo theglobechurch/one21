@@ -29,7 +29,7 @@ class App extends Component {
 
     this.requestJSON("/one21.json")
       .then(churchFeed => {
-        if (churchFeed.isArray) {
+        if (churchFeed instanceof Array) {
           // Original (legacy) One21 feed
           this.setState({
             sermons: churchFeed,
