@@ -53,7 +53,7 @@ export default class Profile extends Component {
 
         <section className="study__introduction__section study__introduction__section--iconed">
           <Icon icon="translation" classname="study__icon" />
-          <h2 className="dinky_title">one21 Language</h2>
+          <h2 className="dinky_title">Language</h2>
           <p>
             <em>Coming soon…</em><br />
             Language: <strong>English-UK</strong>

@@ -180,17 +180,28 @@ export default class Study extends Component {
                 <main>
                   <div className="study__lead">
                     { image && <StudyLeadImage image={image} /> }
+
+                    { !study.end && (
                     <div className="study__lead__icons">
                       <span className="study__lead__icons__icon">
                         <Icon icon="pray" classname="" />
                       </span>
                     </div>
+                    )}
                   </div>
                   <section className="study__question question question--title-slide">
-                    <h2 className="big_title">
-                      Spend some time praying through what you have spoken about
-                      today.
-                    </h2>
+                    { study.end ? (
+
+                      study.end.map((p, i) => (
+                        <h2 className="big_title" key={i}>{ p }</h2>
+                      ))
+
+                    ) : (
+                      <h2 className="big_title">
+                        Spend some time praying through what you have spoken about
+                        today.
+                      </h2>
+                    )}
                     <footer className="study__footer">
                       <Link to={`/${study.questions.length}`}>
                         <Icon
