@@ -129,20 +129,41 @@ export default class Study extends Component {
                     </div>
                   </div>
                   <section className="study__question question question--title-slide">
-                    <h2 className="big_title">
-                      Start by praying for<br />this time.
-                    </h2>
-                    <h2 className="big_title">
-                      Now read<br />
-                      {study.passage}
-                    </h2>
-                    {/* <div href={ `https://www.biblegateway.com/passage/?search=` + study.passage + `&version=NIVUK` } className="btn" target="_blank" rel="noopener"> */}
-                    <div
-                      className="btn"
-                      onClick={this.toggleBiblePopup.bind(this)}
-                    >
-                      View passage
-                    </div>
+                    
+                    { study.start ? (
+                      <h2 className="big_title">
+                        {study.start}
+                      </h2>
+                    ) : (
+                      <div>
+                        <h2 className="big_title">
+                          Start by praying for<br />this time.
+                        </h2>
+                        <h2 className="big_title">
+                          Now read<br />
+                          {study.passage}
+                        </h2>
+                      </div>
+                    )}
+                    
+                    { study.scripture ? (
+                      <section className="study__introduction__section">
+                        <h2 className="dinky_title">{study.passage}</h2>
+                        <ExpandableText
+                          expanded={false}
+                          scripture={true}
+                          text={study.scripture}
+                        />
+                      </section>
+                    ) : (
+                      <div
+                        className="btn"
+                        onClick={this.toggleBiblePopup.bind(this)}
+                      >
+                        View passage
+                      </div>
+                    )}
+
                     <StudyFooter
                       itemNo="0"
                       itemCount={study.questions.length}
@@ -192,6 +213,7 @@ export default class Study extends Component {
                   <StudyHeader
                     name={study.name}
                     passage={study.passage}
+                    passageLinked={ study.scripture ? false : true }
                     toggleBiblePopup={this.toggleBiblePopup.bind(this)}
                   />
                   { image && <StudyLeadImage image={image} /> }
@@ -200,6 +222,8 @@ export default class Study extends Component {
                       study.questions[parseInt(match.params.id, 10) - 1]
                     }
                     itemNo={match.params.id}
+                    scripture={study.scripture}
+                    passage={study.passage}
                   />
                   <StudyFooter
                     itemNo={match.params.id}

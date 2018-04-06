@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+import ExpandableText from "./expandableText";
 
-class Question extends Component {
+export default class Question extends Component {
 
   componentDidMount() {
     window.scrollTo(0, 0)
@@ -39,9 +41,26 @@ class Question extends Component {
             ))}
           </ul>
         )}
+
+        { this.props.scripture && (
+          <section>
+            <h2 className="dinky_title">{this.props.passage}</h2>
+            <ExpandableText
+              expanded={true}
+              scripture={true}
+              text={this.props.scripture}
+            />
+          </section>
+        ) }
+
       </section>
     )
   }
 }
 
-export default Question;
+Question.propTypes = {
+  question: PropTypes.object.isRequired,
+  itemNo: PropTypes.string.isRequired,
+  passage: PropTypes.string,
+  scripture: PropTypes.array
+}
