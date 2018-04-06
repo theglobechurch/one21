@@ -4,6 +4,12 @@ import './style/Study.css';
 
 class About extends Component {
 
+  constructor(props) {
+    super(props);
+    const bible = localStorage.getItem('bible');
+    this.state = { bible }
+  }
+
   componentDidMount() {
     this.props.setTitle('About');
     this.props.setView('help');
@@ -59,18 +65,21 @@ class About extends Component {
               </section>
             </div>
           </div>
-
-          <div className="card">
-            <div className="card__body">
-
-              <section className="study__introduction__section study__introduction__section--iconed">
-                <Icon icon="cookie" classname="study__icon" />
-                <h2 className="dinky_title">Privacy</h2>
-                <p>One21 uses Google Tag Manager and Analytics to record how visitors use this service to enable improvements to be made in the future. No personally identifying data is recorded.</p>
-              </section>
-            </div>
-          </div>
         </section>
+
+        <section className="study__introduction__section study__introduction__section--iconed">
+          <Icon icon="cookie" classname="study__icon" />
+          <h2 className="dinky_title">Privacy</h2>
+          <p>One21 uses Google Tag Manager and Analytics to record how visitors use this service to enable improvements to be made in the future. No personally identifying data is recorded.</p>
+        </section>
+
+        { this.state.bible === 'ESV' && (
+          <section className="study__introduction__section study__introduction__section--iconed">
+            <Icon icon="study" classname="study__icon" />
+            <h2 className="dinky_title">Copyright</h2>
+            <p>Unless otherwise indicated, all Scripture quotations are from the ESV® Bible (The Holy Bible, English Standard Version®), copyright © 2001 by Crossway, a publishing ministry of Good News Publishers. Used by permission. All rights reserved. You may not copy or download more than 500 consecutive verses of the ESV Bible or more than one half of any book of the ESV Bible.</p>
+          </section>
+        )}
 
       </main>
     )

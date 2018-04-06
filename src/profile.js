@@ -8,7 +8,8 @@ export default class Profile extends Component {
   constructor(props) {
     super(props);
     const churchData = JSON.parse(localStorage.getItem('church'));
-    this.state = {churchData}
+    const bible = localStorage.getItem('bible');
+    this.state = { churchData, bible }
   }
 
   componentDidMount() {
@@ -46,7 +47,7 @@ export default class Profile extends Component {
           <h2 className="dinky_title">Bible Translation</h2>
           <p>
             <em>Coming soon…</em><br />
-            Translation: <strong>ESV</strong>
+            Translation: <strong>{ this.state.bible }</strong>
           </p>
         </section>
 
