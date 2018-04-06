@@ -44,6 +44,7 @@ class App extends Component {
           const church = churchFeed;
           delete church.studies
           localStorage.setItem('church', JSON.stringify(church));
+          localStorage.setItem('bible', 'ESV');
           this.setState({church});
         }
       });
@@ -74,7 +75,6 @@ class App extends Component {
 
   render() {
     const { church, sermons } = this.state;
-
     return (
       <Router path="/">
         <div className="app">
@@ -101,7 +101,7 @@ class App extends Component {
               )}
             />
             
-            {sermons && church && (
+            { sermons && church && (
               <Route
                 path="/guides/:guideSlug"
                 render={({ match }) => (
@@ -123,17 +123,19 @@ class App extends Component {
               />
             )}
             
-            <Route
-              exact
-              path="/guides"
-              render={({ match }) => (
-                <GuideList
-                  {...this.state}
-                  setTitle={this.setTitle}
-                  setView={this.setView}
-                />
-              )}
-            />
+            { sermons && church && (
+              <Route
+                exact
+                path="/guides"
+                render={({ match }) => (
+                  <GuideList
+                    {...this.state}
+                    setTitle={this.setTitle}
+                    setView={this.setView}
+                  />
+                )}
+              />
+            )}
 
             <Route
               exact
