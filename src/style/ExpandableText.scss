@@ -18,6 +18,18 @@
       }
     }
 
+    &__block {
+      color: #858585;
+      font-size: 14px;
+      line-height: 24px;
+      font-weight: 400;
+      margin-bottom: 10px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
     &__block--scripture {
       &:after {
         content: '…';
@@ -38,6 +50,11 @@
         line-height: 16px;
         position: relative;
         top: -5px;
+      }
+
+      & .footnote {
+        top: -.3em;
+        margin-left: .1em;
       }
     }
   }

@@ -37,11 +37,11 @@ export default class ExpandableText extends Component {
       <div className="expandableText">
         <div className="expandableText__container">
           { text.map((p, i) => (
-            <p
-              className={`expandableText__container__block ` + ( this.props.scripture && `expandableText__container__block--scripture`)}
+            <div
+              className={`expandableText__container__block` + ( this.props.scripture ? ` expandableText__container__block--scripture` : ``)}
               dangerouslySetInnerHTML={{__html: p}}
               key={i}
-            ></p>
+            ></div>
           ))}
         </div>
 
