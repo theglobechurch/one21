@@ -108,7 +108,7 @@ export default class Guide extends Component {
             path="/guides/:guideSlug"
             render={({match}) => (
 
-              <main className="study__introduction">
+              <main>
                 
                 {guide ? (
                   <div>

@@ -4,6 +4,8 @@
   margin: 56px auto 72px;
   max-width: 550px;
   background-color: white;
+  display: flex;
+  flex-direction: column;
   
   @media (min-width: 550px) {
     box-shadow: 0 1px 4px 1px rgba(0, 0, 0, .27);
@@ -13,7 +15,11 @@
 
   &__question {
     padding: 16px;
-    margin-bottom: 106px;
+    margin-bottom: 32px;
+
+    @media (min-width: 550px) {
+      margin-bottom: 0;
+    }
   }
 
   &__icon {

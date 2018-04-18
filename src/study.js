@@ -52,8 +52,7 @@ export default class Study extends Component {
 
     return (
       <Router basename={`/guides/${guideSlug}/${studySlug}`}>
-        <div className="study">
-          <div className="tablecloth" />
+        <div>
           <Switch>
             <Route
               exact
@@ -221,13 +220,13 @@ export default class Study extends Component {
               path="/:id"
               render={({ match }) => (
                 <main>
+                  { image && <StudyLeadImage image={image} /> }
                   <StudyHeader
                     name={study.name}
                     passage={study.passage}
                     passageLinked={ study.scripture ? false : true }
                     toggleBiblePopup={this.toggleBiblePopup.bind(this)}
                   />
-                  { image && <StudyLeadImage image={image} /> }
                   <Question
                     question={
                       study.questions[parseInt(match.params.id, 10) - 1]
