@@ -42,8 +42,8 @@ class App extends Component {
           });
         } else {
           this.setState({
-            sermons: feed.studies,
-            latest_sermon: feed.studies[0]
+            studies: feed.studies,
+            latest_study: feed.studies[0]
           });
         }
       });
@@ -51,7 +51,6 @@ class App extends Component {
 
   render () {
     const { studies } = this.state;
-
     return (
       <Router path="/">
         <div className="app">
