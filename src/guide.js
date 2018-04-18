@@ -17,7 +17,7 @@ export default class Guide extends Component {
 
   componentDidMount() {
     this.props.setTitle('Loading…');
-    this.props.setView("guides");
+    this.props.setView(`/guides/${this.props.slug}`);
 
     // TODO: Only request if not already in state
     if (this.isSermon()) {

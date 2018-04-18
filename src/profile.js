@@ -14,7 +14,7 @@ export default class Profile extends Component {
 
   componentDidMount() {
     this.props.setTitle('Settings');
-    this.props.setView('profile');
+    this.props.setView('/profile');
     window.scrollTo(0, 0);
   }
 

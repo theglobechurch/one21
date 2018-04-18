@@ -12,7 +12,7 @@ class About extends Component {
 
   componentDidMount() {
     this.props.setTitle('About');
-    this.props.setView('help');
+    this.props.setView('/about');
     window.scrollTo(0, 0);
   }
 

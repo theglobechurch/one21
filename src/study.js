@@ -19,7 +19,7 @@ export default class Study extends Component {
   }
 
   componentDidMount() {
-    this.props.setView("guides");
+    this.props.setView(`/guides/${this.props.guideSlug}/${this.props.studySlug}`);
     window.scrollTo(0, 0);
   }
 

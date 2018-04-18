@@ -9,7 +9,7 @@ export default class GuideList extends Component {
 
   componentDidMount() {
     this.props.setTitle('Guides');
-    this.props.setView("guides");
+    this.props.setView('/guides');
     window.scrollTo(0, 0);
   }
 
@@ -84,7 +84,6 @@ export default class GuideList extends Component {
 
 GuideList.propTypes = {
   setTitle: PropTypes.func.isRequired,
-  setView: PropTypes.func.isRequired,
   sermons: PropTypes.array,
   guides: PropTypes.array,
   promoted_guide: PropTypes.object 

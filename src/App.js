@@ -28,25 +28,16 @@ class App extends Component {
 
     this.requestJSON("/one21.json")
       .then(churchFeed => {
-        if (churchFeed instanceof Array) {
-          // Original (legacy) One21 feed
-          this.setState({
-            sermons: churchFeed,
-            latest_sermon: churchFeed[0]
-          });
-        } else {
-          // New church feed
-          this.setState({
-            sermons: churchFeed.studies,
-            latest_sermon: churchFeed.studies[0]
-          });
+        this.setState({
+          sermons: churchFeed.studies,
+          latest_sermon: churchFeed.studies[0]
+        });
 
-          const church = churchFeed;
-          delete church.studies
-          localStorage.setItem('church', JSON.stringify(church));
-          localStorage.setItem('bible', 'ESV');
-          this.setState({church});
-        }
+        const church = churchFeed;
+        delete church.studies
+        localStorage.setItem('church', JSON.stringify(church));
+        localStorage.setItem('bible', 'ESV');
+        this.setState({church});
       });
 
     this.requestJSON("/guides.json")
@@ -79,7 +70,9 @@ class App extends Component {
       <Router path="/">
         <div className="app">
 
-          <CoreHeader title={this.state.title} />
+          <CoreHeader
+            title={this.state.title}
+          />
 
           <div className="container">
             <Route path="/calendar" render={() => (<Redirect to="/guides" />)} />
@@ -154,8 +147,6 @@ class App extends Component {
           {sermons && (
             <CoreNav
               {...this.state}
-              setView={this.setView}
-              currentView={this.state.view}
             />
           )}
         </div>

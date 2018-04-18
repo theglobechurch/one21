@@ -6,7 +6,7 @@ class Landing extends Component {
 
   componentDidMount() {
     this.props.setTitle(null);
-    this.props.setView('landing');
+    this.props.setView('/');
   }
 
   render() {
