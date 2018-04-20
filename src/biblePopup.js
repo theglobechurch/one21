@@ -7,6 +7,12 @@ class BiblePopup extends Component {
   render() {
     return (
       <div className="biblePopup">
+        <button
+          className="btn"
+          onClick={this.props.toggleBiblePopup}
+        >
+          Close
+        </button>
         <iframe
           className="biblePopup__iframe"
           title={`Bible: ` + this.props.passage}
@@ -15,12 +21,6 @@ class BiblePopup extends Component {
           frameBorder='0' 
           src={ `https://www.biblegateway.com/passage/?search=` + this.props.passage + `&version=NIVUK` }
         />
-        <button
-          className="btn"
-          onClick={this.props.toggleBiblePopup}
-        >
-          Close
-        </button>
       </div>
     )
   }

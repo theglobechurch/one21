@@ -18,9 +18,10 @@
 
   &__iframe {
     border: 1px solid $colour-active;
+    height: 100%;
+    margin-top: 16px;
+    max-width: 750px;
     overflow-x: hidden;
     width: 100%;
-    height: 100%;
-    max-width: 750px;
   }
 }
