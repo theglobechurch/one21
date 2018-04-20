@@ -43,14 +43,6 @@ export default class Study extends Component {
     const { study, guideSlug, studySlug } = this.props;
     let { image } = this.state;
 
-    if (study.url && study.url.substring(0, 4) !== "http") {
-      study.url = study.base_url + study.url;
-    }
-
-    if (image && image.substring(0, 4) !== "http") {
-      image = study.base_url + image;
-    }
-
     return (
       <Router basename={`/guides/${guideSlug}/${studySlug}`}>
         <div>
