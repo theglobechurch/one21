@@ -20,6 +20,7 @@ export default class Study extends Component {
 
   componentDidMount() {
     this.props.setView(`/guides/${this.props.guideSlug}/${this.props.studySlug}`);
+    this.props.setTitle(this.props.study.name);
     window.scrollTo(0, 0);
   }
 
@@ -127,12 +128,16 @@ export default class Study extends Component {
                       </span>
                     </div>
                   </div>
+
                   <section className="study__question question question--title-slide">
-                    
-                    { study.start ? (
-                      <h2 className="big_title">
-                        {study.start}
-                      </h2>
+                    {study.start ? (
+                      <div>
+                        <h2 className="big_title">{study.start[0]}</h2>
+
+                        {study.start.slice(1).map((p, i) => (
+                          <p dangerouslySetInnerHTML={{ __html: p }} key={i} />
+                        ))}
+                      </div>
                     ) : (
                       <div>
                         <h2 className="big_title">
@@ -144,7 +149,7 @@ export default class Study extends Component {
                         </h2>
                       </div>
                     )}
-                    
+
                     { study.scripture ? (
                       <section className="study__introduction__section">
                         <h2 className="dinky_title">{study.passage}</h2>
@@ -152,23 +157,23 @@ export default class Study extends Component {
                           expanded={false}
                           scripture={true}
                           text={study.scripture}
-                        />
+                          />
                       </section>
                     ) : (
                       <div
-                        className="btn"
-                        onClick={this.toggleBiblePopup.bind(this)}
+                      className="btn"
+                      onClick={this.toggleBiblePopup.bind(this)}
                       >
                         View passage
                       </div>
                     )}
-
-                    <StudyFooter
-                      itemNo="0"
-                      itemCount={study.questions.length}
-                      baseRoute={`/study/${study.slug}`}
-                    />
                   </section>
+
+                  <StudyFooter
+                    itemNo="0"
+                    itemCount={study.questions.length}
+                    baseRoute={`/study/${study.slug}`}
+                  />
                 </main>
               )}
             />
@@ -188,30 +193,34 @@ export default class Study extends Component {
                     </div>
                     )}
                   </div>
-                  <section className="study__question question question--title-slide">
-                    { study.end ? (
 
-                      study.end.map((p, i) => (
-                        <h2 className="big_title" key={i}>{ p }</h2>
-                      ))
+                  { study.end ? (
+                    <section className="study__question question">
+                      <h2 className="big_title">{ study.end[0] }</h2>
 
-                    ) : (
+                      { study.end.slice(1).map((p, i) => (
+                        <p dangerouslySetInnerHTML={{ __html: p }} key={ i } />
+                      ))}
+                    </section>
+                  ) : (
+                    <section className="study__question question question--title-slide">
                       <h2 className="big_title">
                         Spend some time praying through what you have spoken about
                         today.
                       </h2>
-                    )}
-                    <footer className="study__footer">
-                      <Link to={`/${study.questions.length}`}>
-                        <Icon
-                          icon="arrowLeft"
-                          classname="study__footer__icon study__footer__icon--left"
-                        />
-                        Prev
-                      </Link>
-                      <Link to={`/`}>End</Link>
-                    </footer>
-                  </section>
+                    </section>
+                  )}
+                  <footer className="study__footer">
+                    <Link to={`/${study.questions.length}`}>
+                      <Icon
+                        icon="arrowLeft"
+                        classname="study__footer__icon study__footer__icon--left"
+                      />
+                      Prev
+                    </Link>
+                    <Link to={`/`}>End</Link>
+                  </footer>
+
                 </main>
               )}
             />
