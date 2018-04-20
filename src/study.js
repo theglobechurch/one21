@@ -184,7 +184,7 @@ class Study extends Component {
                       today.
                     </h2>
                     <footer className="study__footer">
-                      <Link to={`/${study.questions.length - 1}`}>
+                      <Link to={`/${study.questions.length}`}>
                         <Icon
                           icon="arrowLeft"
                           classname="study__footer__icon study__footer__icon--left"

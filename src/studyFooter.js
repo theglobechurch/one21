@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 class StudyFooter extends Component {
   render() {
     const { itemCount } = this.props;
-    let itemNo = parseInt(this.props.itemNo, 10);
+    const itemNo = parseInt(this.props.itemNo, 10);
     return (
       <footer className="study__footer">
 
