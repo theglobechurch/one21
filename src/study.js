@@ -118,15 +118,18 @@ export default class Study extends Component {
                 <main>
                   <div className="study__lead">
                     { image && <StudyLeadImage image={image} /> }
-                    <div className="study__lead__icons">
-                      <span className="study__lead__icons__icon">
-                        <Icon icon="pray" classname="" />
-                      </span>
 
-                      <span className="study__lead__icons__icon">
-                        <Icon icon="study" classname="" />
-                      </span>
-                    </div>
+                    {!study.start && (
+                      <div className="study__lead__icons">
+                        <span className="study__lead__icons__icon">
+                          <Icon icon="pray" classname="" />
+                        </span>
+
+                        <span className="study__lead__icons__icon">
+                          <Icon icon="study" classname="" />
+                        </span>
+                      </div>
+                    )}
                   </div>
 
                   <section className="study__question question question--title-slide">
@@ -274,9 +277,10 @@ class StudyLeadImage extends Component {
   render () {
     const { image } = this.props;
     return (
-      <div className="study__introduction__image">
-        <img src={image} alt="" />
-      </div>
+      <div
+        className="study__introduction__image"
+        style={{ backgroundImage: `url(${image})`}}
+      />
     );
   }
 }
