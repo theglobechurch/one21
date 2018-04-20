@@ -107,6 +107,7 @@ class App extends Component {
                       highlight_first: true,
                       studies: sermons
                     }}
+                    title={this.state.title}
                     slug={match.params.guideSlug}
                     studySlug={match.params.studySlug}
                     setTitle={this.setTitle}

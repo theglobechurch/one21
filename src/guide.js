@@ -19,20 +19,20 @@ export default class Guide extends Component {
     this.props.setTitle('Loading…');
     this.props.setView(`/guides/${this.props.slug}`);
 
-    // TODO: Only request if not already in state
+    // TODO: Only request if not already in state or local storage?
     if (this.isSermon()) {
+      this.props.setTitle('Sermons');
       this.setState({
         guide: this.props.sermons,
         sermon: true
       });
-      this.props.setTitle('Recent sermons');
     } else {
       this.requestJSON(`/${this.props.slug}.json`).then(guide => {
+        this.props.setTitle(guide[0].name);
         this.setState({
           guide: guide[0],
           sermon: false
         });
-        this.props.setTitle(guide[0].name);
       });
     }
 
@@ -41,6 +41,15 @@ export default class Guide extends Component {
 
   componentDidUpdate(prevProps) {
     window.scrollTo(0, 0);
+    
+    // This feels like a hack
+    const curPath = window.location.pathname.split('/').filter(String);
+    if (this.state.guide && 
+        this.props.title !== this.state.guide.name && 
+        curPath.length === 2) {
+      this.props.setTitle(this.state.guide.name)
+    }
+
   }
 
   requestJSON(feed_url, onSuccess, onFail) {
