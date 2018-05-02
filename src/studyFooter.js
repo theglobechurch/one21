@@ -38,7 +38,7 @@ class StudyFooter extends Component {
         
         {itemNo === itemCount && (
           <Link to={`/finish`}>
-            <span>Pray</span>
+            <span>Reflect</span>
             <Icon icon="arrowRight" classname="study__footer__icon study__footer__icon--right" />
           </Link>
         )}

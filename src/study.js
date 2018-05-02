@@ -200,8 +200,7 @@ export default class Study extends Component {
                   ) : (
                     <section className="study__question question question--title-slide">
                       <h2 className="big_title">
-                        Spend some time praying through what you have spoken about
-                        today.
+                        Spend some time thinking and praying through what you have spoken about today.
                       </h2>
                     </section>
                   )}
