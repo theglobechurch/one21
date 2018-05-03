@@ -46,6 +46,12 @@ p {
   letter-spacing: 0.5px;
 }
 
+.dinky_text {
+  color: $colour-simple-grey;
+  font-size: 10px;
+  line-height: 16px;
+}
+
 .action_text {
   text-transform: uppercase;
   font-size: 13px;

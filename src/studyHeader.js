@@ -4,6 +4,10 @@ import './style/StudyHeader.css';
 
 export default class StudyHeader extends Component {
 
+  static defaultProps = {
+    passageLinked: true
+  };
+
   showPassage(ev) {
     ev.preventDefault();
     console.log('working on it');
@@ -13,19 +17,28 @@ export default class StudyHeader extends Component {
     return (
       <div className="studyHeader">
         <div className="studyHeader__title">{this.props.name}</div>
-        <button
-          className="studyHeader__passage"
-          onClick={this.props.toggleBiblePopup}
-        >
-          {this.props.passage}
-        </button>
+        { this.props.passageLinked ? (
+          <button
+            className="studyHeader__passage"
+            onClick={this.props.toggleBiblePopup}
+          >
+            {this.props.passage}
+          </button>
+        ) : (
+          <span className="studyHeader__title">
+            {this.props.passage}
+          </span>
+        )}
+        
       </div>
     )
   }
-}
+};
 
 StudyHeader.propTypes = {
   name: PropTypes.string.isRequired,
   passage: PropTypes.string.isRequired,
+  passageLinked: PropTypes.bool,
   toggleBiblePopup: PropTypes.func.isRequired
-}
+};
+

@@ -6,11 +6,11 @@ class Landing extends Component {
 
   componentDidMount() {
     this.props.setTitle(null);
-    this.props.setView('landing');
+    this.props.setView('/');
   }
 
   render() {
-    const { study } = this.props;
+    const { study, guide } = this.props;
 
     if (study && study.image && study.image.substring(0, 4) !== 'http') {
       study.image = study.base_url + study.image;
@@ -26,11 +26,24 @@ class Landing extends Component {
             image={study.image}
             pretitle="Latest sermon:"
             title={study.name}
+            description={study.description}
+            description_limit={true}
             cta="Go to study"
-            link={`/study/` + study.slug}
+            link={`/guides/sermons/` + study.slug}
           />
         )}
 
+        { guide && (
+          <Card
+            pretitle="Featured guide:"
+            image={guide.image}
+            title={guide.name}
+            description={guide.teaser}
+            description_limit={true}
+            cta="Go to guide"
+            link={`/guides/` + guide.slug}
+          />
+        )}
       </main>
     )
   }

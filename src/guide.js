@@ -1,84 +1,207 @@
 import React, { Component } from 'react';
-import Icon from './icon';
-import './style/Study.css';
+import { Link, Route, Switch } from 'react-router-dom';
 
-class Guide extends Component {
+import PropTypes from "prop-types";
+import SermonListItem from "./sermonListItem";
+import Study from "./study";
+import Card from "./card";
+import ExpandableText from "./expandableText";
+import './style/SermonList.css';
+
+export default class Guide extends Component {
+
+  state = {
+    guide: null,
+    sermon: false
+  }
 
   componentDidMount() {
-    this.props.setTitle('How to use one21');
-    this.props.setView('guide');
+    this.props.setTitle('Loading…');
+    this.props.setView(`/guides/${this.props.slug}`);
+
+    // TODO: Only request if not already in state or local storage?
+    if (this.isSermon()) {
+      this.props.setTitle('Sermons');
+      this.setState({
+        guide: this.props.sermons,
+        sermon: true
+      });
+    } else {
+      this.requestJSON(`/${this.props.slug}.json`).then(guide => {
+        this.props.setTitle(guide[0].name);
+        this.setState({
+          guide: guide[0],
+          sermon: false
+        });
+      });
+    }
+
     window.scrollTo(0, 0);
   }
 
   componentDidUpdate(prevProps) {
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
+    
+    // This feels like a hack
+    const curPath = window.location.pathname.split('/').filter(String);
+    if (this.state.guide && 
+        this.props.title !== this.state.guide.name && 
+        curPath.length === 2) {
+      this.props.setTitle(this.state.guide.name)
+    }
+
+  }
+
+  requestJSON(feed_url, onSuccess, onFail) {
+    return new Promise((resolve, reject) => {
+      fetch(feed_url)
+        .then(res => res.json())
+        .then(feed_json => {
+          resolve(feed_json);
+        });
+    });
+  }
+
+  isSermon() {
+    if (this.props.slug === 'sermons') {
+      return true
+    } else {
+      return false
+    }
+  }
+
+  showListItem(i) {
+    // Checks if the study should be shown in the study list.
+    // If the first item is highlighted then the first should
+    // be skipped
+    const {guide} = this.state;
+    if ((!guide.highlight_first) || (guide.highlight_first && i !== 0)) {
+      return true
+    } else {
+      return false;
+    }
+  }
+
+  selectStudy(studySlug) {
+    return this.state.guide.studies.find(s => s.slug === studySlug)
   }
 
   render() {
-    return (
-      <main className="landing">
+    const { guide } = this.state;
+    return(
 
-        <div className="card">
+      <div className="study">
+        <div
+          className="tablecloth"
+        />
 
-          <div className="card__body">
-            <section className="study__introduction__section">
-              <h1>One21?</h1>
-              <p>One21 is a tool to help the church think through what we hear in a sermon on Sunday and discuss how we put it into practice in all aspects of our lives.</p>
-            </section>
+        <Switch>
+          { guide && (
+            <Route
+              path="/guides/:guideSlug/:studySlug"
+              render={({match}) => (
+                <Study
+                  {...this.state}
+                  guideSlug={ match.params.guideSlug }
+                  studySlug={ match.params.studySlug }
+                  setView={this.props.setView}
+                  setTitle={this.props.setTitle}
+                  study={this.selectStudy(match.params.studySlug)}
+                  image={guide.image}
+                />
+              )}
+            />
+          )}
 
-            <section className="study__introduction__section study__introduction__section--iconed">
-              <Icon icon="group" classname="study__icon" />
-              <h2 className="dinky_title">One-to-One</h2>
-              <p>We want to grow together as a church and one-to-ones are a really key way we can do this. They help us build strong relationships, point each other to Jesus, and to apply what we're hearing on a Sunday to our lives.</p>
-              <p>One21 is a tool to help facilitate one-to-ones by helping to direct what you read together, asking helpful questions based on a sermon you've already heard. You don't need a leader, or to have done any preperation, just meet together and discuss the questions.</p>
-            </section>
+          <Route
+            path="/guides/:guideSlug"
+            render={({match}) => (
 
-            <section className="study__introduction__section study__introduction__section--iconed">
-              <Icon icon="knifefork" classname="study__icon" />
-              <h2 className="dinky_title">Twenty One?</h2>
-              <p>Each week you eat twenty one meals. Who could you meet up with? Perhaps over a meal, or just for a drink?</p>
-            </section>
+              <main>
+                
+                {guide ? (
+                  <div>
+                    
+                    {guide.image && (
+                      <div
+                        className="study__introduction__image"
+                        style={{ backgroundImage: `url(${guide.image})` }}
+                      />
+                    )}
 
-            <section className="study__introduction__section study__introduction__section--iconed">
-              <Icon icon="question" classname="study__icon" />
-              <h2 className="dinky_title">Questions</h2>
-              <p>Each week, by Monday breakfast time, you'll find a recording from Sunday's sermon and several questions to help you think and discuss some of the application points from Sunday.</p>
-              <p>For each main question there will be some follow up questions to help you think through specific areas. Some of these will be more or less relevant to you; don't worry about doing all of them, focus on the relevant ones.</p>
-            </section>
-          </div>
-        </div>
+                    { guide.highlight_first ? (
+                      // ToDo: Update API to return images without needing the base_url joining
+                      <Card
+                        className="card--pullUp"
+                        image={guide.studies[0].image}
+                        title={guide.studies[0].name}
+                        description={guide.studies[0].description}
+                        description_limit={true}
+                        cta="Go to study"
+                        link={`/guides/${this.props.slug}/${guide.studies[0].slug}`}
+                      />
+                    ) : (
+                      <section className="study__introduction__section">
+                        <h1 className="big_title">{guide.name}</h1>
+                        { guide.description && !this.state.sermon ? (
+                          <ExpandableText
+                            expanded={true}
+                            text={guide.description}
+                          />
+                        ) : (
+                          <p>
+                            {guide.description}
+                          </p>
+                        )}
+                      </section>
+                    )}
 
-        <div className="card">
-          <div className="card__body">
+                    { guide.studies && (
+                      guide.studies.map((study, index) => (
+                        <div key={index}>
+                          { this.showListItem(index) && (
+                            <Link
+                              className="sermonList"
+                              to={{
+                                pathname: `/guides/${this.props.slug}/${study.slug}`
+                              }}
+                            >
+                              <SermonListItem
+                                {...study}
+                                displayImage={false}
+                                />
+                            </Link>
+                          )}
+                        </div>
+                      ))
+                    )}
 
-            <section className="study__introduction__section study__introduction__section--iconed">
-              <Icon icon="apple" classname="study__icon" />
-              <h2 className="dinky_title">iOS</h2>
-              <p>You can add one21 to your home screen by pressing the share button and then pressing <strong>Add to Home Screen</strong>.</p>
-            </section>
+                    { guide.license && (
+                      <section className="study__introduction__section">
+                        <p
+                          className="dinky_text"
+                          dangerouslySetInnerHTML={{__html: guide.license }}
+                        />
+                      </section>
+                    )}
 
-            <section className="study__introduction__section study__introduction__section--iconed">
-              <Icon icon="android" classname="study__icon" />
-              <h2 className="dinky_title">Android</h2>
-              <p>You can add one21 to your home screen by pressing the menu button (three dots on the top right) and then pressing <strong>Add to Home Screen</strong>.</p>
-            </section>
-          </div>
-        </div>
+                  </div>
+                ) : (
+                  <p>Loading guide...</p>
+                )}
+              </main>
 
-        <div className="card">
-          <div className="card__body">
-
-            <section className="study__introduction__section study__introduction__section--iconed">
-              <Icon icon="cookie" classname="study__icon" />
-              <h2 className="dinky_title">Privacy</h2>
-              <p>One21 uses Google Tag Manager and Analytics to record how visitors use this service to enable improvements to be made in the future. No personally identifying data is recorded.</p>
-            </section>
-          </div>
-        </div>
-      </main>
-    )
+            )}
+          />
+        </Switch>
+        
+  
+      </div>
+            
+    );
   }
-
 }
 
-export default Guide;
+Guide.propTypes = {
+  slug: PropTypes.string.isRequired
+}

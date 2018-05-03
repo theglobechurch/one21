@@ -1,12 +1,13 @@
 .landing {
-  margin: 56px 0 92px;
+  margin: 56px auto 92px;
   position: relative;
+  max-width: 550px;
 
   &__logo {
-    width: 100%;
-    max-width: 190px;
-    margin: 0 auto 20px;
     display: block;
-    padding-top: 20px;
+    margin: -30px auto 30px;
+    max-width: 190px;
+    padding: 0;
+    width: 100%;
   }
 }

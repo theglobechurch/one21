@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 import './style/SermonList.css';
 import './style/Calendar.css';
 import SermonListItem from './sermonListItem';
@@ -7,8 +7,8 @@ import SermonListItem from './sermonListItem';
 class Calendar extends Component {
 
   componentDidMount() {
-    this.props.setTitle('Calendar');
-    this.props.setView('calendar');
+    this.props.setTitle('Recent sermons');
+    this.props.setView('guides');
     window.scrollTo(0, 0);
   }
 
@@ -19,25 +19,27 @@ class Calendar extends Component {
   render() {
     const { studies } = this.props;
     return (
-      <section className="calendar">
-        <div className="tablecloth"></div>
-        { studies ? (
-          studies.map(study => (
-            <div className="sermonList" key={study.date}>
-              <Link to={{
-                  pathname: `/study/${study.slug}`
-              }}>
-                <SermonListItem
-                  {...study}
-                  displayImage={false}
-                  />
-              </Link>
-            </div>
-          ))
-        ) : (
-          <div>Loading…</div>
-        )}
-      </section>
+      <Router basename="/">
+        <section className="calendar">
+          <div className="tablecloth"></div>
+          { studies ? (
+            studies.map(study => (
+              <div className="sermonList" key={study.date}>
+                <Link to={{
+                    pathname: `/study/${study.slug}`
+                }}>
+                  <SermonListItem
+                    {...study}
+                    displayImage={false}
+                    />
+                </Link>
+              </div>
+            ))
+          ) : (
+            <div>Loading…</div>
+          )}
+        </section>
+      </Router>
     )
   }
 
