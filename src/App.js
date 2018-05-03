@@ -26,7 +26,7 @@ class App extends Component {
 
   componentDidMount() {
 
-    this.requestJSON("/one21.json")
+    this.requestJSON("https://www.globe.church/api/one21")
       .then(churchFeed => {
         this.setState({
           sermons: churchFeed.studies,
@@ -76,6 +76,7 @@ class App extends Component {
 
           <div className="container">
             <Route path="/calendar" render={() => (<Redirect to="/guides" />)} />
+            <Route path="/guide" render={() => (<Redirect to="/guides" />)} />
             <Route path="/help" render={() => (<Redirect to="/about" />)} />
             <Route path="/study/:slug" render={({ match }) => (<Redirect to={`/guides/sermons/` + match.params.slug } />)} />
             <Route path="/study/" render={() => (<Redirect to="/guides/sermons" />)} />
