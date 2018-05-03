@@ -18,10 +18,10 @@
 
   &__iframe {
     border: 1px solid $colour-active;
-    height: 100%;
+    flex: 1 0 auto;
     margin-top: 16px;
     max-width: 750px;
     overflow-x: hidden;
-    width: 100%;
+    width: calc(100vw - 32px);
   }
 }
