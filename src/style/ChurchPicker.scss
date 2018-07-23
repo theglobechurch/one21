@@ -1,0 +1,111 @@
+@import "./colours.scss";
+
+.churchPicker {
+  background: #ffffff;
+  color: #1a1a1a;
+  font-size: 14px;
+  margin: 16px auto;
+  max-width: 480px;
+  padding: 16px;
+  width: calc(100% - 32px);
+}
+
+.churchPicker__inputGroup {
+  margin: 30px 0 0;
+  position: relative;
+}
+
+.churchPicker__label {
+  color: #999;
+  display: block;
+  font-size: 18px;
+  font-weight: normal;
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 10px;
+  transition: 0.2s ease all;
+}
+
+.churchPicker__input {
+  border: none;
+  border-bottom: 1px solid #757575;
+  display: block;
+  font-size: 18px;
+  padding: 10px 0;
+  width: 100%;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.churchPicker__input:focus ~ label,
+.churchPicker__input:valid ~ label {
+  color: $colour-active;
+  font-size: 14px;
+  top: -20px;
+}
+
+.churchPicker__bar {
+  display: block;
+  position: relative;
+  width: 100%;
+}
+.churchPicker__bar:before,
+.churchPicker__bar:after {
+  background: $colour-active;
+  bottom: 1px;
+  content: "";
+  height: 2px;
+  position: absolute;
+  transition: 0.2s ease all;
+  width: 0;
+}
+.churchPicker__bar:before {
+  left: 50%;
+}
+.churchPicker__bar:after {
+  right: 50%;
+}
+
+.churchPicker__input:focus ~ .churchPicker__bar:before,
+.churchPicker__input:focus ~ .churchPicker__bar:after {
+  width: 50%;
+}
+
+.churchPicker__result {
+  height: 0;
+  position: relative;
+}
+
+.churchPicker__result__list {
+  background-color: white;
+  list-style-type: none;
+  position: relative;
+  top: 0;
+}
+
+.churchPicker__result__item {
+  align-items: center;
+  color: #1a1a1a;
+  display: flex;
+  font-size: 14px;
+  letter-spacing: 0.81px;
+  margin: 0;
+  padding: 10px;
+  text-decoration: none;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: $colour-inactive;
+  }
+
+  img {
+    background: #ccc;
+    border-radius: 50%;
+    height: 24px;
+    margin-right: 10px;
+    width: 24px;
+  }
+}
