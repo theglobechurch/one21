@@ -1,27 +1,44 @@
-import React, { Component } from 'react';
-import Card from './card';
-import './style/Landing.css';
+import React, { Component } from "react";
+import Card from "./card";
+import ChurchPicker from "./churchPicker";
+import { ApiEndpoint } from "./App";
+import "./style/Landing.css";
 
 class Landing extends Component {
+  constructor(props) {
+    super(props);
+    let churchData = null;
+    if (localStorage.getItem("church")) {
+      churchData = JSON.parse(localStorage.getItem("church"));
+    }
+    this.state = { churchData };
+  }
 
   componentDidMount() {
     this.props.setTitle(null);
-    this.props.setView('/');
+    this.props.setView("/");
   }
 
   render() {
     const { study, guide } = this.props;
+    const { churchData } = this.state;
 
-    if (study && study.image && study.image.substring(0, 4) !== 'http') {
+    if (study && study.image && study.image.substring(0, 4) !== "http") {
       study.image = study.base_url + study.image;
-    } 
+    }
 
     return (
       <main className="landing">
-        <div className="tablecloth tablecloth--big"></div>
+        <div className="tablecloth tablecloth--big" />
         <img className="landing__logo" src={`/one21logo.svg`} alt="one 21" />
 
-        { study && (
+        {!churchData && (
+          <ApiEndpoint.Consumer>
+            {endpoint => <ChurchPicker apiEndpoint={endpoint} />}
+          </ApiEndpoint.Consumer>
+        )}
+
+        {study && (
           <Card
             image={study.image}
             pretitle="Latest sermon:"
@@ -33,7 +50,7 @@ class Landing extends Component {
           />
         )}
 
-        { guide && (
+        {guide && (
           <Card
             pretitle="Featured guide:"
             image={guide.image}
@@ -45,9 +62,8 @@ class Landing extends Component {
           />
         )}
       </main>
-    )
+    );
   }
-
 }
 
 export default Landing;

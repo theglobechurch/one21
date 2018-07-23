@@ -1,6 +1,6 @@
-@import './reset.scss';
-@import './buttons.scss';
-@import './colours.scss';
+@import "./reset.scss";
+@import "./buttons.scss";
+@import "./colours.scss";
 
 * {
   box-sizing: border-box;
@@ -57,9 +57,15 @@ p {
   font-size: 13px;
   font-weight: 500;
   color: $colour-inactive;
+  cursor: pointer;
   letter-spacing: 1.3px;
   line-height: 18px;
   text-decoration: none;
+  transition: color 0.2s;
+
+  &:hover {
+    color: $colour-active;
+  }
 }
 
 .tablecloth {
