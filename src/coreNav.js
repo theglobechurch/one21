@@ -13,10 +13,12 @@ export default class CoreNav extends Component {
           Home
         </Link>
 
+        { this.props.guides && (
         <Link to={{ pathname: "/guides" }} className={"coreNav__item " + (this.props.view && this.props.view.indexOf("/guides") !== -1 ? "coreNav__item--active" : "")}>
           <Icon icon="study" />
           Guides
         </Link>
+        )}
 
         <Link to={{ pathname: "/profile" }} className={"coreNav__item " + (this.props.view === "/profile" ? "coreNav__item--active" : "")}>
           <Icon icon="person" />

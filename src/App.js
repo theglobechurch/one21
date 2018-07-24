@@ -11,13 +11,18 @@ import Guide from "./guide";
 import CoreHeader from "./coreHeader";
 import CoreNav from "./coreNav";
 
+const one21Api = "http://127.0.0.1:3010/api/";
 export const ApiEndpoint = createContext();
 
 class App extends Component {
-  state = {
-    sermons: null,
-    church: null
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      sermons: null,
+      church: null,
+      loading: false
+    };
+  }
 
   requestJSON(feed_url, onSuccess, onFail) {
     return new Promise((resolve, reject) => {
@@ -30,25 +35,88 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.requestJSON("https://www.globe.church/api/one21").then(churchFeed => {
-      this.setState({
-        sermons: churchFeed.studies,
-        latest_sermon: churchFeed.studies[0]
-      });
+    localStorage.setItem("bible", "ESV");
+    this.loadContent();
+  }
 
-      const church = churchFeed;
-      delete church.studies;
-      // localStorage.setItem('church', JSON.stringify(church));
-      localStorage.setItem("bible", "ESV");
-      this.setState({ church });
-    });
+  componentDidUpdate() {
+    let stChurch;
+    const nullSlug = { slug: null };
+    const lsChurch = JSON.parse(localStorage.getItem("church")) || nullSlug;
 
-    this.requestJSON("/guides.json").then(guides => {
-      this.setState({
-        guides: guides,
-        promoted_guide: guides.filter(guide => guide.promote === true)[0]
-      });
-    });
+    if (this.state.church) {
+      stChurch = this.state.church;
+    } else {
+      stChurch = nullSlug;
+    }
+
+    if (stChurch.slug !== lsChurch.slug) {
+      this.loadContent();
+    }
+  }
+
+  loadContent() {
+    const church = JSON.parse(localStorage.getItem("church"));
+
+    if (this.state.loading === true || !church) {
+      return;
+    }
+
+    this.setState(
+      {
+        loading: true
+      },
+      () => {
+        this.setState({
+          church: church,
+          sermons: null,
+          latest_sermon: null,
+          guides: null,
+          promoted_guide: null
+        });
+
+        if (church) {
+          this.requestJSON(
+            `${one21Api}church/${church.slug}/guides/sermons`
+          ).then(churchFeed => {
+            const sermons = churchFeed.studies;
+
+            this.setState(
+              {
+                sermons: sermons,
+                latest_sermon: sermons[0]
+              },
+              () => {
+                this.hasCompletedLoad();
+              }
+            );
+          });
+
+          this.requestJSON(`${one21Api}church/${church.slug}/guides`).then(
+            guides => {
+              this.setState(
+                {
+                  guides: guides,
+                  promoted_guide: guides.filter(
+                    guide => guide.promote === true
+                  )[0]
+                },
+                () => {
+                  this.hasCompletedLoad();
+                }
+              );
+            }
+          );
+        }
+      }
+    );
+  }
+
+  hasCompletedLoad() {
+    const { sermons, guides } = this.state;
+    if (sermons && guides) {
+      this.setState({ loading: false });
+    }
   }
 
   setActiveStudy = activeStudy => {
@@ -73,7 +141,7 @@ class App extends Component {
         <div className="app">
           <CoreHeader title={this.state.title} />
 
-          <ApiEndpoint.Provider value="http://127.0.0.1:3010/api/">
+          <ApiEndpoint.Provider value={one21Api}>
             <div className="container">
               <Route
                 path="/calendar"
@@ -110,14 +178,14 @@ class App extends Component {
                 path="/church/:churchSlug"
                 render={({ match }) => (
                   <ApiEndpoint.Consumer>
-                    {endpoint => 
+                    {endpoint => (
                       <Church
                         setTitle={this.setTitle}
                         setView={this.setView}
                         apiEndpoint={endpoint}
                         slug={match.params.churchSlug}
                       />
-                    }
+                    )}
                   </ApiEndpoint.Consumer>
                 )}
               />
@@ -127,23 +195,29 @@ class App extends Component {
                   <Route
                     path="/guides/:guideSlug"
                     render={({ match }) => (
-                      <Guide
-                        sermons={{
-                          name: "Sermons",
-                          slug: "sermons",
-                          image: this.state.church.image,
-                          description: [
-                            `Latest sermons from ` + this.state.church.name
-                          ],
-                          highlight_first: true,
-                          studies: sermons
-                        }}
-                        title={this.state.title}
-                        slug={match.params.guideSlug}
-                        studySlug={match.params.studySlug}
-                        setTitle={this.setTitle}
-                        setView={this.setView}
-                      />
+                      <ApiEndpoint.Consumer>
+                        {endpoint => (
+                          <Guide
+                            church={this.state.church}
+                            sermons={{
+                              name: "Sermons",
+                              slug: "sermons",
+                              image: this.state.church.image,
+                              description: [
+                                `Latest sermons from ` + this.state.church.name
+                              ],
+                              highlight_first: true,
+                              studies: sermons
+                            }}
+                            title={this.state.title}
+                            slug={match.params.guideSlug}
+                            studySlug={match.params.studySlug}
+                            apiEndpoint={endpoint}
+                            setTitle={this.setTitle}
+                            setView={this.setView}
+                          />
+                        )}
+                      </ApiEndpoint.Consumer>
                     )}
                   />
                 )}
@@ -177,7 +251,7 @@ class App extends Component {
               />
             </div>
 
-            {sermons && <CoreNav {...this.state} />}
+            <CoreNav {...this.state} />
           </ApiEndpoint.Provider>
         </div>
       </Router>

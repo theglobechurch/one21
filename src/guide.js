@@ -18,6 +18,8 @@ export default class Guide extends Component {
     this.props.setTitle("Loading…");
     this.props.setView(`/guides/${this.props.slug}`);
 
+    const { churchSlug } = this.state.church; 
+
     // TODO: Only request if not already in state or local storage?
     if (this.isSermon()) {
       this.props.setTitle("Sermons");
@@ -26,6 +28,7 @@ export default class Guide extends Component {
         sermon: true
       });
     } else {
+<<<<<<< HEAD
       this.requestJSON(`/${this.props.slug}.json`).then(guide => {
         guide = guide[0] || guide;
         this.props.setTitle(guide.name);
@@ -34,6 +37,17 @@ export default class Guide extends Component {
           sermon: false
         });
       });
+=======
+      this.requestJSON(`${this.props.apiEndpoint}church/${churchSlug}/guides/${this.props.slug}`).then(
+        guide => {
+          this.props.setTitle(guide.name);
+          this.setState({
+            guide: guide,
+            sermon: false
+          });
+        }
+      );
+>>>>>>> 9eb458c... Guides now load from API
     }
 
     window.scrollTo(0, 0);
@@ -191,5 +205,11 @@ export default class Guide extends Component {
 }
 
 Guide.propTypes = {
+<<<<<<< HEAD
   slug: PropTypes.string.isRequired
+=======
+  slug: PropTypes.string.isRequired,
+  apiEndpoint: PropTypes.string.isRequired,
+  church: PropTypes.object.isRequired
+>>>>>>> 9eb458c... Guides now load from API
 };
