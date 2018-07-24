@@ -1,27 +1,38 @@
-@import './colours.scss';
+@import "./colours.scss";
 
 .biblePopup {
-  background: rgba($colour-active,0.79);
+  background: rgba($colour-active, 0.79);
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
   z-index: 2;
-  display: flex;
   padding: 74px 16px;
-  flex-direction: column;
 
-  @media (min-width: 500px) {
-    align-items: center;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 
   &__iframe {
-    border: 1px solid $colour-active;
-    flex: 1 0 auto;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    width: calc(100vw - 34px);
+    height: calc(100vh - 150px);
     margin-top: 16px;
-    max-width: 750px;
-    overflow-x: hidden;
-    width: calc(100vw - 32px);
+
+    @media (min-width: 800px) {
+      max-width: 500px;
+      margin: 16px auto 0;
+    }
+  }
+
+  &__iframe__int {
+    width: calc(100vw - 34px);
+    height: calc(100vh - 150px);
+
+    @media (min-width: 800px) {
+      max-width: 500px;
+    }
   }
 }
