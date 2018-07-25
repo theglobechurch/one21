@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import Question from './question';
-import BiblePopup from './biblePopup';
-import StudyHeader from './studyHeader';
-import StudyFooter from './studyFooter';
+import Question from "./question";
+import BiblePopup from "./biblePopup";
+import StudyHeader from "./studyHeader";
+import StudyFooter from "./studyFooter";
 import ExpandableText from "./expandableText";
-import Icon from './icon';
-import './style/Study.css';
+import Icon from "./icon";
+import "./style/Study.css";
 
 export default class Study extends Component {
   constructor(props) {
@@ -19,7 +19,9 @@ export default class Study extends Component {
   }
 
   componentDidMount() {
-    this.props.setView(`/guides/${this.props.guideSlug}/${this.props.studySlug}`);
+    this.props.setView(
+      `/guides/${this.props.guideSlug}/${this.props.studySlug}`
+    );
     this.props.setTitle(this.props.study.name);
     window.scrollTo(0, 0);
   }
@@ -52,7 +54,7 @@ export default class Study extends Component {
               path="/"
               render={() => (
                 <main className="study__introduction">
-                  { image && <StudyLeadImage image={image} /> }
+                  {image && <StudyLeadImage image={image} />}
 
                   <section className="study__introduction__section">
                     <h2 className="pre_title">{study.passage}</h2>
@@ -99,7 +101,6 @@ export default class Study extends Component {
                       />
                     </section>
                   )}
-
                 </main>
               )}
             />
@@ -109,7 +110,7 @@ export default class Study extends Component {
               render={() => (
                 <main>
                   <div className="study__lead">
-                    { image && <StudyLeadImage image={image} /> }
+                    {image && <StudyLeadImage image={image} />}
 
                     {!study.start && (
                       <div className="study__lead__icons">
@@ -117,51 +118,53 @@ export default class Study extends Component {
                           <Icon icon="pray" classname="" />
                         </span>
 
-                        <span className="study__lead__icons__icon">
-                          <Icon icon="study" classname="" />
-                        </span>
+                        {study.passage && (
+                          <span className="study__lead__icons__icon">
+                            <Icon icon="study" classname="" />
+                          </span>
+                        )}
                       </div>
                     )}
                   </div>
 
                   <section className="study__question question question--title-slide">
                     {study.start ? (
-                      <div>
-                        <h2 className="big_title">{study.start[0]}</h2>
-
-                        {study.start.slice(1).map((p, i) => (
-                          <p dangerouslySetInnerHTML={{ __html: p }} key={i} />
-                        ))}
-                      </div>
+                      <div dangerouslySetInnerHTML={{ __html: study.start }} />
                     ) : (
                       <div>
                         <h2 className="big_title">
                           Start by praying for<br />this time.
                         </h2>
-                        <h2 className="big_title">
-                          Now read<br />
-                          {study.passage}
-                        </h2>
+
+                        {study.passage && (
+                          <h2 className="big_title">
+                            Now read<br />
+                            {study.passage}
+                          </h2>
+                        )}
                       </div>
                     )}
 
-                    { study.scripture ? (
+                    {study.scripture && (
                       <section className="study__introduction__section">
                         <h2 className="dinky_title">{study.passage}</h2>
                         <ExpandableText
                           expanded={false}
                           scripture={true}
                           text={study.scripture}
-                          />
+                        />
                       </section>
-                    ) : (
-                      <div
-                      className="btn"
-                      onClick={this.toggleBiblePopup.bind(this)}
-                      >
-                        View passage
-                      </div>
                     )}
+
+                    {!study.scripture &&
+                      study.passage && (
+                        <div
+                          className="btn"
+                          onClick={this.toggleBiblePopup.bind(this)}
+                        >
+                          View passage
+                        </div>
+                      )}
                   </section>
 
                   <StudyFooter
@@ -178,29 +181,26 @@ export default class Study extends Component {
               render={() => (
                 <main>
                   <div className="study__lead">
-                    { image && <StudyLeadImage image={image} /> }
+                    {image && <StudyLeadImage image={image} />}
 
-                    { !study.end && (
-                    <div className="study__lead__icons">
-                      <span className="study__lead__icons__icon">
-                        <Icon icon="pray" classname="" />
-                      </span>
-                    </div>
+                    {!study.end && (
+                      <div className="study__lead__icons">
+                        <span className="study__lead__icons__icon">
+                          <Icon icon="pray" classname="" />
+                        </span>
+                      </div>
                     )}
                   </div>
 
-                  { study.end ? (
+                  {study.end ? (
                     <section className="study__question question">
-                      <h2 className="big_title">{ study.end[0] }</h2>
-
-                      { study.end.slice(1).map((p, i) => (
-                        <p dangerouslySetInnerHTML={{ __html: p }} key={ i } />
-                      ))}
+                      <div dangerouslySetInnerHTML={{ __html: study.end }} />
                     </section>
                   ) : (
                     <section className="study__question question question--title-slide">
                       <h2 className="big_title">
-                        Spend some time thinking and praying through what you have spoken about today.
+                        Spend some time thinking and praying through what you
+                        have spoken about today.
                       </h2>
                     </section>
                   )}
@@ -214,7 +214,6 @@ export default class Study extends Component {
                     </Link>
                     <Link to={`/`}>End</Link>
                   </footer>
-
                 </main>
               )}
             />
@@ -223,11 +222,11 @@ export default class Study extends Component {
               path="/:id"
               render={({ match }) => (
                 <main>
-                  { image && <StudyLeadImage image={image} /> }
+                  {image && <StudyLeadImage image={image} />}
                   <StudyHeader
                     name={study.name}
                     passage={study.passage}
-                    passageLinked={ study.scripture ? false : true }
+                    passageLinked={study.scripture ? false : true}
                     toggleBiblePopup={this.toggleBiblePopup.bind(this)}
                   />
                   <Question
@@ -248,8 +247,7 @@ export default class Study extends Component {
             />
           </Switch>
 
-
-          { this.state.biblePopup && (
+          {this.state.biblePopup && (
             // ToDo: Check is there is an internet connection…
             <BiblePopup
               passage={study.passage}
@@ -257,20 +255,18 @@ export default class Study extends Component {
             />
           )}
         </div>
-        
       </Router>
-
     );
   }
 }
 
 class StudyLeadImage extends Component {
-  render () {
+  render() {
     const { image } = this.props;
     return (
       <div
         className="study__introduction__image"
-        style={{ backgroundImage: `url(${image})`}}
+        style={{ backgroundImage: `url(${image})` }}
       />
     );
   }
@@ -283,8 +279,8 @@ Study.propTypes = {
   guideSlug: PropTypes.string.isRequired,
   studySlug: PropTypes.string.isRequired,
   image: PropTypes.string
-}
+};
 
 StudyLeadImage.propTypes = {
   image: PropTypes.string.isRequired
-}
+};

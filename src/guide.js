@@ -18,37 +18,26 @@ export default class Guide extends Component {
     this.props.setTitle("Loading…");
     this.props.setView(`/guides/${this.props.slug}`);
 
-    const { churchSlug } = this.state.church; 
+    const churchSlug = this.props.church.slug;
 
     // TODO: Only request if not already in state or local storage?
-    if (this.isSermon()) {
-      this.props.setTitle("Sermons");
+    // if (this.isSermon()) {
+    //   this.props.setTitle("Sermons");
+    //   this.setState({
+    //     guide: this.props.sermons,
+    //     sermon: true
+    //   });
+    // } else {
+    this.requestJSON(
+      `${this.props.apiEndpoint}church/${churchSlug}/guides/${this.props.slug}`
+    ).then(guide => {
+      this.props.setTitle(guide.name);
       this.setState({
-        guide: this.props.sermons,
-        sermon: true
+        guide: guide,
+        sermon: this.isSermon()
       });
-    } else {
-<<<<<<< HEAD
-      this.requestJSON(`/${this.props.slug}.json`).then(guide => {
-        guide = guide[0] || guide;
-        this.props.setTitle(guide.name);
-        this.setState({
-          guide: guide,
-          sermon: false
-        });
-      });
-=======
-      this.requestJSON(`${this.props.apiEndpoint}church/${churchSlug}/guides/${this.props.slug}`).then(
-        guide => {
-          this.props.setTitle(guide.name);
-          this.setState({
-            guide: guide,
-            sermon: false
-          });
-        }
-      );
->>>>>>> 9eb458c... Guides now load from API
-    }
+    });
+    // }
 
     window.scrollTo(0, 0);
   }
@@ -89,12 +78,19 @@ export default class Guide extends Component {
     // Checks if the study should be shown in the study list.
     // If the first item is highlighted then the first should
     // be skipped
-    const { guide } = this.state;
-    if (!guide.highlight_first || (guide.highlight_first && i !== 0)) {
+    const { guide, sermon } = this.state;
+    if (sermon && i !== 0) {
       return true;
-    } else {
-      return false;
     }
+
+    if (
+      !sermon &&
+      (!guide.highlight_first || (guide.highlight_first && i !== 0))
+    ) {
+      return true;
+    }
+
+    return false;
   }
 
   selectStudy(studySlug) {
@@ -103,6 +99,7 @@ export default class Guide extends Component {
 
   render() {
     const { guide } = this.state;
+
     return (
       <div className="study">
         <div className="tablecloth" />
@@ -138,8 +135,7 @@ export default class Guide extends Component {
                       />
                     )}
 
-                    {guide.highlight_first ? (
-                      // ToDo: Update API to return images without needing the base_url joining
+                    {guide.highlight_first || this.state.sermon ? (
                       <Card
                         className="card--pullUp"
                         image={guide.studies[0].image}
@@ -168,7 +164,7 @@ export default class Guide extends Component {
                     {guide.studies &&
                       guide.studies.map((study, index) => (
                         <div key={index}>
-                          {this.showListItem(index) && (
+                          {this.showListItem(index) === true && (
                             <Link
                               className="sermonList"
                               to={{
@@ -185,10 +181,7 @@ export default class Guide extends Component {
 
                     {guide.license && (
                       <section className="study__introduction__section">
-                        <p
-                          className="dinky_text"
-                          dangerouslySetInnerHTML={{ __html: guide.license }}
-                        />
+                        <p className="dinky_text">{guide.license}</p>
                       </section>
                     )}
                   </div>
@@ -205,11 +198,7 @@ export default class Guide extends Component {
 }
 
 Guide.propTypes = {
-<<<<<<< HEAD
-  slug: PropTypes.string.isRequired
-=======
   slug: PropTypes.string.isRequired,
   apiEndpoint: PropTypes.string.isRequired,
   church: PropTypes.object.isRequired
->>>>>>> 9eb458c... Guides now load from API
 };
