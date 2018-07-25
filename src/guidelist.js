@@ -27,7 +27,7 @@ export default class GuideList extends Component {
         {sermon && (
           <Card
             pretitle={church.name}
-            image={church.image}
+            image={sermon.image}
             title={sermon.name}
             description={sermon.teaser}
             cta="Go to recent sermons"
