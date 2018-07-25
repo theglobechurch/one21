@@ -23,10 +23,6 @@ class Landing extends Component {
     const { study, guide } = this.props;
     const { churchData } = this.state;
 
-    if (study && study.image && study.image.substring(0, 4) !== "http") {
-      study.image = study.base_url + study.image;
-    }
-
     return (
       <main className="landing">
         <div className="tablecloth tablecloth--big" />

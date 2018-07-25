@@ -199,16 +199,6 @@ class App extends Component {
                         {endpoint => (
                           <Guide
                             church={this.state.church}
-                            sermons={{
-                              name: "Sermons",
-                              slug: "sermons",
-                              image: this.state.church.image,
-                              description: [
-                                `Latest sermons from ` + this.state.church.name
-                              ],
-                              highlight_first: true,
-                              studies: sermons
-                            }}
                             title={this.state.title}
                             slug={match.params.guideSlug}
                             studySlug={match.params.studySlug}
