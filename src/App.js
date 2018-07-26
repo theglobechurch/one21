@@ -98,7 +98,7 @@ class App extends Component {
                 {
                   guides: guides,
                   promoted_guide: guides.filter(
-                    guide => guide.promote === true
+                    guide => guide.highlight_first === true
                   )[0]
                 },
                 () => {
