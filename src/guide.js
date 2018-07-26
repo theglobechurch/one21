@@ -150,7 +150,9 @@ export default class Guide extends Component {
                     ) : (
                       <section className="study__introduction__section">
                         <h1 className="big_title">{guide.name}</h1>
-                        {guide.description && !this.state.sermon ? (
+                        {guide.description &&
+                        guide.description.length >= 1 &&
+                        !this.state.sermon ? (
                           <ExpandableText
                             expanded={true}
                             text={guide.description}
