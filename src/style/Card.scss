@@ -1,6 +1,6 @@
 .card {
   background-color: white;
-  box-shadow: 0 1px 4px 1px rgba(0,0,0,0.27);
+  box-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.27);
   border-radius: 2px;
   margin: 16px auto;
   width: calc(100% - 32px);
@@ -15,19 +15,34 @@
     margin-top: -25px;
   }
 
-  header img {
+  header {
+    height: 0;
+    overflow: hidden;
+    padding-bottom: 50%;
+    position: relative;
     width: 100%;
-    border-radius: 2px 2px 0 0;
   }
-  
+
+  header img {
+    border-radius: 2px 2px 0 0;
+    display: block;
+    height: 100%;
+    left: 0;
+    -o-object-fit: cover;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
   .pre_title {
     margin: 0;
   }
-  
+
   .big_title {
     margin-bottom: 8px;
   }
-  
+
   &__body {
     padding: 16px;
   }
