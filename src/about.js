@@ -120,6 +120,20 @@ class About extends Component {
             </p>
           </section>
         )}
+
+        <section className="study__introduction__section study__introduction__section--iconed">
+          <Icon icon="github" classname="study__icon" />
+          <h2 className="dinky_title">Updates</h2>
+          <p>
+            Want to suggest new features or changes? You can make requests (or
+            submit a pull request) on{" "}
+            <a href="https://github.com/theglobechurch/one21">Github</a>.
+          </p>
+          <p>
+            Alternatively you can tweet at{" "}
+            <a href="https://twitter.com/one21org">@one21org</a>
+          </p>
+        </section>
       </main>
     );
   }
