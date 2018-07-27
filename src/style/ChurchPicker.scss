@@ -77,6 +77,7 @@
 .churchPicker__result {
   height: 0;
   position: relative;
+  z-index: 2;
 }
 
 .churchPicker__result__list {

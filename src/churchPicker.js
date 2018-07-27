@@ -49,9 +49,7 @@ export default class ChurchPicker extends Component {
   render() {
     return (
       <section className="churchPicker">
-        <p>
-          One21 works best when you connect it with your church sermon library:
-        </p>
+        <p>One21 works best when you connect it with your church:</p>
 
         <div className="churchPicker__inputGroup">
           <input
