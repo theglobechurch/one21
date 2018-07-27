@@ -85,9 +85,11 @@ class Church extends Component {
         <div>
           {church ? (
             <section className="card">
-              <header>
-                <img src="" alt="" />
-              </header>
+              {church.lead_image && (
+                <header>
+                  <img src={church.lead_image} alt="" />
+                </header>
+              )}
 
               <div className="card__body">
                 <p className="pre_title">Church details</p>
