@@ -53,6 +53,22 @@ export default class Profile extends Component {
           </section>
         )}
 
+        {!this.state.churchData && (
+          <section className="study__introduction__section study__introduction__section--iconed">
+            <Icon icon="church" classname="study__icon" />
+            <h2 className="dinky_title">Church</h2>
+            <p>
+              <Link
+                to={{
+                  pathname: "/"
+                }}
+              >
+                Select your church
+              </Link>
+            </p>
+          </section>
+        )}
+
         <section className="study__introduction__section study__introduction__section--iconed">
           <Icon icon="study" classname="study__icon" />
           <h2 className="dinky_title">Bible Translation</h2>
