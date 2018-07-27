@@ -76,7 +76,7 @@ export default class ChurchPicker extends Component {
                     pathname: `/church/${ch.slug}`
                   }}
                 >
-                  <img src="" alt="" />
+                  <img src={ch.logo_sq} alt="" />
                   <span>{ch.name}</span>
                 </Link>
               ))}
