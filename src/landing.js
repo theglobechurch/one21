@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Card from "./card";
+import Loader from "./loader";
 import ChurchPicker from "./churchPicker";
 import { ApiEndpoint } from "./App";
 import "./style/Landing.css";
@@ -47,6 +48,8 @@ class Landing extends Component {
             />
           </div>
         )}
+
+        {churchData && !study && <Loader />}
 
         {study && (
           <Card

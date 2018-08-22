@@ -11,7 +11,7 @@ import Guide from "./guide";
 import CoreHeader from "./coreHeader";
 import CoreNav from "./coreNav";
 
-const one21Api = "http://127.0.0.1:3010/api/";
+const one21Api = "https://builder.one21.org/api/";
 export const ApiEndpoint = createContext();
 
 class App extends Component {
