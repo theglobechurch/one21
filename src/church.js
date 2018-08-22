@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import Loader from "./loader";
 import ChurchPicker from "./churchPicker";
 import { withRouter } from "react-router-dom";
 
@@ -108,7 +109,7 @@ class Church extends Component {
               </div>
             </section>
           ) : (
-            <p>Loading church details...</p>
+            <Loader message="Loading church details…" />
           )}
 
           <ChurchPicker apiEndpoint={this.props.apiEndpoint} />

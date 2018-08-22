@@ -21,13 +21,6 @@ export default class Guide extends Component {
     const churchSlug = this.props.church.slug;
 
     // TODO: Only request if not already in state or local storage?
-    // if (this.isSermon()) {
-    //   this.props.setTitle("Sermons");
-    //   this.setState({
-    //     guide: this.props.sermons,
-    //     sermon: true
-    //   });
-    // } else {
     this.requestJSON(
       `${this.props.apiEndpoint}church/${churchSlug}/guides/${this.props.slug}`
     ).then(guide => {
@@ -37,7 +30,6 @@ export default class Guide extends Component {
         sermon: this.isSermon()
       });
     });
-    // }
 
     window.scrollTo(0, 0);
   }
