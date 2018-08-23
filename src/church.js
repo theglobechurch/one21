@@ -42,7 +42,7 @@ class Church extends Component {
   }
 
   setChurch(ch) {
-    this.props.setTitle(ch.church_name);
+    this.props.setTitle(ch.name);
     this.setState({ church: ch, slug: ch.slug, lookup: false });
     window.scrollTo(0, 0);
   }
@@ -83,7 +83,7 @@ class Church extends Component {
       <main className="landing">
         <div className="tablecloth" />
 
-        <div>
+        <div className="churchPickerPage">
           {church ? (
             <section className="card">
               {church.lead_image && (
@@ -109,7 +109,12 @@ class Church extends Component {
               </div>
             </section>
           ) : (
-            <Loader message="Loading church details…" />
+            <main className="landing">
+              <div className="tablecloth" />
+              <div className="churchPickerPage">
+                <Loader message="Loading church details…" minHeight="379px" />
+              </div>
+            </main>
           )}
 
           <ChurchPicker apiEndpoint={this.props.apiEndpoint} />
