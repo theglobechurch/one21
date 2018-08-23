@@ -18,7 +18,7 @@ export default class Question extends Component {
     window.scrollTo(0, 0);
     return (
       <section className="study__question question">
-        {question.type === "question" && (
+        {question.lead && (
           <header className="question__header">
             <span>Question {itemNo}:</span>
             <h2>{question.lead}</h2>
