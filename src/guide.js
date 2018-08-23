@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import SermonListItem from "./sermonListItem";
 import Study from "./study";
 import Card from "./card";
+import Loader from "./loader";
 import ExpandableText from "./expandableText";
 import "./style/SermonList.css";
 
@@ -180,7 +181,12 @@ export default class Guide extends Component {
                     )}
                   </div>
                 ) : (
-                  <p>Loading guide...</p>
+                  <main className="landing">
+                    <div className="tablecloth" />
+                    <div className="churchPickerPage">
+                      <Loader message="Loading guide…" minHeight="379px" />
+                    </div>
+                  </main>
                 )}
               </main>
             )}
