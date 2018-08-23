@@ -5,7 +5,7 @@ import "./style/Loader.css";
 export default class Loader extends Component {
   render() {
     return (
-      <div className="loader">
+      <div className="loader" style={{ minHeight: this.props.minHeight }}>
         <div className="loader__icon">
           <svg viewBox="22 22 44 44" className="loader__svg">
             <circle
@@ -26,9 +26,11 @@ export default class Loader extends Component {
 }
 
 Loader.defaultProps = {
-  message: "Loading…"
+  message: "Loading…",
+  minHeight: "150px"
 };
 
 Loader.propTypes = {
-  message: PropTypes.string
+  message: PropTypes.string,
+  minHeight: PropTypes.string
 };
