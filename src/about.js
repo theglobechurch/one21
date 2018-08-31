@@ -125,8 +125,9 @@ class About extends Component {
           <Icon icon="github" classname="study__icon" />
           <h2 className="dinky_title">Updates</h2>
           <p>
-            Want to suggest new features or changes? You can make requests (or
-            submit a pull request) on{" "}
+            Want to suggest new features or changes? The development roadmap is 
+            public on <a href="https://trello.com/b/cNg6l1wq/one21">Trello</a>.
+            You can make requests (or submit a pull request) on{" "}
             <a href="https://github.com/theglobechurch/one21">Github</a>.
           </p>
           <p>
