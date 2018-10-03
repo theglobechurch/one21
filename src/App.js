@@ -32,14 +32,14 @@ class App extends Component {
     return response;
   }
 
-  requestJSON(feed_url, onSuccess, onFail) {
+  requestJSON(feed_url) {
     return new Promise((resolve, reject) => {
       fetch(feed_url)
         .then(this.handleFetchErrors)
         .then(res => res.json())
         .then(feed_json => resolve(feed_json))
       .catch(err => { reject(err); });
-        });
+    });
   }
 
   componentDidMount() {
@@ -69,27 +69,24 @@ class App extends Component {
 
     this.requestJSON(`${one21Api}church/${church.slug}/guides/sermons`)
       .then(churchFeed => {
-      const sermons = churchFeed.studies;
+        const sermons = churchFeed.studies;
 
-      this.setState(
-        {
-          sermons: sermons,
-          latest_sermon: sermons[0]
-        },
-        () => {
-          this.hasCompletedLoad();
-        }
-      );
-      }
-    );
+        this.setState(
+          {
+            sermons: sermons,
+            latest_sermon: sermons[0]
+          },
+          () => {
+            this.hasCompletedLoad();
+          }
+        );
+      });
   }
 
   loadContent() {
     const church = JSON.parse(localStorage.getItem("church"));
 
-    if (this.state.loading === true || !church) {
-      return;
-    }
+    if (this.state.loading === true || !church) { return; }
 
     this.setState(
       { loading: true },
@@ -103,10 +100,9 @@ class App extends Component {
           promoted_guide: null
         });
 
-        if (church) {
-          const guidelist = `${one21Api}church/${church.slug}/guides`;
-          this.requestJSON(guidelist)
-            .then(
+        const guidelist = `${one21Api}church/${church.slug}/guides`;
+        this.requestJSON(guidelist)
+          .then(
             guides => {
               this.setState(
                 {
@@ -123,15 +119,14 @@ class App extends Component {
                   }
                 }
               );
-            }
-            )
-          .catch(err => {
-            this.setState({
-              loading: false,
-              emptyState: true
-            });
-          })
-        }
+            })
+        .catch(() => {
+          this.setState({
+            loading: false,
+            emptyState: true
+          });
+        });
+        
       }
     );
   }
