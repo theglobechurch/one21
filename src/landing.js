@@ -25,12 +25,12 @@ class Landing extends Component {
   }
 
   contentPresent() {
-    const { study, guide } = this.props;
-    this.setState({ guideDataPresent: (study != null || guide != null) });
+    const { study, guide, emptyState } = this.props;
+    this.setState({ guideDataPresent: (study != null || guide != null || emptyState != null) });
   }
 
   render() {
-    const { study, guide } = this.props;
+    const { study, guide, emptyState } = this.props;
     const { churchData, guideDataPresent } = this.state;
 
     return (
@@ -59,6 +59,14 @@ class Landing extends Component {
         )}
 
         {churchData && !guideDataPresent && <Loader />}
+
+        {churchData && emptyState && (
+          <Card
+          image={churchData.lead_image}
+          title={`${churchData.name} has not published any One21 guides yet…`}
+          description="Please speak to your church administrator or leader for more information."
+        />
+        )}
 
         {study && (
           <Card

@@ -20,18 +20,26 @@ class App extends Component {
     this.state = {
       sermons: null,
       church: null,
-      loading: false
+      loading: false,
+      emptyState: false
     };
+  }
+
+  handleFetchErrors(response) {
+    if (!response.ok) {
+      throw Error(response.statusText);
+    }
+    return response;
   }
 
   requestJSON(feed_url, onSuccess, onFail) {
     return new Promise((resolve, reject) => {
       fetch(feed_url)
+        .then(this.handleFetchErrors)
         .then(res => res.json())
-        .then(feed_json => {
-          resolve(feed_json);
+        .then(feed_json => resolve(feed_json))
+      .catch(err => { reject(err); });
         });
-    });
   }
 
   componentDidMount() {
@@ -59,9 +67,8 @@ class App extends Component {
     const church = JSON.parse(localStorage.getItem("church"));
     if (!church) { return }
 
-    this.requestJSON(
-      `${one21Api}church/${church.slug}/guides/sermons`
-    ).then(churchFeed => {
+    this.requestJSON(`${one21Api}church/${church.slug}/guides/sermons`)
+      .then(churchFeed => {
       const sermons = churchFeed.studies;
 
       this.setState(
@@ -73,7 +80,8 @@ class App extends Component {
           this.hasCompletedLoad();
         }
       );
-    });
+      }
+    );
   }
 
   loadContent() {
@@ -84,9 +92,7 @@ class App extends Component {
     }
 
     this.setState(
-      {
-        loading: true
-      },
+      { loading: true },
       () => {
 
         this.setState({
@@ -98,9 +104,9 @@ class App extends Component {
         });
 
         if (church) {
-
-          // Request guidelist
-          this.requestJSON(`${one21Api}church/${church.slug}/guides`).then(
+          const guidelist = `${one21Api}church/${church.slug}/guides`;
+          this.requestJSON(guidelist)
+            .then(
             guides => {
               this.setState(
                 {
@@ -118,7 +124,13 @@ class App extends Component {
                 }
               );
             }
-          );
+            )
+          .catch(err => {
+            this.setState({
+              loading: false,
+              emptyState: true
+            });
+          })
         }
       }
     );
@@ -254,6 +266,7 @@ class App extends Component {
                   <Landing
                     study={this.state.latest_sermon}
                     guide={this.state.promoted_guide}
+                    emptyState={this.state.emptyState}
                     setTitle={this.setTitle}
                     setView={this.setView}
                   />
