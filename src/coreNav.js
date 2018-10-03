@@ -7,20 +7,29 @@ export default class CoreNav extends Component {
 
   render () {
 
+    const { view, guides } = this.props;
+
     return <nav className="coreNav">
-        <Link to={{ pathname: "/" }} className={"coreNav__item " + (this.props.view === "/" ? "coreNav__item--active" : "")}>
+        <Link to={{ pathname: "/" }} className={"coreNav__item " + (view === "/" ? "coreNav__item--active" : "")}>
           <Icon icon="home" />
           Home
         </Link>
 
-        { this.props.guides && (
-        <Link to={{ pathname: "/guides" }} className={"coreNav__item " + (this.props.view && this.props.view.indexOf("/guides") !== -1 ? "coreNav__item--active" : "")}>
+        { guides && guides.length > 1 && (
+        <Link to={{ pathname: "/guides" }} className={"coreNav__item " + (view && view.indexOf("/guides") !== -1 ? "coreNav__item--active" : "")}>
           <Icon icon="study" />
           Guides
         </Link>
         )}
 
-        <Link to={{ pathname: "/profile" }} className={"coreNav__item " + (this.props.view === "/profile" ? "coreNav__item--active" : "")}>
+        { guides && guides.length === 1 && (
+        <Link to={{ pathname: `/guides/` + guides[0].slug }} className={"coreNav__item " + (view && view.indexOf("/guides") !== -1 ? "coreNav__item--active" : "")}>
+          <Icon icon="study" />
+          Guide
+        </Link>
+        )}
+
+        <Link to={{ pathname: "/profile" }} className={"coreNav__item " + (view === "/profile" ? "coreNav__item--active" : "")}>
           <Icon icon="person" />
           Me
         </Link>
