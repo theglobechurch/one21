@@ -12,7 +12,7 @@ class Landing extends Component {
     if (localStorage.getItem("church")) {
       churchData = JSON.parse(localStorage.getItem("church"));
     }
-    this.state = { churchData };
+    this.state = { churchData, guideDataPresent: false };
   }
 
   componentDidMount() {
@@ -20,9 +20,18 @@ class Landing extends Component {
     this.props.setView("/");
   }
 
+  componentWillReceiveProps() {
+    this.contentPresent();
+  }
+
+  contentPresent() {
+    const { study, guide } = this.props;
+    this.setState({ guideDataPresent: (study != null || guide != null) });
+  }
+
   render() {
     const { study, guide } = this.props;
-    const { churchData } = this.state;
+    const { churchData, guideDataPresent } = this.state;
 
     return (
       <main className="landing">
@@ -49,7 +58,7 @@ class Landing extends Component {
           </div>
         )}
 
-        {churchData && !study && <Loader />}
+        {churchData && !guideDataPresent && <Loader />}
 
         {study && (
           <Card

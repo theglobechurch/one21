@@ -55,6 +55,27 @@ class App extends Component {
     }
   }
 
+  loadSermons() {
+    const church = JSON.parse(localStorage.getItem("church"));
+    if (!church) { return }
+
+    this.requestJSON(
+      `${one21Api}church/${church.slug}/guides/sermons`
+    ).then(churchFeed => {
+      const sermons = churchFeed.studies;
+
+      this.setState(
+        {
+          sermons: sermons,
+          latest_sermon: sermons[0]
+        },
+        () => {
+          this.hasCompletedLoad();
+        }
+      );
+    });
+  }
+
   loadContent() {
     const church = JSON.parse(localStorage.getItem("church"));
 
@@ -67,6 +88,7 @@ class App extends Component {
         loading: true
       },
       () => {
+
         this.setState({
           church: church,
           sermons: null,
@@ -76,22 +98,8 @@ class App extends Component {
         });
 
         if (church) {
-          this.requestJSON(
-            `${one21Api}church/${church.slug}/guides/sermons`
-          ).then(churchFeed => {
-            const sermons = churchFeed.studies;
 
-            this.setState(
-              {
-                sermons: sermons,
-                latest_sermon: sermons[0]
-              },
-              () => {
-                this.hasCompletedLoad();
-              }
-            );
-          });
-
+          // Request guidelist
           this.requestJSON(`${one21Api}church/${church.slug}/guides`).then(
             guides => {
               this.setState(
@@ -102,7 +110,11 @@ class App extends Component {
                   )[0]
                 },
                 () => {
-                  this.hasCompletedLoad();
+                  if (guides.filter(guide => guide.slug === 'sermons').length !== 0) {
+                    this.loadSermons();
+                  } else {
+                    this.hasCompletedLoad();
+                  }
                 }
               );
             }
@@ -113,9 +125,17 @@ class App extends Component {
   }
 
   hasCompletedLoad() {
-    const { sermons, guides } = this.state;
-    if (sermons && guides) {
-      this.setState({ loading: false });
+    const { sermons, guides, promoted_guide } = this.state;
+
+    if (guides) {
+      if (!sermons && !promoted_guide) {
+        this.setState({
+          loading: false,
+          promoted_guide: guides[0]
+        })
+      } else {
+        this.setState({ loading: false });
+      }
     }
   }
 
@@ -135,7 +155,7 @@ class App extends Component {
   };
 
   render() {
-    const { church, sermons } = this.state;
+    const { church, guides } = this.state;
     return (
       <Router path="/">
         <div className="app">
@@ -190,7 +210,7 @@ class App extends Component {
                 )}
               />
 
-              {sermons &&
+              {guides &&
                 church && (
                   <Route
                     path="/guides/:guideSlug"
@@ -212,7 +232,7 @@ class App extends Component {
                   />
                 )}
 
-              {sermons &&
+              {guides &&
                 church && (
                   <Route
                     exact
