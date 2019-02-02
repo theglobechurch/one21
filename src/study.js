@@ -70,7 +70,7 @@ export default class Study extends Component {
                     </Link>
                   </section>
 
-                  {study.url && (
+                  {study.website_url && (
                     <section className="study__introduction__section study__introduction__section--iconed">
                       <Icon icon="sound" classname="study__icon" />
                       <h2 className="dinky_title">Catch up</h2>
@@ -80,7 +80,7 @@ export default class Study extends Component {
                       </p>
                       <a
                         href={
-                          study.url +
+                          study.website_url +
                           `?utm_source=one21&utm_medium=webapp&utm_campaign=study`
                         }
                         className="btn"
