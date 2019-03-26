@@ -38,7 +38,9 @@ class App extends Component {
         .then(this.handleFetchErrors)
         .then(res => res.json())
         .then(feed_json => resolve(feed_json))
-      .catch(err => { reject(err); });
+        .catch(err => {
+          reject(err);
+        });
     });
   }
 
@@ -65,10 +67,12 @@ class App extends Component {
 
   loadSermons() {
     const church = JSON.parse(localStorage.getItem("church"));
-    if (!church) { return }
+    if (!church) {
+      return;
+    }
 
-    this.requestJSON(`${one21Api}church/${church.slug}/guides/sermons`)
-      .then(churchFeed => {
+    this.requestJSON(`${one21Api}church/${church.slug}/guides/sermons`).then(
+      churchFeed => {
         const sermons = churchFeed.studies;
 
         this.setState(
@@ -80,55 +84,54 @@ class App extends Component {
             this.hasCompletedLoad();
           }
         );
-      });
+      }
+    );
   }
 
   loadContent() {
     const church = JSON.parse(localStorage.getItem("church"));
 
-    if (this.state.loading === true || !church) { return; }
+    if (this.state.loading === true || !church) {
+      return;
+    }
 
-    this.setState(
-      { loading: true },
-      () => {
+    this.setState({ loading: true }, () => {
+      this.setState({
+        church: church,
+        sermons: null,
+        latest_sermon: null,
+        guides: null,
+        promoted_guide: null
+      });
 
-        this.setState({
-          church: church,
-          sermons: null,
-          latest_sermon: null,
-          guides: null,
-          promoted_guide: null
-        });
-
-        const guidelist = `${one21Api}church/${church.slug}/guides`;
-        this.requestJSON(guidelist)
-          .then(
-            guides => {
-              this.setState(
-                {
-                  guides: guides,
-                  promoted_guide: guides.filter(
-                    guide => guide.highlight_first === true
-                  )[0]
-                },
-                () => {
-                  if (guides.filter(guide => guide.slug === 'sermons').length !== 0) {
-                    this.loadSermons();
-                  } else {
-                    this.hasCompletedLoad();
-                  }
-                }
-              );
-            })
+      const guidelist = `${one21Api}church/${church.slug}/guides`;
+      this.requestJSON(guidelist)
+        .then(guides => {
+          this.setState(
+            {
+              guides: guides,
+              promoted_guide: guides.filter(
+                guide => guide.highlight_first === true
+              )[0]
+            },
+            () => {
+              if (
+                guides.filter(guide => guide.slug === "sermons").length !== 0
+              ) {
+                this.loadSermons();
+              } else {
+                this.hasCompletedLoad();
+              }
+            }
+          );
+        })
         .catch(() => {
           this.setState({
             loading: false,
             emptyState: true
           });
         });
-        
-      }
-    );
+    });
   }
 
   hasCompletedLoad() {
@@ -139,7 +142,7 @@ class App extends Component {
         this.setState({
           loading: false,
           promoted_guide: guides[0]
-        })
+        });
       } else {
         this.setState({ loading: false });
       }
@@ -217,42 +220,40 @@ class App extends Component {
                 )}
               />
 
-              {guides &&
-                church && (
-                  <Route
-                    path="/guides/:guideSlug"
-                    render={({ match }) => (
-                      <ApiEndpoint.Consumer>
-                        {endpoint => (
-                          <Guide
-                            church={this.state.church}
-                            title={this.state.title}
-                            slug={match.params.guideSlug}
-                            studySlug={match.params.studySlug}
-                            apiEndpoint={endpoint}
-                            setTitle={this.setTitle}
-                            setView={this.setView}
-                          />
-                        )}
-                      </ApiEndpoint.Consumer>
-                    )}
-                  />
-                )}
+              {guides && church && (
+                <Route
+                  path="/guides/:guideSlug"
+                  render={({ match }) => (
+                    <ApiEndpoint.Consumer>
+                      {endpoint => (
+                        <Guide
+                          church={this.state.church}
+                          title={this.state.title}
+                          slug={match.params.guideSlug}
+                          studySlug={match.params.studySlug}
+                          apiEndpoint={endpoint}
+                          setTitle={this.setTitle}
+                          setView={this.setView}
+                        />
+                      )}
+                    </ApiEndpoint.Consumer>
+                  )}
+                />
+              )}
 
-              {guides &&
-                church && (
-                  <Route
-                    exact
-                    path="/guides"
-                    render={({ match }) => (
-                      <GuideList
-                        {...this.state}
-                        setTitle={this.setTitle}
-                        setView={this.setView}
-                      />
-                    )}
-                  />
-                )}
+              {guides && church && (
+                <Route
+                  exact
+                  path="/guides"
+                  render={({ match }) => (
+                    <GuideList
+                      {...this.state}
+                      setTitle={this.setTitle}
+                      setView={this.setView}
+                    />
+                  )}
+                />
+              )}
 
               <Route
                 exact
