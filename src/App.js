@@ -71,21 +71,37 @@ class App extends Component {
       return;
     }
 
-    this.requestJSON(`${one21Api}church/${church.slug}/guides/sermons`).then(
-      churchFeed => {
-        const sermons = churchFeed.studies;
+    const localSermons = JSON.parse(localStorage.getItem("sermons"));
 
-        this.setState(
-          {
-            sermons: sermons,
-            latest_sermon: sermons[0]
-          },
-          () => {
-            this.hasCompletedLoad();
-          }
-        );
-      }
-    );
+    if (localSermons) {
+      this.setState(
+        {
+          sermons: localSermons,
+          latest_sermon: localSermons[0]
+        },
+        () => {
+          this.hasCompletedLoad();
+        }
+      );
+    } else {
+      this.requestJSON(`${one21Api}church/${church.slug}/guides/sermons`).then(
+        churchFeed => {
+          const sermons = churchFeed.studies;
+
+          localStorage.setItem("sermons", JSON.stringify(sermons));
+
+          this.setState(
+            {
+              sermons: sermons,
+              latest_sermon: sermons[0]
+            },
+            () => {
+              this.hasCompletedLoad();
+            }
+          );
+        }
+      );
+    }
   }
 
   loadContent() {
