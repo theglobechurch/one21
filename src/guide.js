@@ -10,10 +10,13 @@ import ExpandableText from "./expandableText";
 import "./style/SermonList.css";
 
 export default class Guide extends Component {
-  state = {
-    guide: null,
-    sermon: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      guide: null,
+      sermon: false,
+    };
+  }
 
   componentDidMount() {
     this.props.setTitle("Loading…");
@@ -23,12 +26,12 @@ export default class Guide extends Component {
 
     // TODO: Only request if not already in state or local storage?
     this.requestJSON(
-      `${this.props.apiEndpoint}church/${churchSlug}/guides/${this.props.slug}`
-    ).then(guide => {
+      `${this.props.apiEndpoint}church/${churchSlug}/guides/${this.props.slug}`,
+    ).then((guide) => {
       this.props.setTitle(guide.name);
       this.setState({
-        guide: guide,
-        sermon: this.isSermon()
+        guide,
+        sermon: this.isSermon(),
       });
     });
 
@@ -41,9 +44,9 @@ export default class Guide extends Component {
     // This feels like a hack
     const curPath = window.location.pathname.split("/").filter(String);
     if (
-      this.state.guide &&
-      this.props.title !== this.state.guide.name &&
-      curPath.length === 2
+      this.state.guide
+      && this.props.title !== this.state.guide.name
+      && curPath.length === 2
     ) {
       this.props.setTitle(this.state.guide.name);
     }
@@ -52,8 +55,8 @@ export default class Guide extends Component {
   requestJSON(feed_url, onSuccess, onFail) {
     return new Promise((resolve, reject) => {
       fetch(feed_url)
-        .then(res => res.json())
-        .then(feed_json => {
+        .then((res) => res.json())
+        .then((feed_json) => {
           resolve(feed_json);
         });
     });
@@ -62,9 +65,8 @@ export default class Guide extends Component {
   isSermon() {
     if (this.props.slug === "sermons") {
       return true;
-    } else {
-      return false;
     }
+    return false;
   }
 
   showListItem(i) {
@@ -77,8 +79,8 @@ export default class Guide extends Component {
     }
 
     if (
-      !sermon &&
-      (!guide.highlight_first || (guide.highlight_first && i !== 0))
+      !sermon
+      && (!guide.highlight_first || (guide.highlight_first && i !== 0))
     ) {
       return true;
     }
@@ -87,7 +89,7 @@ export default class Guide extends Component {
   }
 
   selectStudy(studySlug) {
-    return this.state.guide.studies.find(s => s.slug === studySlug);
+    return this.state.guide.studies.find((s) => s.slug === studySlug);
   }
 
   render() {
@@ -134,7 +136,7 @@ export default class Guide extends Component {
                         image={guide.studies[0].image}
                         title={guide.studies[0].name}
                         description={guide.studies[0].description}
-                        description_limit={true}
+                        description_limit
                         cta="Go to study"
                         link={`/guides/${this.props.slug}/${
                           guide.studies[0].slug
@@ -143,21 +145,21 @@ export default class Guide extends Component {
                     ) : (
                       <section className="study__introduction__section">
                         <h1 className="big_title">{guide.name}</h1>
-                        {guide.description &&
-                        guide.description.length >= 1 &&
-                        !this.state.sermon ? (
+                        {guide.description
+                        && guide.description.length >= 1
+                        && !this.state.sermon ? (
                           <ExpandableText
-                            expanded={true}
+                            expanded
                             text={guide.description}
                           />
-                        ) : (
-                          <p>{guide.description}</p>
-                        )}
+                          ) : (
+                            <p>{guide.description}</p>
+                          )}
                       </section>
                     )}
 
-                    {guide.studies &&
-                      guide.studies.map((study, index) => (
+                    {guide.studies
+                      && guide.studies.map((study, index) => (
                         <div key={index}>
                           {this.showListItem(index) === true && (
                             <Link
@@ -165,7 +167,7 @@ export default class Guide extends Component {
                               to={{
                                 pathname: `/guides/${this.props.slug}/${
                                   study.slug
-                                }`
+                                }`,
                               }}
                             >
                               <SermonListItem {...study} displayImage={false} />
@@ -200,5 +202,5 @@ export default class Guide extends Component {
 Guide.propTypes = {
   slug: PropTypes.string.isRequired,
   apiEndpoint: PropTypes.string.isRequired,
-  church: PropTypes.object.isRequired
+  church: PropTypes.object.isRequired,
 };

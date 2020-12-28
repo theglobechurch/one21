@@ -1,19 +1,18 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
-import './style/SermonList.css';
-import './style/Calendar.css';
-import SermonListItem from './sermonListItem';
+import React, { Component } from "react";
+import { BrowserRouter as Router, Link } from "react-router-dom";
+import "./style/SermonList.css";
+import "./style/Calendar.css";
+import SermonListItem from "./sermonListItem";
 
 class Calendar extends Component {
-
   componentDidMount() {
-    this.props.setTitle('Recent sermons');
-    this.props.setView('guides');
+    this.props.setTitle("Recent sermons");
+    this.props.setView("guides");
     window.scrollTo(0, 0);
   }
 
   componentDidUpdate(prevProps) {
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
   }
 
   render() {
@@ -21,17 +20,18 @@ class Calendar extends Component {
     return (
       <Router basename="/">
         <section className="calendar">
-          <div className="tablecloth"></div>
+          <div className="tablecloth" />
           { studies ? (
-            studies.map(study => (
+            studies.map((study) => (
               <div className="sermonList" key={study.date}>
                 <Link to={{
-                    pathname: `/study/${study.slug}`
-                }}>
+                  pathname: `/study/${study.slug}`,
+                }}
+                >
                   <SermonListItem
                     {...study}
                     displayImage={false}
-                    />
+                  />
                 </Link>
               </div>
             ))
@@ -40,9 +40,8 @@ class Calendar extends Component {
           )}
         </section>
       </Router>
-    )
+    );
   }
-
 }
 
 export default Calendar;

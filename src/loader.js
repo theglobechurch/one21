@@ -27,10 +27,10 @@ export default class Loader extends Component {
 
 Loader.defaultProps = {
   message: "Loading…",
-  minHeight: "150px"
+  minHeight: "150px",
 };
 
 Loader.propTypes = {
   message: PropTypes.string,
-  minHeight: PropTypes.string
+  minHeight: PropTypes.string,
 };

@@ -39,12 +39,14 @@ export default class Profile extends Component {
             <Icon icon="church" classname="study__icon" />
             <h2 className="dinky_title">Church</h2>
             <p>
-              Church: <strong>{this.state.churchData.name}</strong>
+              Church:
+              {" "}
+              <strong>{this.state.churchData.name}</strong>
             </p>
             <p>
               <Link
                 to={{
-                  pathname: `/church/${this.state.churchData.slug}`
+                  pathname: `/church/${this.state.churchData.slug}`,
                 }}
               >
                 Change church
@@ -60,7 +62,7 @@ export default class Profile extends Component {
             <p>
               <Link
                 to={{
-                  pathname: "/"
+                  pathname: "/",
                 }}
               >
                 Select your church
@@ -75,7 +77,9 @@ export default class Profile extends Component {
           <p>
             <em>Coming soon…</em>
             <br />
-            Translation: <strong>{this.state.bible}</strong>
+            Translation:
+            {" "}
+            <strong>{this.state.bible}</strong>
           </p>
         </section>
 
@@ -85,7 +89,9 @@ export default class Profile extends Component {
           <p>
             <em>Coming soon…</em>
             <br />
-            Language: <strong>English-UK</strong>
+            Language:
+            {" "}
+            <strong>English-UK</strong>
           </p>
         </section>
 
@@ -93,12 +99,14 @@ export default class Profile extends Component {
           <Icon icon="help" classname="study__icon" />
           <h2 className="dinky_title">Help</h2>
           <p>
-            Stuck? Confused? Need a little bit of help?<br />Read the helpful
+            Stuck? Confused? Need a little bit of help?
+            <br />
+            Read the helpful
             help guide.
           </p>
           <Link
             to={{
-              pathname: "/help"
+              pathname: "/help",
             }}
             className="btn btn--primary"
           >

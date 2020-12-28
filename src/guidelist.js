@@ -18,7 +18,7 @@ export default class GuideList extends Component {
 
   render() {
     const { church, guides, promoted_guide } = this.props;
-    const sermon = guides.filter(g => g.slug === "sermons")[0];
+    const sermon = guides.filter((g) => g.slug === "sermons")[0];
 
     return (
       <div className="study">
@@ -42,16 +42,16 @@ export default class GuideList extends Component {
             title={promoted_guide.name}
             description={promoted_guide.teaser}
             cta="Go to guide"
-            link={`/guides/` + promoted_guide.slug}
+            link={`/guides/${promoted_guide.slug}`}
           />
         )}
 
-        {guides &&
-          guides.map((guide, index) => (
+        {guides
+          && guides.map((guide, index) => (
             <div className="sermonList" key={index}>
               <Link
                 to={{
-                  pathname: `/guides/${guide.slug}`
+                  pathname: `/guides/${guide.slug}`,
                 }}
               >
                 <SermonListItem
@@ -70,5 +70,5 @@ export default class GuideList extends Component {
 GuideList.propTypes = {
   setTitle: PropTypes.func.isRequired,
   guides: PropTypes.array.isRequired,
-  promoted_guide: PropTypes.object
+  promoted_guide: PropTypes.object,
 };

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Card from "./card";
 import Loader from "./loader";
 import ChurchPicker from "./churchPicker";
-import { ApiEndpoint } from "./App";
+import ApiEndpoint from "./ApiEndpoint";
 import "./style/Landing.css";
 
 class Landing extends Component {
@@ -36,14 +36,14 @@ class Landing extends Component {
     return (
       <main className="landing">
         <div className="tablecloth tablecloth--big" />
-        <img className="landing__logo" src={`/one21logo.svg`} alt="one 21" />
+        <img className="landing__logo" src="/one21logo.svg" alt="one 21" />
 
         {!churchData && (
           <div>
             <div className="card">
               <div className="card__body">
                 <ApiEndpoint.Consumer>
-                  {endpoint => <ChurchPicker apiEndpoint={endpoint} />}
+                  {(endpoint) => <ChurchPicker apiEndpoint={endpoint} />}
                 </ApiEndpoint.Consumer>
               </div>
             </div>
@@ -62,10 +62,10 @@ class Landing extends Component {
 
         {churchData && emptyState && (
           <Card
-          image={churchData.lead_image}
-          title={`${churchData.name} has not published any One21 guides yet…`}
-          description="Please speak to your church administrator or leader for more information."
-        />
+            image={churchData.lead_image}
+            title={`${churchData.name} has not published any One21 guides yet…`}
+            description="Please speak to your church administrator or leader for more information."
+          />
         )}
 
         {study && (
@@ -74,9 +74,9 @@ class Landing extends Component {
             pretitle="Latest sermon:"
             title={study.name}
             description={study.description}
-            description_limit={true}
+            description_limit
             cta="Go to study"
-            link={`/guides/sermons/` + study.slug}
+            link={`/guides/sermons/${study.slug}`}
           />
         )}
 
@@ -86,9 +86,9 @@ class Landing extends Component {
             image={guide.image}
             title={guide.name}
             description={guide.teaser}
-            description_limit={true}
+            description_limit
             cta="Go to guide"
-            link={`/guides/` + guide.slug}
+            link={`/guides/${guide.slug}`}
           />
         )}
       </main>

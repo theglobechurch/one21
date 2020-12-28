@@ -1,18 +1,17 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Icon from './icon';
 import { Link } from "react-router-dom";
+import Icon from "./icon";
 
-import './style/CoreHeader.css';
+import "./style/CoreHeader.css";
 
 export default class CoreHeader extends Component {
-
-  backLink = () => {
+  static backLink() {
     const currentPath = window.location.pathname;
-    
+
     let backPath = currentPath.substring(
       0,
-      currentPath.lastIndexOf("/") + 1
+      currentPath.lastIndexOf("/") + 1,
     );
 
     if (backPath === currentPath) {
@@ -23,8 +22,7 @@ export default class CoreHeader extends Component {
 
   render() {
     const { title } = this.props;
-    const backPath = this.backLink();
-    
+    const backPath = CoreHeader.backLink();
 
     if (!title) return null;
 
@@ -34,7 +32,7 @@ export default class CoreHeader extends Component {
           <Link
             className="coreHeader__back"
             to={{
-              pathname: backPath
+              pathname: backPath,
             }}
           >
             <Icon icon="pointLeft" classname="coreHeader__back__icon" />
@@ -47,5 +45,5 @@ export default class CoreHeader extends Component {
 }
 
 CoreHeader.propTypes = {
-  title: PropTypes.string
+  title: PropTypes.string.isRequired,
 };

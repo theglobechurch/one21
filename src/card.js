@@ -1,21 +1,20 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import './style/Card.css';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import "./style/Card.css";
 
 export default class Card extends Component {
-
   limitText(text, charCount = 100) {
-    if (text.length < (charCount+20)) { return text; }
+    if (text.length < (charCount + 20)) { return text; }
     text = text.substring(0, charCount);
-    const lastSpace = text.lastIndexOf(' ');
+    const lastSpace = text.lastIndexOf(" ");
     if (lastSpace > 0) { text = text.substring(0, lastSpace); }
-    return text + '…';
+    return `${text}…`;
   }
 
   render() {
     return (
-      <section className={`card ${this.props.className ? this.props.className : ''}` }>
+      <section className={`card ${this.props.className ? this.props.className : ""}`}>
         {this.props.image && (
           <header>
             <img src={this.props.image} alt="" />
@@ -42,7 +41,7 @@ export default class Card extends Component {
           { this.props.link && this.props.cta && (
             <Link
               to={{
-                pathname: this.props.link
+                pathname: this.props.link,
               }}
               className="action_text"
             >
@@ -51,9 +50,8 @@ export default class Card extends Component {
           )}
         </div>
       </section>
-    )
+    );
   }
-
 }
 
 Card.propTypes = {
@@ -63,5 +61,5 @@ Card.propTypes = {
   description_limit: PropTypes.bool,
   link: PropTypes.string,
   cta: PropTypes.string,
-  className: PropTypes.string
+  className: PropTypes.string,
 };

@@ -1,20 +1,21 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { withRouter } from "react-router-dom";
 import Loader from "./loader";
 import ChurchPicker from "./churchPicker";
-import { withRouter } from "react-router-dom";
 
 class Church extends Component {
   constructor(props) {
     super(props);
     const currentChurch = JSON.parse(localStorage.getItem("church"));
     this.state = {
-      currentChurch: currentChurch,
+      currentChurch,
       church: null,
       slug: null,
-      lookup: false
+      lookup: false,
     };
   }
+
   componentDidMount() {
     this.props.setTitle("Loading…");
     this.props.setView(`/church/${this.props.slug}`);
@@ -35,7 +36,7 @@ class Church extends Component {
 
     this.setState({ lookup: true }, () => {
       const { apiEndpoint } = this.props;
-      this.requestJSON(`${apiEndpoint}church/${this.props.slug}`).then(ch => {
+      this.requestJSON(`${apiEndpoint}church/${this.props.slug}`).then((ch) => {
         this.setChurch(ch);
       });
     });
@@ -56,8 +57,8 @@ class Church extends Component {
   requestJSON(feed_url, onSuccess, onFail) {
     return new Promise((resolve, reject) => {
       fetch(feed_url)
-        .then(res => res.json())
-        .then(feed_json => {
+        .then((res) => res.json())
+        .then((feed_json) => {
           resolve(feed_json);
         });
     });
@@ -128,5 +129,5 @@ export default withRouter(Church);
 
 Church.propTypes = {
   slug: PropTypes.string.isRequired,
-  apiEndpoint: PropTypes.string.isRequired
+  apiEndpoint: PropTypes.string.isRequired,
 };
