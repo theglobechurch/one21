@@ -11,8 +11,9 @@ class About extends Component {
   }
 
   componentDidMount() {
-    this.props.setTitle("About");
-    this.props.setView("/about");
+    const { setView, setTitle } = this.props;
+    setTitle("About");
+    setView("/about");
     window.scrollTo(0, 0);
   }
 
@@ -21,6 +22,7 @@ class About extends Component {
   }
 
   render() {
+    const { bible } = this.state;
     return (
       <main className="study">
         <div className="tablecloth" />
@@ -38,14 +40,14 @@ class About extends Component {
           <p>
             We want to grow together as a church and one-to-ones are a really
             key way we can do this. They help us build strong relationships,
-            point each other to Jesus, and to apply what we&aposre hearing on a
+            point each other to Jesus, and to apply what we&apos;re hearing on a
             Sunday to our lives.
           </p>
           <p>
             One21 is a tool to help facilitate one-to-ones by helping to direct
             what you read together, asking helpful questions based on a sermon
-            you've already heard. You don't need a leader, or to have done any
-            preperation, just meet together and discuss the questions.
+            you&apos;ve already heard. You don&apos;t need a leader, or to have done any
+            preparation, just meet together and discuss the questions.
           </p>
         </section>
 
@@ -62,14 +64,14 @@ class About extends Component {
           <Icon icon="question" classname="study__icon" />
           <h2 className="dinky_title">Questions</h2>
           <p>
-            Each week, by Monday breakfast time, you'll find a recording from
-            Sunday's sermon and several questions to help you think and discuss
+            Each week, by Monday breakfast time, you&apos;ll find a recording from
+            Sunday&apos;s sermon and several questions to help you think and discuss
             some of the application points from Sunday.
           </p>
           <p>
             For each main question there will be some follow up questions to
             help you think through specific areas. Some of these will be more or
-            less relevant to you; don't worry about doing all of them, focus on
+            less relevant to you; don&apos;t worry about doing all of them, focus on
             the relevant ones.
           </p>
         </section>
@@ -114,7 +116,7 @@ class About extends Component {
           </p>
         </section>
 
-        {this.state.bible === "ESV" && (
+        {bible === "ESV" && (
           <section className="study__introduction__section study__introduction__section--iconed">
             <Icon icon="study" classname="study__icon" />
             <h2 className="dinky_title">Copyright</h2>
