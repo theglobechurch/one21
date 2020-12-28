@@ -1,16 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Icon from './icon';
-import './style/ExpandableText.css';
+import Icon from "./icon";
+import "./style/ExpandableText.css";
 
 export default class ExpandableText extends Component {
-
   constructor(props) {
     super(props);
     this.container = null;
     this.state = {
-      expanded: false
-    }
+      expanded: false,
+    };
   }
 
   componentDidMount() {
@@ -21,7 +20,7 @@ export default class ExpandableText extends Component {
         this.container.classList.toggle("expandableText__container--contracted");
       }
     }
-  };
+  }
 
   toggleView(ev) {
     if (ev) { ev.preventDefault(); }
@@ -38,10 +37,10 @@ export default class ExpandableText extends Component {
         <div className="expandableText__container">
           { text.map((p, i) => (
             <div
-              className={`expandableText__container__block` + ( this.props.scripture ? ` expandableText__container__block--scripture` : ``)}
-              dangerouslySetInnerHTML={{__html: p}}
+              className={`expandableText__container__block${this.props.scripture ? " expandableText__container__block--scripture" : ""}`}
+              dangerouslySetInnerHTML={{ __html: p }}
               key={i}
-            ></div>
+            />
           ))}
         </div>
 
@@ -61,11 +60,10 @@ export default class ExpandableText extends Component {
       </div>
     );
   }
-
 }
 
 ExpandableText.propTypes = {
   expanded: PropTypes.bool.isRequired,
   scripture: PropTypes.bool,
-  text: PropTypes.array.isRequired
+  text: PropTypes.array.isRequired,
 };

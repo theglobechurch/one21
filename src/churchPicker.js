@@ -12,8 +12,8 @@ export default class ChurchPicker extends Component {
   requestJSON(feed_url, onSuccess, onFail) {
     return new Promise((resolve, reject) => {
       fetch(feed_url)
-        .then(res => res.json())
-        .then(feed_json => {
+        .then((res) => res.json())
+        .then((feed_json) => {
           resolve(feed_json);
         });
     });
@@ -21,7 +21,7 @@ export default class ChurchPicker extends Component {
 
   componentDidMount() {
     const { apiEndpoint } = this.props;
-    this.requestJSON(`${apiEndpoint}church`).then(churchList => {
+    this.requestJSON(`${apiEndpoint}church`).then((churchList) => {
       this.setState({ churches: churchList });
     });
   }
@@ -35,9 +35,7 @@ export default class ChurchPicker extends Component {
       return;
     }
 
-    const res = this.state.churches.filter(ch =>
-      ch.name.toLowerCase().includes(value.toLowerCase())
-    );
+    const res = this.state.churches.filter((ch) => ch.name.toLowerCase().includes(value.toLowerCase()));
 
     this.setState({ foundChurches: res });
   }
@@ -71,7 +69,7 @@ export default class ChurchPicker extends Component {
                   className="churchPicker__result__item"
                   onClick={this.onSelect.bind(this)}
                   to={{
-                    pathname: `/church/${ch.slug}`
+                    pathname: `/church/${ch.slug}`,
                   }}
                 >
                   <img src={ch.logo_sq} alt="" />
@@ -87,5 +85,5 @@ export default class ChurchPicker extends Component {
 }
 
 ChurchPicker.propTypes = {
-  apiEndpoint: PropTypes.string.isRequired
+  apiEndpoint: PropTypes.string.isRequired,
 };

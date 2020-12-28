@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import Icon from "./icon";
 import "./style/Study.css";
 
@@ -15,7 +16,7 @@ class About extends Component {
     window.scrollTo(0, 0);
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate() {
     window.scrollTo(0, 0);
   }
 
@@ -37,7 +38,7 @@ class About extends Component {
           <p>
             We want to grow together as a church and one-to-ones are a really
             key way we can do this. They help us build strong relationships,
-            point each other to Jesus, and to apply what we're hearing on a
+            point each other to Jesus, and to apply what we&aposre hearing on a
             Sunday to our lives.
           </p>
           <p>
@@ -81,7 +82,10 @@ class About extends Component {
                 <h2 className="dinky_title">iOS</h2>
                 <p>
                   You can add one21 to your home screen by pressing the share
-                  button and then pressing <strong>Add to Home Screen</strong>.
+                  button and then pressing
+                  {" "}
+                  <strong>Add to Home Screen</strong>
+                  .
                 </p>
               </section>
 
@@ -90,8 +94,10 @@ class About extends Component {
                 <h2 className="dinky_title">Android</h2>
                 <p>
                   You can add one21 to your home screen by pressing the menu
-                  button (three dots on the top right) and then pressing{" "}
-                  <strong>Add to Home Screen</strong>.
+                  button (three dots on the top right) and then pressing
+                  {" "}
+                  <strong>Add to Home Screen</strong>
+                  .
                 </p>
               </section>
             </div>
@@ -125,13 +131,19 @@ class About extends Component {
           <Icon icon="github" classname="study__icon" />
           <h2 className="dinky_title">Updates</h2>
           <p>
-            Want to suggest new features or changes? The development roadmap is 
-            public on <a href="https://trello.com/b/cNg6l1wq/one21">Trello</a>.
-            You can make requests (or submit a pull request) on{" "}
-            <a href="https://github.com/theglobechurch/one21">Github</a>.
+            Want to suggest new features or changes? The development roadmap is
+            public on
+            {" "}
+            <a href="https://trello.com/b/cNg6l1wq/one21">Trello</a>
+            .
+            You can make requests (or submit a pull request) on
+            {" "}
+            <a href="https://github.com/theglobechurch/one21">Github</a>
+            .
           </p>
           <p>
-            Alternatively you can tweet at{" "}
+            Alternatively you can tweet at
+            {" "}
             <a href="https://twitter.com/one21org">@one21org</a>
           </p>
         </section>
@@ -139,5 +151,10 @@ class About extends Component {
     );
   }
 }
+
+About.propTypes = {
+  setTitle: PropTypes.func.isRequired,
+  setView: PropTypes.func.isRequired,
+};
 
 export default About;

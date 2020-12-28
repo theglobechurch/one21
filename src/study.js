@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router, Route, Switch, Link,
+} from "react-router-dom";
 import PropTypes from "prop-types";
 import Question from "./question";
 import BiblePopup from "./biblePopup";
@@ -14,13 +16,13 @@ export default class Study extends Component {
     super(props);
     this.state = {
       biblePopup: false,
-      image: this.props.study.image || this.props.image
+      image: this.props.study.image || this.props.image,
     };
   }
 
   componentDidMount() {
     this.props.setView(
-      `/guides/${this.props.guideSlug}/${this.props.studySlug}`
+      `/guides/${this.props.guideSlug}/${this.props.studySlug}`,
     );
     this.props.setTitle(this.props.study.name);
     window.scrollTo(0, 0);
@@ -43,7 +45,7 @@ export default class Study extends Component {
 
   render() {
     const { study, guideSlug, studySlug } = this.props;
-    let { image } = this.state;
+    const { image } = this.state;
 
     return (
       <Router basename={`/guides/${guideSlug}/${studySlug}`}>
@@ -64,7 +66,7 @@ export default class Study extends Component {
 
                     <Link
                       className="btn btn--primary"
-                      to={{ pathname: `/start` }}
+                      to={{ pathname: "/start" }}
                     >
                       Go to questions
                     </Link>
@@ -80,8 +82,8 @@ export default class Study extends Component {
                       </p>
                       <a
                         href={
-                          study.website_url +
-                          `?utm_source=one21&utm_medium=webapp&utm_campaign=study`
+                          `${study.website_url
+                          }?utm_source=one21&utm_medium=webapp&utm_campaign=study`
                         }
                         className="btn"
                       >
@@ -95,8 +97,8 @@ export default class Study extends Component {
                       <Icon icon="study" classname="study__icon" />
                       <h2 className="dinky_title">{study.passage}</h2>
                       <ExpandableText
-                        expanded={true}
-                        scripture={true}
+                        expanded
+                        scripture
                         text={study.scripture}
                       />
                     </section>
@@ -133,12 +135,15 @@ export default class Study extends Component {
                     ) : (
                       <div>
                         <h2 className="big_title">
-                          Start by praying for<br />this time.
+                          Start by praying for
+                          <br />
+                          this time.
                         </h2>
 
                         {study.passage && (
                           <h2 className="big_title">
-                            Now read<br />
+                            Now read
+                            <br />
                             {study.passage}
                           </h2>
                         )}
@@ -150,21 +155,21 @@ export default class Study extends Component {
                         <h2 className="dinky_title">{study.passage}</h2>
                         <ExpandableText
                           expanded={false}
-                          scripture={true}
+                          scripture
                           text={study.scripture}
                         />
                       </section>
                     )}
 
-                    {!study.scripture &&
-                      study.passage && (
+                    {!study.scripture
+                      && study.passage && (
                         <div
                           className="btn"
                           onClick={this.toggleBiblePopup.bind(this)}
                         >
                           View passage
                         </div>
-                      )}
+                    )}
                   </section>
 
                   <StudyFooter
@@ -212,7 +217,7 @@ export default class Study extends Component {
                       />
                       Prev
                     </Link>
-                    <Link to={`/`}>End</Link>
+                    <Link to="/">End</Link>
                   </footer>
                 </main>
               )}
@@ -226,7 +231,7 @@ export default class Study extends Component {
                   <StudyHeader
                     name={study.name}
                     passage={study.passage}
-                    passageLinked={study.scripture ? false : true}
+                    passageLinked={!study.scripture}
                     toggleBiblePopup={this.toggleBiblePopup.bind(this)}
                   />
                   <Question
@@ -278,9 +283,9 @@ Study.propTypes = {
   setTitle: PropTypes.func.isRequired,
   guideSlug: PropTypes.string.isRequired,
   studySlug: PropTypes.string.isRequired,
-  image: PropTypes.string
+  image: PropTypes.string,
 };
 
 StudyLeadImage.propTypes = {
-  image: PropTypes.string.isRequired
+  image: PropTypes.string.isRequired,
 };

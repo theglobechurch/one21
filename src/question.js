@@ -20,7 +20,11 @@ export default class Question extends Component {
       <section className="study__question question">
         {question.lead && (
           <header className="question__header">
-            <span>Question {itemNo}:</span>
+            <span>
+              Question
+              {itemNo}
+              :
+            </span>
             <h2>{question.lead}</h2>
           </header>
         )}
@@ -44,8 +48,8 @@ export default class Question extends Component {
           <section className="question__scripture">
             <h2 className="dinky_title">{this.props.passage}</h2>
             <ExpandableText
-              expanded={true}
-              scripture={true}
+              expanded
+              scripture
               text={this.props.scripture}
             />
           </section>
@@ -59,5 +63,5 @@ Question.propTypes = {
   question: PropTypes.object.isRequired,
   itemNo: PropTypes.string.isRequired,
   passage: PropTypes.string,
-  scripture: PropTypes.array
+  scripture: PropTypes.array,
 };

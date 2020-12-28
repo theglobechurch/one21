@@ -4,7 +4,9 @@ import moment from "moment";
 
 class SermonListItem extends Component {
   render() {
-    const { name, date, passage, base_url } = this.props;
+    const {
+      name, date, passage, base_url,
+    } = this.props;
     let { image } = this.props;
     const recording_date = moment(date);
 
@@ -14,10 +16,10 @@ class SermonListItem extends Component {
 
     return (
       <div className="sermonList__item">
-        {this.props.displayImage &&
-          this.props.displayImage === true && (
+        {this.props.displayImage
+          && this.props.displayImage === true && (
             <img className="sermonList__item__leadimage" alt="" src={image} />
-          )}
+        )}
         <div className="sermonList__item__body">
           <h1 className="sermonList__item__title">{name}</h1>
           {date && (
@@ -42,5 +44,5 @@ SermonListItem.propTypes = {
   date: PropTypes.string,
   passage: PropTypes.string,
   base_url: PropTypes.string,
-  displayImage: PropTypes.bool
+  displayImage: PropTypes.bool,
 };

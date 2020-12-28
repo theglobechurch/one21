@@ -12,14 +12,14 @@ class BiblePopup extends Component {
         <div className="biblePopup__iframe">
           <iframe
             className="biblePopup__iframe__int"
-            title={`Bible: ` + this.props.passage}
+            title={`Bible: ${this.props.passage}`}
             marginWidth="0"
             marginHeight="0"
             frameBorder="0"
             src={
-              `https://www.biblegateway.com/passage/?search=` +
-              this.props.passage +
-              `&version=NIVUK`
+              `https://www.biblegateway.com/passage/?search=${
+                this.props.passage
+              }&version=NIVUK`
             }
           />
         </div>
@@ -30,7 +30,7 @@ class BiblePopup extends Component {
 
 BiblePopup.propTypes = {
   passage: PropTypes.string.isRequired,
-  toggleBiblePopup: PropTypes.func.isRequired
+  toggleBiblePopup: PropTypes.func.isRequired,
 };
 
 export default BiblePopup;

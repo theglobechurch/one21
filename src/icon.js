@@ -1,16 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 export default class Icon extends Component {
-
-  render () {
+  render() {
     return (
-      <svg className= { this.props.classname }>
+      <svg className={this.props.classname}>
         <use
-          xlinkHref={ `/one21icons.svg#` + this.props.icon }
-        >
-        </use>
+          xlinkHref={`/one21icons.svg#${this.props.icon}`}
+        />
       </svg>
-    )
-
+    );
   }
 }
