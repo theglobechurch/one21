@@ -7,6 +7,7 @@ import Question from "./question";
 import BiblePopup from "./biblePopup";
 import StudyHeader from "./studyHeader";
 import StudyFooter from "./studyFooter";
+import StudyLeadImage from "./StudyLeadImage";
 import ExpandableText from "./expandableText";
 import Icon from "./icon";
 import "./style/Study.css";
@@ -14,21 +15,25 @@ import "./style/Study.css";
 export default class Study extends Component {
   constructor(props) {
     super(props);
+    const { study, image } = props;
     this.state = {
       biblePopup: false,
-      image: this.props.study.image || this.props.image,
+      image: study.image || image,
     };
   }
 
   componentDidMount() {
-    this.props.setView(
-      `/guides/${this.props.guideSlug}/${this.props.studySlug}`,
+    const {
+      setView, guideSlug, studySlug, setTitle, study,
+    } = this.props;
+    setView(
+      `/guides/${guideSlug}/${studySlug}`,
     );
-    this.props.setTitle(this.props.study.name);
+    setTitle(study.name);
     window.scrollTo(0, 0);
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate() {
     window.scrollTo(0, 0);
   }
 
@@ -37,15 +42,16 @@ export default class Study extends Component {
   }
 
   toggleBiblePopup(ev) {
+    // KBB - This might not be needed now button type is defined
     if (ev) {
       ev.preventDefault();
     }
-    this.setState({ biblePopup: !this.state.biblePopup });
+    this.setState((prevState) => ({ biblePopup: !prevState.biblePopup }));
   }
 
   render() {
     const { study, guideSlug, studySlug } = this.props;
-    const { image } = this.state;
+    const { image, biblePopup } = this.state;
 
     return (
       <Router basename={`/guides/${guideSlug}/${studySlug}`}>
@@ -163,12 +169,13 @@ export default class Study extends Component {
 
                     {!study.scripture
                       && study.passage && (
-                        <div
+                        <button
+                          type="button"
                           className="btn"
                           onClick={this.toggleBiblePopup.bind(this)}
                         >
                           View passage
-                        </div>
+                        </button>
                     )}
                   </section>
 
@@ -252,7 +259,7 @@ export default class Study extends Component {
             />
           </Switch>
 
-          {this.state.biblePopup && (
+          {biblePopup && (
             // ToDo: Check is there is an internet connection…
             <BiblePopup
               passage={study.passage}
@@ -265,27 +272,11 @@ export default class Study extends Component {
   }
 }
 
-class StudyLeadImage extends Component {
-  render() {
-    const { image } = this.props;
-    return (
-      <div
-        className="study__introduction__image"
-        style={{ backgroundImage: `url(${image})` }}
-      />
-    );
-  }
-}
-
 Study.propTypes = {
-  study: PropTypes.object.isRequired,
+  study: PropTypes.shape.isRequired,
   setView: PropTypes.func.isRequired,
   setTitle: PropTypes.func.isRequired,
   guideSlug: PropTypes.string.isRequired,
   studySlug: PropTypes.string.isRequired,
-  image: PropTypes.string,
-};
-
-StudyLeadImage.propTypes = {
   image: PropTypes.string.isRequired,
 };
