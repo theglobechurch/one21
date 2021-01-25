@@ -22,7 +22,7 @@ class Church extends Component {
     this.lookup();
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const { slug } = nextProps;
     if (slug !== this.state.slug) {
       this.lookup();
