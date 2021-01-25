@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import Icon from "./icon";
 import "./style/Study.css";
 
@@ -12,16 +13,18 @@ export default class Profile extends Component {
   }
 
   componentDidMount() {
-    this.props.setTitle("Settings");
-    this.props.setView("/profile");
+    const { setTitle, setView } = this.props;
+    setTitle("Settings");
+    setView("/profile");
     window.scrollTo(0, 0);
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate() {
     window.scrollTo(0, 0);
   }
 
   render() {
+    const { churchData, bible } = this.state;
     return (
       <div className="study">
         <div className="tablecloth" />
@@ -34,19 +37,19 @@ export default class Profile extends Component {
           </p>
         </section>
 
-        {this.state.churchData && (
+        {churchData && (
           <section className="study__introduction__section study__introduction__section--iconed">
             <Icon icon="church" classname="study__icon" />
             <h2 className="dinky_title">Church</h2>
             <p>
               Church:
               {" "}
-              <strong>{this.state.churchData.name}</strong>
+              <strong>{churchData.name}</strong>
             </p>
             <p>
               <Link
                 to={{
-                  pathname: `/church/${this.state.churchData.slug}`,
+                  pathname: `/church/${churchData.slug}`,
                 }}
               >
                 Change church
@@ -55,7 +58,7 @@ export default class Profile extends Component {
           </section>
         )}
 
-        {!this.state.churchData && (
+        {!churchData && (
           <section className="study__introduction__section study__introduction__section--iconed">
             <Icon icon="church" classname="study__icon" />
             <h2 className="dinky_title">Church</h2>
@@ -79,7 +82,7 @@ export default class Profile extends Component {
             <br />
             Translation:
             {" "}
-            <strong>{this.state.bible}</strong>
+            <strong>{bible}</strong>
           </p>
         </section>
 
@@ -117,3 +120,8 @@ export default class Profile extends Component {
     );
   }
 }
+
+Profile.propTypes = {
+  setTitle: PropTypes.func.isRequired,
+  setView: PropTypes.func.isRequired,
+};
