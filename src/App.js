@@ -48,14 +48,14 @@ class App extends Component {
     }
   }
 
-  static handleFetchErrors(response) {
+  handleFetchErrors = (response) => {
     if (!response.ok) {
       throw Error(response.statusText);
     }
     return response;
   }
 
-  setActiveStudy(activeStudy) {
+  setActiveStudy = (activeStudy) => {
     this.setState({
       activeStudy,
       title: activeStudy.name,
