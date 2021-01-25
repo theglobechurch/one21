@@ -17,51 +17,56 @@ class Church extends Component {
   }
 
   componentDidMount() {
-    this.props.setTitle("Loading…");
-    this.props.setView(`/church/${this.props.slug}`);
+    const { setTitle, setView, slug } = this.props;
+    setTitle("Loading…");
+    setView(`/church/${slug}`);
     this.lookup();
   }
 
+  // eslint-disable-next-line camelcase
   UNSAFE_componentWillReceiveProps(nextProps) {
-    const { slug } = nextProps;
-    if (slug !== this.state.slug) {
+    const { slug } = this.state;
+    const nextSlug = nextProps.slug;
+    if (nextSlug !== slug) {
       this.lookup();
     }
   }
 
+  setChurch(ch) {
+    const { setTitle } = this.props;
+    setTitle(ch.name);
+    this.setState({ church: ch, slug: ch.slug, lookup: false });
+    window.scrollTo(0, 0);
+  }
+
+  requestJSON = (feedUrl) => new Promise((resolve) => {
+    fetch(feedUrl)
+      .then((res) => res.json())
+      .then((feedJson) => {
+        resolve(feedJson);
+      });
+  })
+
   lookup() {
-    if (this.state.lookup === true) {
+    const { lookup } = this.state;
+    const { slug } = this.props;
+    if (lookup === true) {
       return;
     }
 
     this.setState({ lookup: true }, () => {
       const { apiEndpoint } = this.props;
-      this.requestJSON(`${apiEndpoint}church/${this.props.slug}`).then((ch) => {
+      this.requestJSON(`${apiEndpoint}church/${slug}`).then((ch) => {
         this.setChurch(ch);
       });
     });
   }
 
-  setChurch(ch) {
-    this.props.setTitle(ch.name);
-    this.setState({ church: ch, slug: ch.slug, lookup: false });
-    window.scrollTo(0, 0);
-  }
-
-  confirmChurch(ev) {
+  confirmChurch() {
     const { church } = this.state;
+    const { history } = this.props;
     localStorage.setItem("church", JSON.stringify(church));
-    this.props.history.push("/");
-  }
-
-  requestJSON(feed_url, onSuccess, onFail) {
-    return new Promise((resolve, reject) => {
-      fetch(feed_url)
-        .then((res) => res.json())
-        .then((feed_json) => {
-          resolve(feed_json);
-        });
-    });
+    history.push("/");
   }
 
   showConfirmBtn() {
@@ -80,6 +85,7 @@ class Church extends Component {
 
   render() {
     const { church } = this.state;
+    const { apiEndpoint } = this.props;
     return (
       <main className="landing">
         <div className="tablecloth" />
@@ -99,13 +105,15 @@ class Church extends Component {
                 <p>{church.url}</p>
                 <p>{church.email}</p>
 
+                {/* TODO: The confirm button needs styling  */}
                 {this.showConfirmBtn() && (
-                  <a
-                    className="action_text"
+                  <button
+                    type="button"
+                    className="btn action_text"
                     onClick={this.confirmChurch.bind(this)}
                   >
                     Set as my church
-                  </a>
+                  </button>
                 )}
               </div>
             </section>
@@ -118,7 +126,7 @@ class Church extends Component {
             </main>
           )}
 
-          <ChurchPicker apiEndpoint={this.props.apiEndpoint} />
+          <ChurchPicker apiEndpoint={apiEndpoint} />
         </div>
       </main>
     );
@@ -130,4 +138,7 @@ export default withRouter(Church);
 Church.propTypes = {
   slug: PropTypes.string.isRequired,
   apiEndpoint: PropTypes.string.isRequired,
+  setTitle: PropTypes.func.isRequired,
+  setView: PropTypes.func.isRequired,
+  history: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
