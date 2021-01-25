@@ -20,7 +20,7 @@ class Landing extends Component {
     this.props.setView("/");
   }
 
-  componentWillReceiveProps() {
+  UNSAFE_componentWillReceiveProps() {
     this.contentPresent();
   }
 
