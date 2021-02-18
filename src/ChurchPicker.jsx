@@ -9,16 +9,6 @@ export default class ChurchPicker extends Component {
     this.state = { foundChurches: null };
   }
 
-  requestJSON(feed_url, onSuccess, onFail) {
-    return new Promise((resolve, reject) => {
-      fetch(feed_url)
-        .then((res) => res.json())
-        .then((feed_json) => {
-          resolve(feed_json);
-        });
-    });
-  }
-
   componentDidMount() {
     const { apiEndpoint } = this.props;
     this.requestJSON(`${apiEndpoint}church`).then((churchList) => {
@@ -26,25 +16,36 @@ export default class ChurchPicker extends Component {
     });
   }
 
-  churchLookup(ev) {
-    // TODO: Replace when more than 50 churches in One21. This will work for now
-    const { value } = ev.target;
-
-    if (value.length < 3 || !this.state.churches) {
-      this.setState({ foundChurches: null });
-      return;
-    }
-
-    const res = this.state.churches.filter((ch) => ch.name.toLowerCase().includes(value.toLowerCase()));
-
-    this.setState({ foundChurches: res });
-  }
-
   onSelect() {
     this.setState({ foundChurches: null });
   }
 
+  requestJSON = (feedUrl) => new Promise((resolve) => {
+    fetch(feedUrl)
+      .then((res) => res.json())
+      .then((feedJson) => {
+        resolve(feedJson);
+      });
+  })
+
+  churchLookup(ev) {
+    // TODO: Replace when more than 50 churches in One21. This will work for now
+    const { churches } = this.state;
+    const { value } = ev.target;
+
+    if (value.length < 3 || !churches) {
+      this.setState({ foundChurches: null });
+      return;
+    }
+
+    const res = churches.filter((ch) => ch.name.toLowerCase().includes(value.toLowerCase()));
+
+    this.setState({ foundChurches: res });
+  }
+
   render() {
+    const { foundChurches } = this.state;
+    console.log({ foundChurches });
     return (
       <section className="churchPicker">
         <p>One21 works best when you connect it with your church:</p>
@@ -60,12 +61,12 @@ export default class ChurchPicker extends Component {
           <label className="churchPicker__label">Find your church…</label>
         </div>
 
-        {this.state.foundChurches && (
+        {foundChurches && (
           <div className="churchPicker__result">
             <div className="churchPicker__result__list">
-              {this.state.foundChurches.map((ch, i) => (
+              {foundChurches.map((ch) => (
                 <Link
-                  key={i}
+                  key={ch.slug}
                   className="churchPicker__result__item"
                   onClick={this.onSelect.bind(this)}
                   to={{

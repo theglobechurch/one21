@@ -4,7 +4,7 @@ import {
 } from "react-router-dom";
 import PropTypes from "prop-types";
 import Question from "./question";
-import BiblePopup from "./biblePopup";
+import BiblePopup from "./BiblePopup";
 import StudyHeader from "./studyHeader";
 import StudyFooter from "./studyFooter";
 import StudyLeadImage from "./StudyLeadImage";
