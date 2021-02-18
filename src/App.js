@@ -5,11 +5,11 @@ import ApiEndpoint from "./ApiEndpoint";
 
 import "./style/App.css";
 import Landing from "./landing";
-import About from "./about";
-import Church from "./church";
-import Profile from "./profile";
+import About from "./About";
+import Church from "./Church";
+import Profile from "./Profile";
 import GuideList from "./guidelist";
-import Guide from "./guide";
+import Guide from "./Guide";
 import CoreHeader from "./coreHeader";
 import CoreNav from "./coreNav";
 
