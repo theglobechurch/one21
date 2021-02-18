@@ -11,7 +11,7 @@ import Profile from "./Profile";
 import GuideList from "./guidelist";
 import Guide from "./Guide";
 import CoreHeader from "./coreHeader";
-import CoreNav from "./coreNav";
+import CoreNav from "./CoreNav";
 
 const one21Api = "https://builder.one21.org/api/";
 
