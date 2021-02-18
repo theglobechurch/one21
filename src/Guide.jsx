@@ -19,16 +19,18 @@ export default class Guide extends Component {
   }
 
   componentDidMount() {
-    this.props.setTitle("Loading…");
-    this.props.setView(`/guides/${this.props.slug}`);
-
-    const churchSlug = this.props.church.slug;
+    const {
+      setTitle, setView, slug, church, apiEndpoint,
+    } = this.props;
+    setTitle("Loading…");
+    setView(`/guides/${slug}`);
+    const churchSlug = church.slug;
 
     // TODO: Only request if not already in state or local storage?
     this.requestJSON(
-      `${this.props.apiEndpoint}church/${churchSlug}/guides/${this.props.slug}`,
+      `${apiEndpoint}church/${churchSlug}/guides/${slug}`,
     ).then((guide) => {
-      this.props.setTitle(guide.name);
+      setTitle(guide.name);
       this.setState({
         guide,
         sermon: this.isSermon(),
@@ -38,32 +40,29 @@ export default class Guide extends Component {
     window.scrollTo(0, 0);
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate() {
+    const { guide } = this.state;
+    const { title, setTitle } = this.props;
     window.scrollTo(0, 0);
 
     // This feels like a hack
     const curPath = window.location.pathname.split("/").filter(String);
-    if (
-      this.state.guide
-      && this.props.title !== this.state.guide.name
-      && curPath.length === 2
-    ) {
-      this.props.setTitle(this.state.guide.name);
+    if (guide && title !== guide.name && curPath.length === 2) {
+      setTitle(guide.name);
     }
   }
 
-  requestJSON(feed_url, onSuccess, onFail) {
-    return new Promise((resolve, reject) => {
-      fetch(feed_url)
-        .then((res) => res.json())
-        .then((feed_json) => {
-          resolve(feed_json);
-        });
-    });
-  }
+  requestJSON = (feedUrl) => new Promise((resolve) => {
+    fetch(feedUrl)
+      .then((res) => res.json())
+      .then((feedJson) => {
+        resolve(feedJson);
+      });
+  })
 
-  isSermon() {
-    if (this.props.slug === "sermons") {
+  isSermon = () => {
+    const { slug } = this.props;
+    if (slug === "sermons") {
       return true;
     }
     return false;
@@ -89,11 +88,13 @@ export default class Guide extends Component {
   }
 
   selectStudy(studySlug) {
-    return this.state.guide.studies.find((s) => s.slug === studySlug);
+    const { guide } = this.state;
+    return guide.studies.find((s) => s.slug === studySlug);
   }
 
   render() {
-    const { guide } = this.state;
+    const { guide, sermon } = this.state;
+    const { setView, setTitle, slug } = this.props;
 
     return (
       <div className="study">
@@ -105,11 +106,12 @@ export default class Guide extends Component {
               path="/guides/:guideSlug/:studySlug"
               render={({ match }) => (
                 <Study
-                  {...this.state}
+                  guide={guide}
+                  sermon={sermon}
                   guideSlug={match.params.guideSlug}
                   studySlug={match.params.studySlug}
-                  setView={this.props.setView}
-                  setTitle={this.props.setTitle}
+                  setView={setView}
+                  setTitle={setTitle}
                   study={this.selectStudy(match.params.studySlug)}
                   image={guide.image}
                 />
@@ -119,7 +121,7 @@ export default class Guide extends Component {
 
           <Route
             path="/guides/:guideSlug"
-            render={({ match }) => (
+            render={() => (
               <main>
                 {guide ? (
                   <div>
@@ -130,7 +132,7 @@ export default class Guide extends Component {
                       />
                     )}
 
-                    {guide.highlight_first || this.state.sermon ? (
+                    {guide.highlight_first || sermon ? (
                       <Card
                         className="card--pullUp"
                         image={guide.studies[0].image}
@@ -138,7 +140,7 @@ export default class Guide extends Component {
                         description={guide.studies[0].description}
                         description_limit
                         cta="Go to study"
-                        link={`/guides/${this.props.slug}/${
+                        link={`/guides/${slug}/${
                           guide.studies[0].slug
                         }`}
                       />
@@ -147,7 +149,7 @@ export default class Guide extends Component {
                         <h1 className="big_title">{guide.name}</h1>
                         {guide.description
                         && guide.description.length >= 1
-                        && !this.state.sermon ? (
+                        && !sermon ? (
                           <ExpandableText
                             expanded
                             text={guide.description}
@@ -165,7 +167,7 @@ export default class Guide extends Component {
                             <Link
                               className="sermonList"
                               to={{
-                                pathname: `/guides/${this.props.slug}/${
+                                pathname: `/guides/${slug}/${
                                   study.slug
                                 }`,
                               }}
@@ -202,5 +204,8 @@ export default class Guide extends Component {
 Guide.propTypes = {
   slug: PropTypes.string.isRequired,
   apiEndpoint: PropTypes.string.isRequired,
-  church: PropTypes.object.isRequired,
+  setTitle: PropTypes.func.isRequired,
+  setView: PropTypes.func.isRequired,
+  church: PropTypes.shape().isRequired,
+  title: PropTypes.string.isRequired,
 };
