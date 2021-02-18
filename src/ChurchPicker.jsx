@@ -45,7 +45,6 @@ export default class ChurchPicker extends Component {
 
   render() {
     const { foundChurches } = this.state;
-    console.log({ foundChurches });
     return (
       <section className="churchPicker">
         <p>One21 works best when you connect it with your church:</p>
