@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import Card from "./card";
+import Card from "./Card";
 import SermonListItem from "./sermonListItem";
 import "./style/SermonList.css";
 

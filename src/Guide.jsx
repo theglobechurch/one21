@@ -4,7 +4,7 @@ import { Link, Route, Switch } from "react-router-dom";
 import PropTypes from "prop-types";
 import SermonListItem from "./sermonListItem";
 import Study from "./study";
-import Card from "./card";
+import Card from "./Card";
 import Loader from "./loader";
 import ExpandableText from "./expandableText";
 import "./style/SermonList.css";
@@ -138,7 +138,7 @@ export default class Guide extends Component {
                         image={guide.studies[0].image}
                         title={guide.studies[0].name}
                         description={guide.studies[0].description}
-                        description_limit
+                        descriptionLimit
                         cta="Go to study"
                         link={`/guides/${slug}/${
                           guide.studies[0].slug
