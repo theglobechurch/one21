@@ -4,6 +4,7 @@ import "./style/SermonList.css";
 import "./style/Calendar.css";
 import SermonListItem from "./sermonListItem";
 
+// ? Don't think this component is actually used
 class Calendar extends Component {
   componentDidMount() {
     this.props.setTitle("Recent sermons");

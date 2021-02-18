@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Card from "./card";
+import Card from "./Card";
 import Loader from "./loader";
 import ChurchPicker from "./churchPicker";
 import ApiEndpoint from "./ApiEndpoint";
@@ -74,7 +74,7 @@ class Landing extends Component {
             pretitle="Latest sermon:"
             title={study.name}
             description={study.description}
-            description_limit
+            descriptionLimit
             cta="Go to study"
             link={`/guides/sermons/${study.slug}`}
           />
@@ -86,7 +86,7 @@ class Landing extends Component {
             image={guide.image}
             title={guide.name}
             description={guide.teaser}
-            description_limit
+            descriptionLimit
             cta="Go to guide"
             link={`/guides/${guide.slug}`}
           />
