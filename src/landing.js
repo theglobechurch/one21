@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Card from "./Card";
 import Loader from "./loader";
-import ChurchPicker from "./churchPicker";
+import ChurchPicker from "./ChurchPicker";
 import ApiEndpoint from "./ApiEndpoint";
 import "./style/Landing.css";
 

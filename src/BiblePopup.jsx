@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./style/BiblePopup.css";
 
-// class BiblePopup extends Component {
 const BiblePopup = ({ passage, toggleBiblePopup }) => (
   <div className="biblePopup">
     <button className="btn" type="button" onClick={toggleBiblePopup}>
