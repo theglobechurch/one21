@@ -10,7 +10,7 @@ import Church from "./Church";
 import Profile from "./Profile";
 import GuideList from "./guidelist";
 import Guide from "./Guide";
-import CoreHeader from "./coreHeader";
+import CoreHeader from "./CoreHeader";
 import CoreNav from "./CoreNav";
 
 const one21Api = "https://builder.one21.org/api/";
