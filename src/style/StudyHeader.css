@@ -1,37 +1,27 @@
-@import './colours.scss';
-
 .studyHeader {
   align-items: center;
-  background-color: rgba($colour-active, .8);
+  background-color: rgba(58, 113, 139, 0.8);
   color: white;
   display: flex;
   font-size: 12px;
   height: 40px;
   justify-content: space-between;
   padding: 5px 16px;
-  width: 100%;
-
-  &__title {
+  width: 100%; }
+  .studyHeader__title {
     max-width: 50%;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
-
-    @media(min-width: 400px) {
-      max-width: 75%;
-    }
-  }
-
-  &__passage {
+    white-space: nowrap; }
+    @media (min-width: 400px) {
+      .studyHeader__title {
+        max-width: 75%; } }
+  .studyHeader__passage {
     background: no-repeat;
     border: none;
     color: white;
     cursor: pointer;
     font-size: 12px;
-    text-decoration: underline;
-
-    &:hover {
-      text-decoration: none;
-    }
-  }
-}
+    text-decoration: underline; }
+    .studyHeader__passage:hover {
+      text-decoration: none; }

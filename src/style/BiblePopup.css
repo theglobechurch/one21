@@ -1,7 +1,5 @@
-@import "./colours.scss";
-
 .biblePopup {
-  background: rgba($colour-active, 0.79);
+  background: rgba(58, 113, 139, 0.79);
   position: absolute;
   top: 0;
   bottom: 0;
@@ -9,30 +7,22 @@
   right: 0;
   z-index: 2;
   padding: 74px 16px;
-
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-
-  &__iframe {
+  justify-content: flex-start; }
+  .biblePopup__iframe {
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
     width: calc(100vw - 34px);
     height: calc(100vh - 150px);
-    margin-top: 16px;
-
+    margin-top: 16px; }
     @media (min-width: 800px) {
-      max-width: 500px;
-      margin: 16px auto 0;
-    }
-  }
-
-  &__iframe__int {
+      .biblePopup__iframe {
+        max-width: 500px;
+        margin: 16px auto 0; } }
+  .biblePopup__iframe__int {
     width: calc(100vw - 34px);
-    height: calc(100vh - 150px);
-
+    height: calc(100vh - 150px); }
     @media (min-width: 800px) {
-      max-width: 500px;
-    }
-  }
-}
+      .biblePopup__iframe__int {
+        max-width: 500px; } }

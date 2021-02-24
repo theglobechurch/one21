@@ -4,26 +4,20 @@
   border-radius: 2px;
   margin: 16px auto;
   width: calc(100% - 32px);
-  max-width: 480px;
-
+  max-width: 480px; }
   @media (min-width: 500px) {
-    max-width: initial;
-  }
-
-  &--pullUp {
+    .card {
+      max-width: initial; } }
+  .card--pullUp {
     position: relative;
-    margin-top: -25px;
-  }
-
-  header {
+    margin-top: -25px; }
+  .card header {
     height: 0;
     overflow: hidden;
     padding-bottom: 50%;
     position: relative;
-    width: 100%;
-  }
-
-  header img {
+    width: 100%; }
+  .card header img {
     border-radius: 2px 2px 0 0;
     display: block;
     height: 100%;
@@ -32,18 +26,10 @@
     object-fit: cover;
     position: absolute;
     top: 0;
-    width: 100%;
-  }
-
-  .pre_title {
-    margin: 0;
-  }
-
-  .big_title {
-    margin-bottom: 8px;
-  }
-
-  &__body {
-    padding: 16px;
-  }
-}
+    width: 100%; }
+  .card .pre_title {
+    margin: 0; }
+  .card .big_title {
+    margin-bottom: 8px; }
+  .card__body {
+    padding: 16px; }
