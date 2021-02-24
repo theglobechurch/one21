@@ -165,10 +165,16 @@ class App extends Component {
     const {
       church, guides, title, latestSermon, promotedGuide, emptyState,
     } = this.state;
+
+    let header;
+    if (title != null) {
+      header = <CoreHeader title={title} />;
+    }
     return (
       <Router path="/">
         <div className="app">
-          <CoreHeader title={title} />
+
+          { header }
 
           <ApiEndpoint.Provider value={one21Api}>
             <div className="container">
