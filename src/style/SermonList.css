@@ -1,0 +1,30 @@
+.sermonList {
+  text-decoration: none; }
+  .sermonList a {
+    text-decoration: none; }
+  .sermonList__item {
+    border-bottom: 1px solid #ccc;
+    font-size: 14px;
+    padding: 16px; }
+    .sermonList__item__leadimage {
+      margin-bottom: 16px;
+      width: 100%; }
+    .sermonList__item__body {
+      width: 100%; }
+    .sermonList__item__title {
+      font-size: 16px;
+      font-weight: normal;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap; }
+    .sermonList__item__date {
+      display: block; }
+    .sermonList__item__passage {
+      color: #72a6bf; }
+    .sermonList__item__star {
+      align-items: center;
+      color: #72a6bf;
+      display: flex;
+      padding: 0 16px; }
+      .sermonList__item__star:hover {
+        color: #446d81; }

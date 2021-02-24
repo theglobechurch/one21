@@ -1,5 +1,3 @@
-@import "colours";
-
 .loader {
   display: flex;
   flex-direction: column;
@@ -11,54 +9,44 @@
   max-width: 480px;
   padding: 20px 10px;
   text-align: center;
-  width: calc(100% - 32px);
-}
+  width: calc(100% - 32px); }
 
 .loader__icon {
   animation: circle_rotate 1.4s linear infinite;
   height: 50px;
   margin: 0 auto;
-  width: 50px;
-}
+  width: 50px; }
 
 .loader__text {
   font-size: 24px;
   font-weight: 400;
   line-height: 32px;
-  margin-top: 25px;
-}
+  margin-top: 25px; }
 
 .loader__svg {
-  color: $colour-active;
+  color: #3a718b;
   height: 50px;
-  width: 50px;
-}
+  width: 50px; }
 
 .loader__svg__circle {
   animation: dashed_circle 1.4s ease-in-out infinite;
-  color: $colour-active;
+  color: #3a718b;
   line-height: 1;
   stroke-dasharray: 80px, 200px;
   stroke-dashoffset: 0px;
-  stroke: currentColor;
-}
+  stroke: currentColor; }
 
 @keyframes circle_rotate {
   100% {
-    transform: rotate(360deg);
-  }
-}
+    transform: rotate(360deg); } }
+
 @keyframes dashed_circle {
   0% {
     stroke-dasharray: 1px, 200px;
-    stroke-dashoffset: 0px;
-  }
+    stroke-dashoffset: 0px; }
   50% {
     stroke-dasharray: 100px, 200px;
-    stroke-dashoffset: -15px;
-  }
+    stroke-dashoffset: -15px; }
   100% {
     stroke-dasharray: 100px, 200px;
-    stroke-dashoffset: -120px;
-  }
-}
+    stroke-dashoffset: -120px; } }

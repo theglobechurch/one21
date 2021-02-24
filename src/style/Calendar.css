@@ -1,0 +1,9 @@
+.calendar {
+  margin: 56px auto;
+  max-width: 550px;
+  background-color: white; }
+  @media (min-width: 550px) {
+    .calendar {
+      box-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.27);
+      border-radius: 2px;
+      margin: 84px auto; } }
