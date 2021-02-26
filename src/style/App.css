@@ -175,7 +175,7 @@ p {
     color: #3a718b; }
 
 .tablecloth {
-  background: url(/images/tablecloth.jpg) repeat center center;
+  background: url(../img/tablecloth.jpg) repeat center center;
   height: 225px;
   width: 100%;
   position: fixed;
