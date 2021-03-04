@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import {
+  bool, string, shape, arrayOf, objectOf, func,
+} from "prop-types";
 import Card from "./Card";
 import Loader from "./Loader";
 import ChurchPicker from "./ChurchPicker";
@@ -16,8 +19,9 @@ class Landing extends Component {
   }
 
   componentDidMount() {
-    this.props.setTitle(null);
-    this.props.setView("/");
+    const { setTitle, setView } = this.props;
+    setTitle(null);
+    setView("/");
   }
 
   UNSAFE_componentWillReceiveProps() {
@@ -32,7 +36,6 @@ class Landing extends Component {
   render() {
     const { study, guide, emptyState } = this.props;
     const { churchData, guideDataPresent } = this.state;
-
     return (
       <main className="landing">
         <div className="tablecloth tablecloth--big" />
@@ -95,5 +98,41 @@ class Landing extends Component {
     );
   }
 }
+
+Landing.propTypes = {
+  emptyState: bool.isRequired,
+  guide: shape({
+    copyright: string,
+    description: string,
+    highlight_first: bool,
+    image: string,
+    images: objectOf(string),
+    name: string,
+    slug: string,
+    teaser: string,
+  }).isRequired,
+  setView: func.isRequired,
+  setTitle: func.isRequired,
+  study: shape({
+    date: string,
+    description: string,
+    end: string,
+    image: string,
+    images: objectOf(string),
+    name: string,
+    passage: string,
+    passage_ref: arrayOf(objectOf(string)),
+    questions: arrayOf(shape({
+      followup: arrayOf(string),
+      lead: string,
+      type: string,
+    })),
+    recording_url: string,
+    scripture: arrayOf(string),
+    slug: string,
+    start: string,
+    website_url: string,
+  }).isRequired,
+};
 
 export default Landing;
