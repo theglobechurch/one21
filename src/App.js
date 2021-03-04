@@ -8,7 +8,7 @@ import Landing from "./landing";
 import About from "./About";
 import Church from "./Church";
 import Profile from "./Profile";
-import GuideList from "./guidelist";
+import GuideList from "./Guidelist";
 import Guide from "./Guide";
 import CoreHeader from "./CoreHeader";
 import CoreNav from "./CoreNav";

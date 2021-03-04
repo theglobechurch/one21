@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Icon from "./icon";
+import Icon from "./Icon";
 import "./style/Study.css";
 
 class About extends Component {
