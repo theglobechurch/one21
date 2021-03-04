@@ -20,6 +20,7 @@ export default class Question extends Component {
     const {
       itemNo, question, passage, scripture,
     } = this.props;
+    console.log({ question });
     window.scrollTo(0, 0);
     return (
       <section className="study__question question">
@@ -43,8 +44,8 @@ export default class Question extends Component {
 
         {question.followup && (
           <ul className="question__subquestions">
-            {question.followup.map((q, i) => (
-              <li key={i}>{q}</li>
+            {question.followup.map((q) => (
+              <li key={q}>{q}</li>
             ))}
           </ul>
         )}
