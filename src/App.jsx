@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import ApiEndpoint from "./ApiEndpoint";
 
 import "./style/App.css";
-import Landing from "./landing";
+import Landing from "./Landing";
 import About from "./About";
 import Church from "./Church";
 import Profile from "./Profile";
