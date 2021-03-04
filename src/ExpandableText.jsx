@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
+import PropTypes, { string } from "prop-types";
 import Icon from "./Icon";
 import "./style/ExpandableText.css";
 
@@ -8,12 +8,13 @@ export default class ExpandableText extends Component {
     super(props);
     this.container = null;
     this.state = {
-      expanded: false,
+      expandedState: false,
     };
   }
 
   componentDidMount() {
-    if (this.props.expanded) {
+    const { expanded } = this.props;
+    if (expanded) {
       this.container = document.querySelector(".expandableText__container");
 
       if (this.container) {
@@ -23,33 +24,36 @@ export default class ExpandableText extends Component {
   }
 
   toggleView(ev) {
+    const { expandedState } = this.state;
     if (ev) { ev.preventDefault(); }
     if (this.container) {
       this.container.classList.toggle("expandableText__container--contracted");
     }
-    this.setState({ expanded: !this.state.expanded });
+    this.setState({ expandedState: !expandedState });
   }
 
   render() {
-    const { text } = this.props;
+    const { expanded, scripture, text } = this.props;
+    const { expandedState } = this.state;
     return (
       <div className="expandableText">
         <div className="expandableText__container">
           { text.map((p, i) => (
             <div
-              className={`expandableText__container__block${this.props.scripture ? " expandableText__container__block--scripture" : ""}`}
+              className={`expandableText__container__block${scripture ? " expandableText__container__block--scripture" : ""}`}
               dangerouslySetInnerHTML={{ __html: p }}
               key={i}
             />
           ))}
         </div>
 
-        { this.props.expanded && (
+        { expanded && (
           <button
+            type="button"
             className="expandableText__button"
             onClick={this.toggleView.bind(this)}
           >
-            { this.state.expanded ? (
+            { expandedState ? (
               <span>Show less</span>
             ) : (
               <span>Keep Reading</span>
@@ -64,6 +68,6 @@ export default class ExpandableText extends Component {
 
 ExpandableText.propTypes = {
   expanded: PropTypes.bool.isRequired,
-  scripture: PropTypes.bool,
-  text: PropTypes.array.isRequired,
+  scripture: PropTypes.bool.isRequired,
+  text: PropTypes.arrayOf(string).isRequired,
 };
