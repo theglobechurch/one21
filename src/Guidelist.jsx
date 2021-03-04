@@ -85,6 +85,13 @@ GuideList.propTypes = {
   church: shape({
     email: string,
     lead_image: string,
+    lead_images: objectOf(string),
+    logo: string,
+    logo_sq: string,
+    logo_sq_large: string,
+    name: string,
+    slug: string,
+    url: string,
   }).isRequired,
   promoted_guide: shape().isRequired,
 };
