@@ -23,11 +23,10 @@ class Church extends Component {
     this.lookup();
   }
 
-  // eslint-disable-next-line camelcase
-  UNSAFE_componentWillReceiveProps(nextProps) {
+  componentDidUpdate(prevProps) {
     const { slug } = this.state;
-    const nextSlug = nextProps.slug;
-    if (nextSlug !== slug) {
+    const prevSlug = prevProps.slug;
+    if (prevSlug !== slug) {
       this.lookup();
     }
   }
