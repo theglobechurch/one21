@@ -3,7 +3,7 @@ import { Link, Route, Switch } from "react-router-dom";
 
 import PropTypes from "prop-types";
 import SermonListItem from "./sermonListItem";
-import Study from "./study";
+import Study from "./Study";
 import Card from "./Card";
 import Loader from "./loader";
 import ExpandableText from "./expandableText";
