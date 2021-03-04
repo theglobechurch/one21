@@ -4,7 +4,7 @@ import {
 } from "prop-types";
 import { Link } from "react-router-dom";
 import Card from "./Card";
-import SermonListItem from "./sermonListItem";
+import SermonListItem from "./SermonListItem";
 import "./style/SermonList.css";
 
 export default class GuideList extends Component {
