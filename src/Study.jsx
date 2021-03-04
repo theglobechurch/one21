@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import {
   BrowserRouter as Router, Route, Switch, Link,
 } from "react-router-dom";
-import PropTypes from "prop-types";
+import {
+  string, shape, func, objectOf, arrayOf,
+} from "prop-types";
 import Question from "./question";
 import BiblePopup from "./BiblePopup";
 import StudyHeader from "./studyHeader";
@@ -52,7 +54,7 @@ export default class Study extends Component {
   render() {
     const { study, guideSlug, studySlug } = this.props;
     const { image, biblePopup } = this.state;
-
+    console.log({ study });
     return (
       <Router basename={`/guides/${guideSlug}/${studySlug}`}>
         <div>
@@ -273,10 +275,29 @@ export default class Study extends Component {
 }
 
 Study.propTypes = {
-  study: PropTypes.shape.isRequired,
-  setView: PropTypes.func.isRequired,
-  setTitle: PropTypes.func.isRequired,
-  guideSlug: PropTypes.string.isRequired,
-  studySlug: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
+  study: shape({
+    date: string.isRequired,
+    description: string.isRequired,
+    end: string.isRequired,
+    image: string.isRequired,
+    images: objectOf(string),
+    name: string.isRequired,
+    passage: string.isRequired,
+    passage_ref: arrayOf(objectOf(string)).isRequired,
+    questions: arrayOf(shape({
+      followup: arrayOf(string),
+      lead: string,
+      type: string,
+    })),
+    recording_url: string,
+    scripture: arrayOf(string),
+    slug: string,
+    start: string,
+    website_url: string,
+  }).isRequired,
+  setView: func.isRequired,
+  setTitle: func.isRequired,
+  guideSlug: string.isRequired,
+  studySlug: string.isRequired,
+  image: string.isRequired,
 };
