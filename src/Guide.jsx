@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import SermonListItem from "./sermonListItem";
 import Study from "./Study";
 import Card from "./Card";
-import Loader from "./loader";
+import Loader from "./Loader";
 import ExpandableText from "./expandableText";
 import "./style/SermonList.css";
 

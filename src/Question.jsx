@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
+import {
+  string, arrayOf, shape,
+} from "prop-types";
 import ExpandableText from "./expandableText";
 
 export default class Question extends Component {
@@ -8,13 +10,16 @@ export default class Question extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.location !== prevProps.location) {
+    const { location } = this.props;
+    if (location !== prevProps.location) {
       window.scrollTo(0, 0);
     }
   }
 
   render() {
-    const { itemNo, question } = this.props;
+    const {
+      itemNo, question, passage, scripture,
+    } = this.props;
     window.scrollTo(0, 0);
     return (
       <section className="study__question question">
@@ -44,13 +49,13 @@ export default class Question extends Component {
           </ul>
         )}
 
-        {this.props.scripture && (
+        {scripture && (
           <section className="question__scripture">
-            <h2 className="dinky_title">{this.props.passage}</h2>
+            <h2 className="dinky_title">{passage}</h2>
             <ExpandableText
               expanded
               scripture
-              text={this.props.scripture}
+              text={scripture}
             />
           </section>
         )}
@@ -60,8 +65,13 @@ export default class Question extends Component {
 }
 
 Question.propTypes = {
-  question: PropTypes.object.isRequired,
-  itemNo: PropTypes.string.isRequired,
-  passage: PropTypes.string,
-  scripture: PropTypes.array,
+  question: shape({
+    followup: arrayOf(string),
+    lead: string,
+    type: string,
+  }).isRequired,
+  itemNo: string.isRequired,
+  location: string.isRequired,
+  passage: string.isRequired,
+  scripture: arrayOf(string).isRequired,
 };
