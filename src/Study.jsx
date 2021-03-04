@@ -7,7 +7,7 @@ import {
 } from "prop-types";
 import Question from "./question";
 import BiblePopup from "./BiblePopup";
-import StudyHeader from "./studyHeader";
+import StudyHeader from "./StudyHeader";
 import StudyFooter from "./StudyFooter";
 import StudyLeadImage from "./StudyLeadImage";
 import ExpandableText from "./expandableText";
