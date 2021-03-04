@@ -20,7 +20,6 @@ export default class Question extends Component {
     const {
       itemNo, question, passage, scripture,
     } = this.props;
-    console.log({ question });
     window.scrollTo(0, 0);
     return (
       <section className="study__question question">
