@@ -23,6 +23,6 @@ module.exports = {
     "react/jsx-filename-extension": ["warn", { extensions: [".js", ".jsx"] }],
     // TODO - Turn this rule back on when we replace the binds
     "react/jsx-no-bind": "off",
-    // "react/destructuring-assignment": ["warn", "never"],
+    "react/jsx-props-no-spreading": "off",
   },
 };
