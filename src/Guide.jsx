@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link, Route, Switch } from "react-router-dom";
 
 import PropTypes from "prop-types";
-import SermonListItem from "./sermonListItem";
+import SermonListItem from "./SermonListItem";
 import Study from "./Study";
 import Card from "./Card";
 import Loader from "./Loader";

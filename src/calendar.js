@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import "./style/SermonList.css";
 import "./style/Calendar.css";
-import SermonListItem from "./sermonListItem";
+import SermonListItem from "./SermonListItem";
 
 // ? Don't think this component is actually used
 class Calendar extends Component {
