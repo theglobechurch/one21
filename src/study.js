@@ -9,7 +9,7 @@ import StudyHeader from "./studyHeader";
 import StudyFooter from "./studyFooter";
 import StudyLeadImage from "./StudyLeadImage";
 import ExpandableText from "./expandableText";
-import Icon from "./icon";
+import Icon from "./Icon";
 import "./style/Study.css";
 
 export default class Study extends Component {
