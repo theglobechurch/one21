@@ -10,7 +10,7 @@ import BiblePopup from "./BiblePopup";
 import StudyHeader from "./StudyHeader";
 import StudyFooter from "./StudyFooter";
 import StudyLeadImage from "./StudyLeadImage";
-import ExpandableText from "./expandableText";
+import ExpandableText from "./ExpandableText";
 import Icon from "./Icon";
 import "./style/Study.css";
 

@@ -6,7 +6,7 @@ import SermonListItem from "./SermonListItem";
 import Study from "./Study";
 import Card from "./Card";
 import Loader from "./Loader";
-import ExpandableText from "./expandableText";
+import ExpandableText from "./ExpandableText";
 import "./style/SermonList.css";
 
 export default class Guide extends Component {
