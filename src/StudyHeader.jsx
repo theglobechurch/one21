@@ -3,36 +3,41 @@ import PropTypes from "prop-types";
 import "./style/StudyHeader.css";
 
 export default class StudyHeader extends Component {
-  static defaultProps = {
-    passageLinked: true
-  };
-
-  showPassage(ev) {
+  showPassage = (ev) => {
     ev.preventDefault();
   }
 
   render() {
+    const {
+      name, passage, passageLinked, toggleBiblePopup,
+    } = this.props;
     return (
       <div className="studyHeader">
-        <div className="studyHeader__title">{this.props.name}</div>
-        {this.props.passageLinked ? (
+        <div className="studyHeader__title">{name}</div>
+        {passageLinked ? (
           <button
+            type="button"
             className="studyHeader__passage"
-            onClick={this.props.toggleBiblePopup}
+            onClick={toggleBiblePopup}
           >
-            {this.props.passage}
+            {passage}
           </button>
         ) : (
-          <span className="studyHeader__title">{this.props.passage}</span>
+          <span className="studyHeader__title">{passage}</span>
         )}
       </div>
     );
   }
 }
 
+StudyHeader.defaultProps = {
+  passageLinked: true,
+
+};
+
 StudyHeader.propTypes = {
   name: PropTypes.string.isRequired,
-  passage: PropTypes.string,
+  passage: PropTypes.string.isRequired,
   passageLinked: PropTypes.bool,
-  toggleBiblePopup: PropTypes.func.isRequired
+  toggleBiblePopup: PropTypes.func.isRequired,
 };
