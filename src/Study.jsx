@@ -8,7 +8,7 @@ import {
 import Question from "./question";
 import BiblePopup from "./BiblePopup";
 import StudyHeader from "./studyHeader";
-import StudyFooter from "./studyFooter";
+import StudyFooter from "./StudyFooter";
 import StudyLeadImage from "./StudyLeadImage";
 import ExpandableText from "./expandableText";
 import Icon from "./Icon";
@@ -54,7 +54,6 @@ export default class Study extends Component {
   render() {
     const { study, guideSlug, studySlug } = this.props;
     const { image, biblePopup } = this.state;
-    console.log({ study });
     return (
       <Router basename={`/guides/${guideSlug}/${studySlug}`}>
         <div>
