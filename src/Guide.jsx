@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { Link, Route, Switch } from "react-router-dom";
 
-import PropTypes from "prop-types";
+import {
+  func, string, shape, objectOf,
+} from "prop-types";
 import SermonListItem from "./SermonListItem";
 import Study from "./Study";
 import Card from "./Card";
@@ -162,7 +164,7 @@ export default class Guide extends Component {
 
                     {guide.studies
                       && guide.studies.map((study, index) => (
-                        <div key={index}>
+                        <div key={study.slug}>
                           {this.showListItem(index) === true && (
                             <Link
                               className="sermonList"
@@ -202,10 +204,20 @@ export default class Guide extends Component {
 }
 
 Guide.propTypes = {
-  slug: PropTypes.string.isRequired,
-  apiEndpoint: PropTypes.string.isRequired,
-  setTitle: PropTypes.func.isRequired,
-  setView: PropTypes.func.isRequired,
-  church: PropTypes.shape().isRequired,
-  title: PropTypes.string.isRequired,
+  slug: string.isRequired,
+  apiEndpoint: string.isRequired,
+  setTitle: func.isRequired,
+  setView: func.isRequired,
+  church: shape({
+    email: string,
+    lead_image: string,
+    lead_images: objectOf(string),
+    logo: string,
+    logo_sq: string,
+    logo_sq_large: string,
+    name: string,
+    slug: string,
+    url: string,
+  }).isRequired,
+  title: string.isRequired,
 };
