@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
+import {
+  string, func, bool, arrayOf, objectOf, shape,
+} from "prop-types";
 import { Link } from "react-router-dom";
 import Card from "./Card";
 import SermonListItem from "./sermonListItem";
@@ -7,19 +9,19 @@ import "./style/SermonList.css";
 
 export default class GuideList extends Component {
   componentDidMount() {
-    this.props.setTitle("Guides");
-    this.props.setView("/guides");
+    const { setTitle, setView } = this.props;
+    setTitle("Guides");
+    setView("/guides");
     window.scrollTo(0, 0);
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate() {
     window.scrollTo(0, 0);
   }
 
   render() {
-    const { church, guides, promoted_guide } = this.props;
+    const { church, guides, promoted_guide: promotedGuide } = this.props;
     const sermon = guides.filter((g) => g.slug === "sermons")[0];
-
     return (
       <div className="study">
         <div className="tablecloth" />
@@ -35,20 +37,20 @@ export default class GuideList extends Component {
           />
         )}
 
-        {promoted_guide && (
+        {promotedGuide && (
           <Card
-            image={promoted_guide.image}
+            image={promotedGuide.image}
             pretitle="Featured guide:"
-            title={promoted_guide.name}
-            description={promoted_guide.teaser}
+            title={promotedGuide.name}
+            description={promotedGuide.teaser}
             cta="Go to guide"
-            link={`/guides/${promoted_guide.slug}`}
+            link={`/guides/${promotedGuide.slug}`}
           />
         )}
 
         {guides
-          && guides.map((guide, index) => (
-            <div className="sermonList" key={index}>
+          && guides.map((guide) => (
+            <div className="sermonList" key={guide.slug}>
               <Link
                 to={{
                   pathname: `/guides/${guide.slug}`,
@@ -68,7 +70,21 @@ export default class GuideList extends Component {
 }
 
 GuideList.propTypes = {
-  setTitle: PropTypes.func.isRequired,
-  guides: PropTypes.array.isRequired,
-  promoted_guide: PropTypes.object,
+  setTitle: func.isRequired,
+  setView: func.isRequired,
+  guides: arrayOf(shape({
+    copyRight: string,
+    description: string,
+    highlight_first: bool,
+    image: string,
+    images: objectOf(string),
+    name: string,
+    slug: string,
+    teaser: string,
+  })).isRequired,
+  church: shape({
+    email: string,
+    lead_image: string,
+  }).isRequired,
+  promoted_guide: shape().isRequired,
 };
