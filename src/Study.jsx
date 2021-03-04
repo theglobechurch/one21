@@ -5,7 +5,7 @@ import {
 import {
   string, shape, func, objectOf, arrayOf,
 } from "prop-types";
-import Question from "./question";
+import Question from "./Question";
 import BiblePopup from "./BiblePopup";
 import StudyHeader from "./StudyHeader";
 import StudyFooter from "./StudyFooter";

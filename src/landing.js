@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Card from "./Card";
-import Loader from "./loader";
+import Loader from "./Loader";
 import ChurchPicker from "./ChurchPicker";
 import ApiEndpoint from "./ApiEndpoint";
 import "./style/Landing.css";
