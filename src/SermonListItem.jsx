@@ -1,11 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import moment from "moment";
+import dayjs from "dayjs";
+import advancedFormat from "dayjs/plugin/advancedFormat";
+
+dayjs.extend(advancedFormat);
 
 const SermonListItem = ({
   name, date, displayImage, passage, baseUrl, image,
 }) => {
-  const recordingDate = moment(date);
+  const recordingDate = dayjs(date);
   let guideImage = image;
   if (image && image.substring(0, 4) !== "http") {
     guideImage = baseUrl + image;
