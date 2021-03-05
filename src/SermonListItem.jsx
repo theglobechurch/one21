@@ -3,12 +3,12 @@ import PropTypes from "prop-types";
 import moment from "moment";
 
 const SermonListItem = ({
-  name, date, displayImage, passage, base_url, image,
+  name, date, displayImage, passage, baseUrl, image,
 }) => {
   const recordingDate = moment(date);
   let guideImage = image;
   if (image && image.substring(0, 4) !== "http") {
-    guideImage = base_url + image;
+    guideImage = baseUrl + image;
   }
 
   return (
@@ -40,6 +40,6 @@ SermonListItem.propTypes = {
   date: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   passage: PropTypes.string.isRequired,
-  base_url: PropTypes.string.isRequired,
+  baseUrl: PropTypes.string.isRequired,
   displayImage: PropTypes.bool.isRequired,
 };

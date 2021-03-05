@@ -24,6 +24,8 @@ class Landing extends Component {
     setView("/");
   }
 
+  // TODO: Replace
+  // eslint-disable-next-line
   UNSAFE_componentWillReceiveProps() {
     this.contentPresent();
   }
