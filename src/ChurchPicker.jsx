@@ -50,14 +50,25 @@ export default class ChurchPicker extends Component {
         <p>One21 works best when you connect it with your church:</p>
 
         <div className="churchPicker__inputGroup">
+
+          <span className="churchPicker__bar" />
+
           <input
+            id="churchPicker"
             className="churchPicker__input"
             onChange={this.churchLookup.bind(this)}
             type="text"
             required
           />
-          <span className="churchPicker__bar" />
-          <label className="churchPicker__label">Find your church…</label>
+
+          {/* eslint jsx-a11y/label-has-associated-control: 0 */}
+          <label
+            htmlFor="churchPicker"
+            className="churchPicker__label"
+          >
+            Find your church…
+          </label>
+
         </div>
 
         {foundChurches && (

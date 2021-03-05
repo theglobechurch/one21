@@ -174,7 +174,14 @@ export default class Guide extends Component {
                                 }`,
                               }}
                             >
-                              <SermonListItem {...study} displayImage={false} />
+                              <SermonListItem
+                                name={study.name}
+                                date={study.date}
+                                image={study.image}
+                                passage={study.passage}
+                                displayImage={false}
+                              />
+                              {/* <SermonListItem {...study} displayImage={false} /> */}
                             </Link>
                           )}
                         </div>

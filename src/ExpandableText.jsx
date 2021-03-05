@@ -42,7 +42,7 @@ export default class ExpandableText extends Component {
             <div
               className={`expandableText__container__block${scripture ? " expandableText__container__block--scripture" : ""}`}
               dangerouslySetInnerHTML={{ __html: p }}
-              key={i}
+              key={String(i)}
             />
           ))}
         </div>

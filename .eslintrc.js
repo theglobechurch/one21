@@ -1,6 +1,6 @@
 module.exports = {
   env: {
-    browser: false,
+    browser: true,
   },
   extends: [
     "plugin:react/recommended",
@@ -24,7 +24,5 @@ module.exports = {
     // TODO - Turn this rule back on when we replace the binds
     "react/jsx-no-bind": "off",
     // "react/destructuring-assignment": ["warn", "never"],
-
-    "react/jsx-props-no-spreading": "off",
   },
 };
