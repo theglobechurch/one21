@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Icon from "./Icon";
-import "./style/Study.css";
+import Icon from "../../components/Icon/Icon";
+import "../../style/Study.css";
 
 class About extends Component {
   constructor(props) {

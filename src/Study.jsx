@@ -11,7 +11,7 @@ import StudyHeader from "./StudyHeader";
 import StudyFooter from "./StudyFooter";
 import StudyLeadImage from "./StudyLeadImage";
 import ExpandableText from "./ExpandableText";
-import Icon from "./Icon";
+import Icon from "./components/Icon/Icon";
 import "./style/Study.css";
 
 export default class Study extends Component {

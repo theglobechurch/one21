@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
-import Loader from "./Loader";
+import Loader from "./components/Loader/Loader";
 import ChurchPicker from "./ChurchPicker";
 
 class Church extends Component {

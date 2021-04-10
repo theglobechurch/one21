@@ -1,7 +1,7 @@
 import React from "react";
 import { string, number } from "prop-types";
 import { Link } from "react-router-dom";
-import Icon from "./Icon";
+import Icon from "./components/Icon/Icon";
 
 const StudyFooter = ({ itemCount, itemNo }) => {
   const itemNumber = parseInt(itemNo, 10);

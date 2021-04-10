@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes, { string } from "prop-types";
-import Icon from "./Icon";
+import Icon from "./components/Icon/Icon";
 import "./style/ExpandableText.css";
 
 export default class ExpandableText extends Component {

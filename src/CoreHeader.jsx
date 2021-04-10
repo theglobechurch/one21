@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import Icon from "./Icon";
+import Icon from "./components/Icon/Icon";
 
 import "./style/CoreHeader.css";
 
