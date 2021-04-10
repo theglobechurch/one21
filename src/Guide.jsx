@@ -6,8 +6,8 @@ import {
 } from "prop-types";
 import SermonListItem from "./SermonListItem";
 import Study from "./Study";
-import Card from "./Card";
-import Loader from "./Loader";
+import Card from "./components/Card/Card";
+import Loader from "./components/Loader/Loader";
 import ExpandableText from "./ExpandableText";
 import "./style/SermonList.css";
 

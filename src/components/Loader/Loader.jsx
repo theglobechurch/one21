@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./style/Loader.css";
+import "./Loader.css";
 
 const Loader = ({ message, minHeight }) => (
   <div className="loader" style={{ minHeight }}>

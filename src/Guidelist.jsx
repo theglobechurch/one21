@@ -3,7 +3,7 @@ import {
   string, func, bool, arrayOf, objectOf, shape,
 } from "prop-types";
 import { Link } from "react-router-dom";
-import Card from "./Card";
+import Card from "./components/Card/Card";
 import SermonListItem from "./SermonListItem";
 import "./style/SermonList.css";
 

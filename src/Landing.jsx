@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import {
   bool, string, shape, arrayOf, objectOf, func,
 } from "prop-types";
-import Card from "./Card";
-import Loader from "./Loader";
+import Card from "./components/Card/Card";
+import Loader from "./components/Loader/Loader";
 import ChurchPicker from "./ChurchPicker";
 import ApiEndpoint from "./ApiEndpoint";
 import "./style/Landing.css";

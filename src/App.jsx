@@ -5,7 +5,7 @@ import ApiEndpoint from "./ApiEndpoint";
 
 import "./style/App.css";
 import Landing from "./Landing";
-import About from "./About";
+import About from "./pages/About/About";
 import Church from "./Church";
 import Profile from "./Profile";
 import GuideList from "./Guidelist";
