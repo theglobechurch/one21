@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import "./style/ChurchPicker.css";
+import "./ChurchPicker.css";
 
 export default class ChurchPicker extends Component {
   constructor(props) {

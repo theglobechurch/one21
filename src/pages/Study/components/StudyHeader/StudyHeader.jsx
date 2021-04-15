@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import "./style/StudyHeader.css";
+import "./StudyHeader.css";
 
 export default class StudyHeader extends Component {
   showPassage = (ev) => {
