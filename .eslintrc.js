@@ -1,6 +1,7 @@
 module.exports = {
   env: {
     browser: true,
+    jest: true, // allows eslint to recognise jest functions
   },
   extends: [
     "plugin:react/recommended",
@@ -19,10 +20,11 @@ module.exports = {
   ],
   parser: "babel-eslint",
   rules: {
-    "quotes": ["error", "double"],
+    quotes: ["error", "double"],
     "react/jsx-filename-extension": ["warn", { extensions: [".js", ".jsx"] }],
     // TODO - Turn this rule back on when we replace the binds
     "react/jsx-no-bind": "off",
     "react/jsx-props-no-spreading": "off",
+    "import/no-extraneous-dependencies": ["error", { devDependencies: true }],
   },
 };
