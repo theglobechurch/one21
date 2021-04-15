@@ -5,14 +5,14 @@ import {
 import {
   string, shape, func, objectOf, arrayOf,
 } from "prop-types";
-import Question from "./Question";
-import BiblePopup from "./BiblePopup";
-import StudyHeader from "./StudyHeader";
-import StudyFooter from "./StudyFooter";
-import StudyLeadImage from "./StudyLeadImage";
-import ExpandableText from "./ExpandableText";
-import Icon from "./components/Icon/Icon";
-import "./style/Study.css";
+import Question from "./components/Question/Question";
+import BiblePopup from "./components/BiblePopup/BiblePopup";
+import StudyHeader from "./components/StudyHeader/StudyHeader";
+import StudyFooter from "./components/StudyFooter/StudyFooter";
+import StudyLeadImage from "./components/StudyLeadImage/StudyLeadImage";
+import ExpandableText from "../../components/ExpandableText/ExpandableText";
+import Icon from "../../components/Icon/Icon";
+import "../../style/Study.css";
 
 export default class Study extends Component {
   constructor(props) {

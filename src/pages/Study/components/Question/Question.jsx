@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import {
   string, arrayOf, shape,
 } from "prop-types";
-import ExpandableText from "./ExpandableText";
+import ExpandableText from "../../../../components/ExpandableText/ExpandableText";
 
 export default class Question extends Component {
   componentDidMount() {

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./style/BiblePopup.css";
+import "./BiblePopup.css";
 
 const BiblePopup = ({ passage, toggleBiblePopup }) => (
   <div className="biblePopup">

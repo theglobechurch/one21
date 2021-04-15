@@ -4,14 +4,14 @@ import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import ApiEndpoint from "./ApiEndpoint";
 
 import "./style/App.css";
-import Landing from "./Landing";
+import Landing from "./pages/Landing/Landing";
 import About from "./pages/About/About";
-import Church from "./Church";
-import Profile from "./Profile";
-import GuideList from "./Guidelist";
-import Guide from "./Guide";
-import CoreHeader from "./CoreHeader";
-import CoreNav from "./CoreNav";
+import Church from "./pages/Church/Church";
+import Profile from "./pages/Profile/Profile";
+import GuideList from "./pages/GuideList/Guidelist";
+import Guide from "./pages/Guide/Guide";
+import CoreHeader from "./components/CoreHeader/CoreHeader";
+import CoreNav from "./components/CoreNav/CoreNav";
 
 const one21Api = "https://builder.one21.org/api/";
 

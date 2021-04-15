@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import Icon from "./components/Icon/Icon";
-import "./style/CoreNav.css";
+import Icon from "../Icon/Icon";
+import "./CoreNav.css";
 
 const CoreNav = ({ view, guides }) => (
   <nav className="coreNav">
