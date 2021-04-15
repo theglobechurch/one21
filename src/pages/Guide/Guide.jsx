@@ -4,12 +4,12 @@ import { Link, Route, Switch } from "react-router-dom";
 import {
   func, string, shape, objectOf,
 } from "prop-types";
-import SermonListItem from "./SermonListItem";
-import Study from "./Study";
-import Card from "./components/Card/Card";
-import Loader from "./components/Loader/Loader";
-import ExpandableText from "./ExpandableText";
-import "./style/SermonList.css";
+import SermonListItem from "../../components/SermonListItem/SermonListItem";
+import Study from "../Study/Study";
+import Card from "../../components/Card/Card";
+import Loader from "../../components/Loader/Loader";
+import ExpandableText from "../../components/ExpandableText/ExpandableText";
+import "../../style/SermonList.css";
 
 export default class Guide extends Component {
   constructor(props) {

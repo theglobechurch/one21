@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import Icon from "./components/Icon/Icon";
-import "./style/Study.css";
+import Icon from "../../components/Icon/Icon";
+import "../../style/Study.css";
 
 export default class Profile extends Component {
   constructor(props) {

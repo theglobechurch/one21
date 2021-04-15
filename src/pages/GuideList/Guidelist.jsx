@@ -3,9 +3,9 @@ import {
   string, func, bool, arrayOf, objectOf, shape,
 } from "prop-types";
 import { Link } from "react-router-dom";
-import Card from "./components/Card/Card";
-import SermonListItem from "./SermonListItem";
-import "./style/SermonList.css";
+import Card from "../../components/Card/Card";
+import SermonListItem from "../../components/SermonListItem/SermonListItem";
+import "../../style/SermonList.css";
 
 export default class GuideList extends Component {
   componentDidMount() {

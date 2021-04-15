@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import Icon from "./components/Icon/Icon";
+import Icon from "../Icon/Icon";
 
-import "./style/CoreHeader.css";
+import "./CoreHeader.css";
 
 export default class CoreHeader extends Component {
   static backLink() {
