@@ -9,8 +9,12 @@ const Icon = ({ classname, icon }) => (
   </svg>
 );
 
+Icon.defaultProps = {
+  classname: "",
+};
+
 Icon.propTypes = {
-  classname: string.isRequired,
+  classname: string,
   icon: string.isRequired,
 
 };

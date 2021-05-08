@@ -163,7 +163,7 @@ class App extends Component {
 
   render() {
     const {
-      church, guides, title, latestSermon, promotedGuide, emptyState,
+      church, guides, title, latestSermon, promotedGuide, emptyState, view,
     } = this.state;
 
     let header;
@@ -277,7 +277,7 @@ class App extends Component {
                 )}
               />
             </div>
-            <CoreNav {...this.state} />
+            <CoreNav view={view} guides={guides} />
           </ApiEndpoint.Provider>
         </div>
       </Router>

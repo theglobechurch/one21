@@ -6,6 +6,7 @@ module.exports = {
   extends: [
     "plugin:react/recommended",
     "airbnb",
+    "plugin:testing-library/react",
   ],
   parserOptions: {
     ecmaFeatures: {
@@ -17,6 +18,7 @@ module.exports = {
   plugins: [
     "react",
     "babel",
+    "testing-library",
   ],
   parser: "babel-eslint",
   rules: {
