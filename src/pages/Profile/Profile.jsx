@@ -7,6 +7,8 @@ import "../../style/Study.css";
 export default class Profile extends Component {
   constructor(props) {
     super(props);
+    // TODO - if "church" is invalid JSON the app will crash.
+    // Maybe not likely, but maybe could be avoided
     const churchData = JSON.parse(localStorage.getItem("church"));
     const bible = localStorage.getItem("bible");
     this.state = { churchData, bible };
