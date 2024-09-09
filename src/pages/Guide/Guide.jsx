@@ -32,6 +32,12 @@ export default class Guide extends Component {
     this.requestJSON(
       `${apiEndpoint}church/${churchSlug}/guides/${slug}`,
     ).then((guide) => {
+      if (!guide) {
+        console.log("Guide doesn't exist");
+        window.location.href = "/guides";
+        return;
+      }
+
       setTitle(guide.name);
       this.setState({
         guide,
@@ -59,7 +65,7 @@ export default class Guide extends Component {
       .then((res) => res.json())
       .then((feedJson) => {
         resolve(feedJson);
-      });
+      }).catch(() => resolve(false));
   })
 
   isSermon = () => {
