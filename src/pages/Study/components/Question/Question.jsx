@@ -26,9 +26,7 @@ export default class Question extends Component {
         {question.lead && (
           <header className="question__header">
             <span>
-              Question
-              {itemNo}
-              :
+              {`Question ${itemNo}:`}
             </span>
             <h2>{question.lead}</h2>
           </header>
