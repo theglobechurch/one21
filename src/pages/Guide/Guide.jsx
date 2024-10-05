@@ -33,7 +33,6 @@ export default class Guide extends Component {
       `${apiEndpoint}church/${churchSlug}/guides/${slug}`,
     ).then((guide) => {
       if (!guide) {
-        console.log("Guide doesn't exist");
         window.location.href = "/guides";
         return;
       }
@@ -148,20 +147,18 @@ export default class Guide extends Component {
                         description={guide.studies[0].description}
                         descriptionLimit
                         cta="Go to study"
-                        link={`/guides/${slug}/${
-                          guide.studies[0].slug
-                        }`}
+                        link={`/guides/${slug}/${guide.studies[0].slug}`}
                       />
                     ) : (
                       <section className="study__introduction__section">
                         <h1 className="big_title">{guide.name}</h1>
                         {guide.description
-                        && guide.description.length >= 1
-                        && !sermon ? (
-                          <ExpandableText
-                            expanded
-                            text={guide.description}
-                          />
+                          && guide.description.length >= 1
+                          && !sermon ? (
+                            <ExpandableText
+                              expanded
+                              text={guide.description}
+                            />
                           ) : (
                             <p>{guide.description}</p>
                           )}
@@ -175,9 +172,7 @@ export default class Guide extends Component {
                             <Link
                               className="sermonList"
                               to={{
-                                pathname: `/guides/${slug}/${
-                                  study.slug
-                                }`,
+                                pathname: `/guides/${slug}/${study.slug}`,
                               }}
                             >
                               <SermonListItem

@@ -19,7 +19,7 @@ module.exports = {
   ],
   parser: "babel-eslint",
   rules: {
-    "quotes": ["error", "double"],
+    quotes: ["error", "double"],
     "react/jsx-filename-extension": ["warn", { extensions: [".js", ".jsx"] }],
     // TODO - Turn this rule back on when we replace the binds
     "react/jsx-no-bind": "off",
