@@ -4,6 +4,14 @@ import PropTypes from "prop-types";
 import "./ChurchPicker.css";
 
 export default class ChurchPicker extends Component {
+  static requestJSON = (feedUrl) => new Promise((resolve) => {
+    fetch(feedUrl)
+      .then((res) => res.json())
+      .then((feedJson) => {
+        resolve(feedJson);
+      });
+  });
+
   constructor(props) {
     super(props);
     this.state = { foundChurches: null };
@@ -11,7 +19,7 @@ export default class ChurchPicker extends Component {
 
   componentDidMount() {
     const { apiEndpoint } = this.props;
-    this.requestJSON(`${apiEndpoint}church`).then((churchList) => {
+    ChurchPicker.requestJSON(`${apiEndpoint}church`).then((churchList) => {
       this.setState({ churches: churchList });
     });
   }
@@ -19,14 +27,6 @@ export default class ChurchPicker extends Component {
   onSelect() {
     this.setState({ foundChurches: null });
   }
-
-  requestJSON = (feedUrl) => new Promise((resolve) => {
-    fetch(feedUrl)
-      .then((res) => res.json())
-      .then((feedJson) => {
-        resolve(feedJson);
-      });
-  })
 
   churchLookup(ev) {
     // TODO: Replace when more than 50 churches in One21. This will work for now

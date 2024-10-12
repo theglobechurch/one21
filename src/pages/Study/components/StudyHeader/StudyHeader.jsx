@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import "./StudyHeader.css";
 
 export default class StudyHeader extends Component {
-  showPassage = (ev) => {
+  static showPassage = (ev) => {
     ev.preventDefault();
-  }
+  };
 
   render() {
     const {

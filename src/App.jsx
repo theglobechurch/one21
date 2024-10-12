@@ -48,27 +48,27 @@ class App extends Component {
     }
   }
 
-  handleFetchErrors = (response) => {
+  static handleFetchErrors = (response) => {
     if (!response.ok) {
       throw Error(response.statusText);
     }
     return response;
-  }
+  };
 
   setActiveStudy = (activeStudy) => {
     this.setState({
       activeStudy,
       title: activeStudy.name,
     });
-  }
+  };
 
   setTitle = (title) => {
     this.setState({ title });
-  }
+  };
 
   setView = (view) => {
     this.setState({ view });
-  }
+  };
 
   hasCompletedLoad = () => {
     const { sermons, guides, promotedGuide } = this.state;
@@ -83,7 +83,7 @@ class App extends Component {
         this.setState({ loading: false });
       }
     }
-  }
+  };
 
   requestJSON = (feedUrl) => new Promise((resolve, reject) => {
     fetch(feedUrl)
@@ -91,7 +91,7 @@ class App extends Component {
       .then((res) => res.json())
       .then((feedJson) => resolve(feedJson))
       .catch((err) => { reject(err); });
-  })
+  });
 
   loadSermons = () => {
     const church = JSON.parse(localStorage.getItem("church"));
@@ -111,7 +111,7 @@ class App extends Component {
           },
         );
       });
-  }
+  };
 
   loadContent = () => {
     const { loading } = this.state;
@@ -159,7 +159,7 @@ class App extends Component {
           });
       },
     );
-  }
+  };
 
   render() {
     const {
@@ -174,7 +174,7 @@ class App extends Component {
       <Router path="/">
         <div className="app">
 
-          { header }
+          {header}
 
           <ApiEndpoint.Provider value={one21Api}>
             <div className="container">
@@ -225,42 +225,40 @@ class App extends Component {
                 )}
               />
 
-              {guides
-                && church && (
-                  <Route
-                    path="/guides/:guideSlug"
-                    render={({ match }) => (
-                      <ApiEndpoint.Consumer>
-                        {(endpoint) => (
-                          <Guide
-                            church={church}
-                            title={title}
-                            slug={match.params.guideSlug}
-                            studySlug={match.params.studySlug}
-                            apiEndpoint={endpoint}
-                            setTitle={this.setTitle}
-                            setView={this.setView}
-                          />
-                        )}
-                      </ApiEndpoint.Consumer>
-                    )}
-                  />
+              {guides && church && (
+                <Route
+                  path="/guides/:guideSlug"
+                  render={({ match }) => (
+                    <ApiEndpoint.Consumer>
+                      {(endpoint) => (
+                        <Guide
+                          church={church}
+                          title={title}
+                          slug={match.params.guideSlug}
+                          studySlug={match.params.studySlug}
+                          apiEndpoint={endpoint}
+                          setTitle={this.setTitle}
+                          setView={this.setView}
+                        />
+                      )}
+                    </ApiEndpoint.Consumer>
+                  )}
+                />
               )}
 
-              {guides
-                && church && (
-                  <Route
-                    exact
-                    path="/guides"
-                    render={() => (
-                      <GuideList
-                        // eslint-disable-next-line react/jsx-props-no-spreading
-                        {...this.state}
-                        setTitle={this.setTitle}
-                        setView={this.setView}
-                      />
-                    )}
-                  />
+              {guides && church && (
+                <Route
+                  exact
+                  path="/guides"
+                  render={() => (
+                    <GuideList
+                      // eslint-disable-next-line react/jsx-props-no-spreading
+                      {...this.state}
+                      setTitle={this.setTitle}
+                      setView={this.setView}
+                    />
+                  )}
+                />
               )}
 
               <Route

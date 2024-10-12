@@ -4,15 +4,15 @@ import { Link } from "react-router-dom";
 import "./Card.css";
 
 export default class Card extends Component {
-  limitText = (text, charCount = 100) => {
+  static limitText = (text, charCount = 100) => {
     if (text.length < (charCount + 20)) { return text; }
     const shortenedText = text.substring(0, charCount);
     const lastSpace = shortenedText.lastIndexOf(" ");
 
     return lastSpace > 0
       ? `${shortenedText.substring(0, lastSpace)}…`
-      : `${shortenedText}...`;
-  }
+      : `${shortenedText}…`;
+  };
 
   render() {
     const {
@@ -36,7 +36,7 @@ export default class Card extends Component {
           { description && (
             <p>
               { descriptionLimit === true ? (
-                this.limitText(description)
+                Card.limitText(description)
               ) : (
                 description
               )}

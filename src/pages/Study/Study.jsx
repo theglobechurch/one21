@@ -284,8 +284,8 @@ Study.propTypes = {
     image: string.isRequired,
     images: objectOf(string),
     name: string.isRequired,
-    passage: string.isRequired,
-    passage_ref: arrayOf(objectOf(string)).isRequired,
+    passage: string,
+    passage_ref: arrayOf(objectOf(string)),
     questions: arrayOf(shape({
       followup: arrayOf(string),
       lead: string,

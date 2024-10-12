@@ -12,6 +12,21 @@ import ExpandableText from "../../components/ExpandableText/ExpandableText";
 import "../../style/SermonList.css";
 
 export default class Guide extends Component {
+  static isSermon = (slug) => {
+    if (slug === "sermons") {
+      return true;
+    }
+    return false;
+  };
+
+  static requestJSON = (feedUrl) => new Promise((resolve) => {
+    fetch(feedUrl)
+      .then((res) => res.json())
+      .then((feedJson) => {
+        resolve(feedJson);
+      }).catch(() => resolve(false));
+  });
+
   constructor(props) {
     super(props);
     this.state = {
@@ -27,9 +42,8 @@ export default class Guide extends Component {
     setTitle("Loading…");
     setView(`/guides/${slug}`);
     const churchSlug = church.slug;
-
     // TODO: Only request if not already in state or local storage?
-    this.requestJSON(
+    Guide.requestJSON(
       `${apiEndpoint}church/${churchSlug}/guides/${slug}`,
     ).then((guide) => {
       if (!guide) {
@@ -40,7 +54,7 @@ export default class Guide extends Component {
       setTitle(guide.name);
       this.setState({
         guide,
-        sermon: this.isSermon(),
+        sermon: Guide.isSermon(slug),
       });
     });
 
@@ -57,22 +71,6 @@ export default class Guide extends Component {
     if (guide && title !== guide.name && curPath.length === 2) {
       setTitle(guide.name);
     }
-  }
-
-  requestJSON = (feedUrl) => new Promise((resolve) => {
-    fetch(feedUrl)
-      .then((res) => res.json())
-      .then((feedJson) => {
-        resolve(feedJson);
-      }).catch(() => resolve(false));
-  })
-
-  isSermon = () => {
-    const { slug } = this.props;
-    if (slug === "sermons") {
-      return true;
-    }
-    return false;
   }
 
   showListItem(i) {
@@ -152,16 +150,14 @@ export default class Guide extends Component {
                     ) : (
                       <section className="study__introduction__section">
                         <h1 className="big_title">{guide.name}</h1>
-                        {guide.description
-                          && guide.description.length >= 1
-                          && !sermon ? (
-                            <ExpandableText
-                              expanded
-                              text={guide.description}
-                            />
-                          ) : (
-                            <p>{guide.description}</p>
-                          )}
+                        {guide.description && guide.description.length >= 1 && !sermon ? (
+                          <ExpandableText
+                            expanded
+                            text={guide.description}
+                          />
+                        ) : (
+                          <p>{guide.description}</p>
+                        )}
                       </section>
                     )}
 

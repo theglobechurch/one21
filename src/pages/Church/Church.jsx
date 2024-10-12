@@ -5,6 +5,14 @@ import Loader from "../../components/Loader/Loader";
 import ChurchPicker from "../../components/ChurchPicker/ChurchPicker";
 
 class Church extends Component {
+  static requestJSON = (feedUrl) => new Promise((resolve) => {
+    fetch(feedUrl)
+      .then((res) => res.json())
+      .then((feedJson) => {
+        resolve(feedJson);
+      });
+  });
+
   constructor(props) {
     super(props);
     const currentChurch = JSON.parse(localStorage.getItem("church"));
@@ -38,14 +46,6 @@ class Church extends Component {
     window.scrollTo(0, 0);
   }
 
-  requestJSON = (feedUrl) => new Promise((resolve) => {
-    fetch(feedUrl)
-      .then((res) => res.json())
-      .then((feedJson) => {
-        resolve(feedJson);
-      });
-  })
-
   lookup() {
     const { lookup } = this.state;
     const { slug } = this.props;
@@ -55,7 +55,7 @@ class Church extends Component {
 
     this.setState({ lookup: true }, () => {
       const { apiEndpoint } = this.props;
-      this.requestJSON(`${apiEndpoint}church/${slug}`).then((ch) => {
+      Church.requestJSON(`${apiEndpoint}church/${slug}`).then((ch) => {
         this.setChurch(ch);
       });
     });
