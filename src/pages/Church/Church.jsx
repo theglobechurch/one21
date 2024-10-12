@@ -139,5 +139,6 @@ Church.propTypes = {
   apiEndpoint: PropTypes.string.isRequired,
   setTitle: PropTypes.func.isRequired,
   setView: PropTypes.func.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
   history: PropTypes.objectOf(PropTypes.any).isRequired,
 };

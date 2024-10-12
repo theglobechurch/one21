@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import PropTypes, { string } from "prop-types";
+import { v4 as uuidv4 } from "uuid";
+import parse from "react-html-parser";
 import Icon from "../Icon/Icon";
 import "./ExpandableText.css";
 
@@ -35,15 +37,17 @@ export default class ExpandableText extends Component {
   render() {
     const { expanded, scripture, text } = this.props;
     const { expandedState } = this.state;
+
     return (
       <div className="expandableText">
         <div className="expandableText__container">
-          { text.map((p, i) => (
+          { text.map((p) => (
             <div
               className={`expandableText__container__block${scripture ? " expandableText__container__block--scripture" : ""}`}
-              dangerouslySetInnerHTML={{ __html: p }}
-              key={String(i)}
-            />
+              key={uuidv4()}
+            >
+              { parse(p) }
+            </div>
           ))}
         </div>
 

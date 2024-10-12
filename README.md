@@ -16,9 +16,9 @@ Read more about One21 on the [launch blog post](https://www.globe.church/resourc
 
 ## Development
 
-- `npm install`
-- `npm run dev` will run One21 in dev mode [http://localhost:3000](http://localhost:3000)
+- `yarn install`
+- `yarn dev` will run One21 in dev mode [http://localhost:3000](http://localhost:3000)
 
 ## Production
 
-- `npm run build` will create a production build
+- `yarn build` will create a production build

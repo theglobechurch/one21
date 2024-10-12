@@ -5,6 +5,7 @@ import {
 import {
   string, shape, func, objectOf, arrayOf,
 } from "prop-types";
+import parse from "react-html-parser";
 import Question from "./components/Question/Question";
 import BiblePopup from "./components/BiblePopup/BiblePopup";
 import StudyHeader from "./components/StudyHeader/StudyHeader";
@@ -138,7 +139,9 @@ export default class Study extends Component {
 
                   <section className="study__question question question--title-slide">
                     {study.start ? (
-                      <div dangerouslySetInnerHTML={{ __html: study.start }} />
+                      <div>
+                        { parse(study.start)}
+                      </div>
                     ) : (
                       <div>
                         <h2 className="big_title">
@@ -207,7 +210,7 @@ export default class Study extends Component {
 
                   {study.end ? (
                     <section className="study__question question">
-                      <div dangerouslySetInnerHTML={{ __html: study.end }} />
+                      <div>{parse(study.end)}</div>
                     </section>
                   ) : (
                     <section className="study__question question question--title-slide">
