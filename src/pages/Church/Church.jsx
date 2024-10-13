@@ -43,11 +43,7 @@ const Church = ({
   };
 
   const showConfirmBtn = () => {
-    if (!displayedChurch) {
-      return true;
-    }
-
-    if (userChurch.slug !== currentSlug) {
+    if (!displayedChurch || !userChurch || userChurch.slug !== currentSlug) {
       return true;
     }
 

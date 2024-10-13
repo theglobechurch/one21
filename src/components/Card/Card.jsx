@@ -20,8 +20,8 @@ const Card = ({
   image,
   pretitle = null,
   title,
-  link,
-  cta,
+  link = null,
+  cta = null,
 }) => (
   <section className={`card ${className || ""}`}>
     {image && (
@@ -68,8 +68,8 @@ Card.propTypes = {
   pretitle: PropTypes.string,
   description: PropTypes.string.isRequired,
   descriptionLimit: PropTypes.bool,
-  link: PropTypes.string.isRequired,
-  cta: PropTypes.string.isRequired,
+  link: PropTypes.string,
+  cta: PropTypes.string,
   className: PropTypes.string,
   image: PropTypes.string.isRequired,
 };
