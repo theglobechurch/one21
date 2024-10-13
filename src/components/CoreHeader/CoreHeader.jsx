@@ -12,6 +12,10 @@ const backLink = () => {
     currentPath.lastIndexOf("/") + 1,
   );
 
+  if (backPath === "/church/") {
+    return "/";
+  }
+
   if (backPath === currentPath) {
     return "/";
   }
@@ -46,42 +50,3 @@ export default CoreHeader;
 CoreHeader.propTypes = {
   title: PropTypes.string.isRequired,
 };
-
-// export default class CoreHeader extends Component {
-//   static backLink() {
-//     const currentPath = window.location.pathname;
-
-//     let backPath = currentPath.substring(
-//       0,
-//       currentPath.lastIndexOf("/") + 1,
-//     );
-
-//     if (backPath === currentPath) {
-//       backPath = "/";
-//     }
-//     return backPath;
-//   }
-
-//   render() {
-//     const { title } = this.props;
-//     const backPath = CoreHeader.backLink();
-
-//     if (!title) return null;
-
-//     return (
-//       <header className="coreHeader">
-//         { backPath && (
-//           <Link
-//             className="coreHeader__back"
-//             to={{
-//               pathname: backPath,
-//             }}
-//           >
-//             <Icon icon="pointLeft" classname="coreHeader__back__icon" />
-//           </Link>
-//         )}
-//         { title }
-//       </header>
-//     );
-//   }
-// }

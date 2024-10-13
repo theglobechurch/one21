@@ -1,66 +1,57 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import {
   string, arrayOf, shape,
 } from "prop-types";
 import ExpandableText from "../../../../components/ExpandableText/ExpandableText";
 
-export default class Question extends Component {
-  componentDidMount() {
+const Question = ({
+  itemNo, question, passage, scripture, location = null,
+}) => {
+  useEffect(() => {
     window.scrollTo(0, 0);
-  }
+  }, [location]);
 
-  componentDidUpdate(prevProps) {
-    const { location } = this.props;
-    if (location !== prevProps.location) {
-      window.scrollTo(0, 0);
-    }
-  }
+  return (
+    <section className="study__question question">
+      {question.lead && (
+        <header className="question__header">
+          <span>
+            {`Question ${itemNo}:`}
+          </span>
+          <h2>{question.lead}</h2>
+        </header>
+      )}
 
-  render() {
-    const {
-      itemNo, question, passage, scripture,
-    } = this.props;
-    window.scrollTo(0, 0);
-    return (
-      <section className="study__question question">
-        {question.lead && (
-          <header className="question__header">
-            <span>
-              {`Question ${itemNo}:`}
-            </span>
-            <h2>{question.lead}</h2>
-          </header>
-        )}
+      {question.type === "pause" && (
+        <header className="question__header">
+          <span>Pause</span>
+          <h2>{question.body}</h2>
+        </header>
+      )}
 
-        {question.type === "pause" && (
-          <header className="question__header">
-            <span>Pause</span>
-            <h2>{question.body}</h2>
-          </header>
-        )}
+      {question.followup && (
+        <ul className="question__subquestions">
+          {question.followup.map((q) => (
+            <li key={q}>{q}</li>
+          ))}
+        </ul>
+      )}
 
-        {question.followup && (
-          <ul className="question__subquestions">
-            {question.followup.map((q) => (
-              <li key={q}>{q}</li>
-            ))}
-          </ul>
-        )}
+      {scripture && (
+        <section className="question__scripture">
+          <h2 className="dinky_title">{passage}</h2>
+          <ExpandableText
+            expanded
+            scripture
+            text={scripture}
+          />
+        </section>
+      )}
+    </section>
+  );
+};
 
-        {scripture && (
-          <section className="question__scripture">
-            <h2 className="dinky_title">{passage}</h2>
-            <ExpandableText
-              expanded
-              scripture
-              text={scripture}
-            />
-          </section>
-        )}
-      </section>
-    );
-  }
-}
+export default Question;
 
 Question.propTypes = {
   question: shape({
@@ -72,8 +63,4 @@ Question.propTypes = {
   location: string,
   passage: string.isRequired,
   scripture: arrayOf(string).isRequired,
-};
-
-Question.defaultProps = {
-  location: null,
 };
