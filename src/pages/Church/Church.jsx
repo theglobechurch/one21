@@ -1,136 +1,104 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
 import ChurchPicker from "../../components/ChurchPicker/ChurchPicker";
 
-class Church extends Component {
-  static requestJSON = (feedUrl) => new Promise((resolve) => {
-    fetch(feedUrl)
-      .then((res) => res.json())
-      .then((feedJson) => {
-        resolve(feedJson);
-      });
-  });
+const requestJSON = (feedUrl) => new Promise((resolve) => {
+  fetch(feedUrl)
+    .then((res) => res.json())
+    .then((feedJson) => {
+      resolve(feedJson);
+    });
+});
 
-  constructor(props) {
-    super(props);
-    const currentChurch = JSON.parse(localStorage.getItem("church"));
-    this.state = {
-      currentChurch,
-      church: null,
-      slug: null,
-      lookup: false,
-    };
-  }
+const Church = ({
+  slug, apiEndpoint, setTitle, setView, history,
+}) => {
+  const [userChurch] = useState(JSON.parse(localStorage.getItem("church")));
+  const [displayedChurch, setdisplayedChurch] = useState(null);
+  const [currentSlug, setCurrentSlug] = useState(null);
 
-  componentDidMount() {
-    const { setTitle, setView, slug } = this.props;
+  const setChurch = (ch) => {
+    setdisplayedChurch(ch);
+    setTitle(ch.name);
+    setCurrentSlug(ch.slug);
+  };
+
+  const lookup = () => {
+    requestJSON(`${apiEndpoint}church/${slug}`).then((ch) => {
+      setChurch(ch);
+    });
+  };
+
+  useEffect(() => {
     setTitle("Loading…");
     setView(`/church/${slug}`);
-    this.lookup();
-  }
+    lookup();
+  }, [slug]);
 
-  componentDidUpdate(prevProps) {
-    const { slug } = this.state;
-    const prevSlug = prevProps.slug;
-    if (prevSlug !== slug) {
-      this.lookup();
-    }
-  }
-
-  setChurch(ch) {
-    const { setTitle } = this.props;
-    setTitle(ch.name);
-    this.setState({ church: ch, slug: ch.slug, lookup: false });
-    window.scrollTo(0, 0);
-  }
-
-  lookup() {
-    const { lookup } = this.state;
-    const { slug } = this.props;
-    if (lookup === true) {
-      return;
-    }
-
-    this.setState({ lookup: true }, () => {
-      const { apiEndpoint } = this.props;
-      Church.requestJSON(`${apiEndpoint}church/${slug}`).then((ch) => {
-        this.setChurch(ch);
-      });
-    });
-  }
-
-  confirmChurch() {
-    const { church } = this.state;
-    const { history } = this.props;
-    localStorage.setItem("church", JSON.stringify(church));
+  const confirmChurch = () => {
+    localStorage.setItem("church", JSON.stringify(displayedChurch));
     history.push("/");
-  }
+  };
 
-  showConfirmBtn() {
-    const { currentChurch, church } = this.state;
-
-    if (!currentChurch) {
+  const showConfirmBtn = () => {
+    if (!displayedChurch) {
       return true;
     }
 
-    if (currentChurch.slug !== church.slug) {
+    if (userChurch.slug !== currentSlug) {
       return true;
     }
 
     return false;
-  }
+  };
 
-  render() {
-    const { church } = this.state;
-    const { apiEndpoint } = this.props;
-    return (
-      <main className="landing">
-        <div className="tablecloth" />
+  return (
+    <main className="landing">
+      <div className="tablecloth" />
 
-        <div className="churchPickerPage">
-          {church ? (
-            <section className="card">
-              {church.lead_image && (
-                <header>
-                  <img src={church.lead_image} alt="" />
-                </header>
+      <div className="churchPickerPage">
+        {displayedChurch ? (
+          <section className="card">
+            {displayedChurch.lead_image && (
+              <header>
+                <img src={displayedChurch.lead_image} alt="" />
+              </header>
+            )}
+
+            <div className="card__body">
+              <p className="pre_title">Church details</p>
+              <h1 className="big_title">{displayedChurch.name}</h1>
+              <p>{displayedChurch.url}</p>
+              <p>{displayedChurch.email}</p>
+
+              {/* TODO: The confirm button needs styling  */}
+              {showConfirmBtn() && (
+                <button
+                  type="button"
+                  className="btn action_text"
+                  onClick={confirmChurch}
+                >
+                  Set as my church
+                </button>
               )}
+            </div>
+          </section>
+        ) : (
+          <main className="landing">
+            <div className="tablecloth" />
+            <div className="churchPickerPage">
+              <Loader message="Loading church details…" minHeight="379px" />
+            </div>
+          </main>
+        )}
 
-              <div className="card__body">
-                <p className="pre_title">Church details</p>
-                <h1 className="big_title">{church.name}</h1>
-                <p>{church.url}</p>
-                <p>{church.email}</p>
-
-                {/* TODO: The confirm button needs styling  */}
-                {this.showConfirmBtn() && (
-                  <button
-                    type="button"
-                    className="btn action_text"
-                    onClick={this.confirmChurch.bind(this)}
-                  >
-                    Set as my church
-                  </button>
-                )}
-              </div>
-            </section>
-          ) : (
-            <main className="landing">
-              <div className="tablecloth" />
-              <div className="churchPickerPage">
-                <Loader message="Loading church details…" minHeight="379px" />
-              </div>
-            </main>
-          )}
-
-          <ChurchPicker apiEndpoint={apiEndpoint} />
-        </div>
-      </main>
-    );
-  }
-}
+        <ChurchPicker apiEndpoint={apiEndpoint} />
+      </div>
+    </main>
+  );
+};
 
 export default withRouter(Church);
 

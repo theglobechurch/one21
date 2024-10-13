@@ -6,7 +6,7 @@ import advancedFormat from "dayjs/plugin/advancedFormat";
 dayjs.extend(advancedFormat);
 
 const SermonListItem = ({
-  name, date, displayImage, passage, baseUrl, image,
+  name, date = null, displayImage, passage = null, baseUrl = null, image = null,
 }) => {
   const recordingDate = dayjs(date);
   let guideImage = image;
@@ -45,11 +45,4 @@ SermonListItem.propTypes = {
   passage: PropTypes.string,
   baseUrl: PropTypes.string,
   displayImage: PropTypes.bool.isRequired,
-};
-
-SermonListItem.defaultProps = {
-  baseUrl: null,
-  date: null,
-  image: null,
-  passage: null,
 };

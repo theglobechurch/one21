@@ -23,6 +23,7 @@
     "eject": "craco eject"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/preset-react": "^7.25.7",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-loader": "^4.0.2",
