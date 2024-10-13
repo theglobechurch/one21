@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import {
   string, func, bool, arrayOf, objectOf, shape,
 } from "prop-types";
@@ -7,67 +7,64 @@ import Card from "../../components/Card/Card";
 import SermonListItem from "../../components/SermonListItem/SermonListItem";
 import "../../style/SermonList.css";
 
-export default class GuideList extends Component {
-  componentDidMount() {
-    const { setTitle, setView } = this.props;
+const GuideList = ({
+  setTitle, setView, church, guides, promotedGuide = null,
+}) => {
+  useEffect(() => {
     setTitle("Guides");
     setView("/guides");
     window.scrollTo(0, 0);
-  }
+  }, []);
 
-  componentDidUpdate() {
-    window.scrollTo(0, 0);
-  }
+  const sermon = guides.filter((g) => g.slug === "sermons")[0];
 
-  render() {
-    const { church, guides, promoted_guide: promotedGuide } = this.props;
-    const sermon = guides.filter((g) => g.slug === "sermons")[0];
-    return (
-      <div className="study">
-        <div className="tablecloth" />
+  return (
+    <div className="study">
+      <div className="tablecloth" />
 
-        {sermon && (
-          <Card
-            pretitle={church.name}
-            image={sermon.image}
-            title={sermon.name}
-            description={sermon.teaser}
-            cta="Go to recent sermons"
-            link={`/guides/${sermon.slug}`}
-          />
-        )}
+      {sermon && (
+        <Card
+          pretitle={church.name}
+          image={sermon.image}
+          title={sermon.name}
+          description={sermon.teaser}
+          cta="Go to recent sermons"
+          link={`/guides/${sermon.slug}`}
+        />
+      )}
 
-        {promotedGuide && (
-          <Card
-            image={promotedGuide.image}
-            pretitle="Featured guide:"
-            title={promotedGuide.name}
-            description={promotedGuide.teaser}
-            cta="Go to guide"
-            link={`/guides/${promotedGuide.slug}`}
-          />
-        )}
+      {promotedGuide && (
+        <Card
+          image={promotedGuide.image}
+          pretitle="Featured guide:"
+          title={promotedGuide.name}
+          description={promotedGuide.teaser}
+          cta="Go to guide"
+          link={`/guides/${promotedGuide.slug}`}
+        />
+      )}
 
-        {guides
-          && guides.map((guide) => (
-            <div className="sermonList" key={guide.slug}>
-              <Link
-                to={{
-                  pathname: `/guides/${guide.slug}`,
-                }}
-              >
-                <SermonListItem
-                  name={guide.name}
-                  passage={guide.teaser}
-                  displayImage={false}
-                />
-              </Link>
-            </div>
-          ))}
-      </div>
-    );
-  }
-}
+      {guides
+        && guides.map((guide) => (
+          <div className="sermonList" key={guide.slug}>
+            <Link
+              to={{
+                pathname: `/guides/${guide.slug}`,
+              }}
+            >
+              <SermonListItem
+                name={guide.name}
+                passage={guide.teaser}
+                displayImage={false}
+              />
+            </Link>
+          </div>
+        ))}
+    </div>
+  );
+};
+
+export default GuideList;
 
 GuideList.propTypes = {
   setTitle: func.isRequired,
@@ -93,9 +90,5 @@ GuideList.propTypes = {
     slug: string,
     url: string,
   }).isRequired,
-  promoted_guide: shape(),
-};
-
-GuideList.defaultProps = {
-  promoted_guide: null,
+  promotedGuide: shape(),
 };
