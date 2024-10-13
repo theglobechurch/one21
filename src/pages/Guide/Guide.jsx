@@ -129,28 +129,27 @@ const Guide = ({
                     </section>
                   )}
 
-                  {guide.studies
-                          && guide.studies.map((study, index) => (
-                            <div key={study.slug}>
-                              {showListItem(index) === true && (
-                                <Link
-                                  className="sermonList"
-                                  to={{
-                                    pathname: `/guides/${slug}/${study.slug}`,
-                                  }}
-                                >
-                                  <SermonListItem
-                                    name={study.name}
-                                    date={study.date}
-                                    image={study.image}
-                                    passage={study.passage}
-                                    displayImage={false}
-                                  />
-                                  {/* <SermonListItem {...study} displayImage={false} /> */}
-                                </Link>
-                              )}
-                            </div>
-                          ))}
+                  {guide.studies && guide.studies.map((study, index) => (
+                    <div key={study.slug}>
+                      {showListItem(index) === true && (
+                      <Link
+                        className="sermonList"
+                        to={{
+                          pathname: `/guides/${slug}/${study.slug}`,
+                        }}
+                      >
+                        <SermonListItem
+                          name={study.name}
+                          date={study.date}
+                          image={study.image}
+                          passage={study.passage}
+                          displayImage={false}
+                        />
+                        {/* <SermonListItem {...study} displayImage={false} /> */}
+                      </Link>
+                      )}
+                    </div>
+                  ))}
 
                   {guide.license && (
                   <section className="study__introduction__section">
