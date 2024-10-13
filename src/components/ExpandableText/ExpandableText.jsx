@@ -7,6 +7,7 @@ import "./ExpandableText.css";
 
 const ExpandableText = ({ expanded, scripture = null, text }) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [expandedClassList, setExpandedClassList] = useState(expanded ? "expandableText__container--contracted" : "");
 
   const toggleView = () => {
@@ -16,10 +17,10 @@ const ExpandableText = ({ expanded, scripture = null, text }) => {
 
   return (
     <div className="expandableText">
-      <div className="expandableText__container">
-        { text.map((p) => (
+      <div className={`expandableText__container ${expandedClassList}`}>
+        {text.map((p) => (
           <div
-            className={`expandableText__container__block ${expandedClassList} ${scripture ? " expandableText__container__block--scripture" : ""}`}
+            className={`expandableText__container__block${scripture ? " expandableText__container__block--scripture" : ""}`}
             key={uuidv4()}
           >
             { parse(p) }
@@ -27,13 +28,13 @@ const ExpandableText = ({ expanded, scripture = null, text }) => {
         ))}
       </div>
 
-      { expanded && (
+      {expanded && (
         <button
           type="button"
           className="expandableText__button"
           onClick={toggleView}
         >
-          { isExpanded ? (
+          {isExpanded ? (
             <span>Show less</span>
           ) : (
             <span>Keep Reading</span>
