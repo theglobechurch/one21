@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import Icon from "../Icon/Icon";
 import "./CoreNav.css";
 
-const CoreNav = ({ view, guides }) => (
+const CoreNav = ({ view = null, guides = null }) => (
   <nav className="coreNav">
     <Link to={{ pathname: "/" }} className={`coreNav__item ${view === "/" ? "coreNav__item--active" : ""}`}>
       <Icon icon="home" />
@@ -44,11 +44,6 @@ CoreNav.propTypes = {
     slug: PropTypes.string,
     teaser: PropTypes.string,
   })),
-};
-
-CoreNav.defaultProps = {
-  view: null,
-  guides: null,
 };
 
 export default CoreNav;

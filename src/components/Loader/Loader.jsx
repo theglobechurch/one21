@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./Loader.css";
 
-const Loader = ({ message, minHeight }) => (
+const Loader = ({ message = "Loading…", minHeight = "150px" }) => (
   <div className="loader" style={{ minHeight }}>
     <div className="loader__icon">
       <svg viewBox="22 22 44 44" className="loader__svg">
@@ -20,11 +20,6 @@ const Loader = ({ message, minHeight }) => (
     <h1 className="loader__text">{message}</h1>
   </div>
 );
-
-Loader.defaultProps = {
-  message: "Loading…",
-  minHeight: "150px",
-};
 
 Loader.propTypes = {
   message: PropTypes.string,

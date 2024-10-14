@@ -1,5 +1,4 @@
-/* eslint-disable react/jsx-props-no-spreading */
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import ApiEndpoint from "./ApiEndpoint";
 
@@ -15,274 +14,223 @@ import CoreNav from "./components/CoreNav/CoreNav";
 
 const one21Api = "https://builder.one21.org/api/";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      sermons: null,
-      church: null,
-      loading: false,
-      emptyState: false,
-    };
-  }
+const App = () => {
+  const [title, setTitle] = useState(null);
+  const [view, setView] = useState("/");
+  const [guides, setGuides] = useState([]);
+  const [church, setChurch] = useState(JSON.parse(localStorage.getItem("church")));
+  const [sermons, setSermons] = useState([]);
+  const [promotedGuide, setPromotedGuide] = useState(null);
+  const [latestSermon, setLatestSermon] = useState(null);
+  const [emptyState, setEmptyState] = useState(false);
+  const [loading, setLoading] = useState(false);
+  let header;
 
-  componentDidMount() {
-    localStorage.setItem("bible", "ESV");
-    this.loadContent();
-  }
-
-  componentDidUpdate() {
-    const { church } = this.state;
-    let stChurch;
-    const nullSlug = { slug: null };
-    const lsChurch = JSON.parse(localStorage.getItem("church")) || nullSlug;
-
-    if (church) {
-      stChurch = church;
-    } else {
-      stChurch = nullSlug;
-    }
-
-    if (stChurch.slug !== lsChurch.slug) {
-      this.loadContent();
-    }
-  }
-
-  handleFetchErrors = (response) => {
+  const handleFetchErrors = (response) => {
     if (!response.ok) {
       throw Error(response.statusText);
     }
     return response;
-  }
+  };
 
-  setActiveStudy = (activeStudy) => {
-    this.setState({
-      activeStudy,
-      title: activeStudy.name,
-    });
-  }
-
-  setTitle = (title) => {
-    this.setState({ title });
-  }
-
-  setView = (view) => {
-    this.setState({ view });
-  }
-
-  hasCompletedLoad = () => {
-    const { sermons, guides, promotedGuide } = this.state;
-
-    if (guides) {
-      if (!sermons && !promotedGuide) {
-        this.setState({
-          loading: false,
-          promotedGuide: guides[0],
-        });
-      } else {
-        this.setState({ loading: false });
-      }
-    }
-  }
-
-  requestJSON = (feedUrl) => new Promise((resolve, reject) => {
+  const requestJSON = (feedUrl) => new Promise((resolve, reject) => {
     fetch(feedUrl)
-      .then(this.handleFetchErrors)
+      .then(handleFetchErrors)
       .then((res) => res.json())
       .then((feedJson) => resolve(feedJson))
       .catch((err) => { reject(err); });
-  })
+  });
 
-  loadSermons = () => {
-    const church = JSON.parse(localStorage.getItem("church"));
+  const hasCompletedLoad = () => {
+    if (guides) {
+      if (!sermons && !promotedGuide) {
+        setPromotedGuide(guides[0]);
+      }
+      setEmptyState(false);
+      setLoading(false);
+    } else {
+      setEmptyState(true);
+    }
+  };
+
+  const loadSermons = () => {
     if (!church) { return; }
 
-    this.requestJSON(`${one21Api}church/${church.slug}/guides/sermons`)
+    requestJSON(`${one21Api}church/${church.slug}/guides/sermons`)
       .then((churchFeed) => {
-        const sermons = churchFeed.studies;
-
-        this.setState(
-          {
-            sermons,
-            latestSermon: sermons[0],
-          },
-          () => {
-            this.hasCompletedLoad();
-          },
-        );
+        const loadedSermons = churchFeed.studies;
+        setSermons(loadedSermons);
+        hasCompletedLoad();
       });
-  }
+  };
 
-  loadContent = () => {
-    const { loading } = this.state;
-    const church = JSON.parse(localStorage.getItem("church"));
+  useEffect(() => {
+    if (sermons.length) {
+      setLatestSermon(sermons[0]);
+      setEmptyState(false);
+    }
+  }, [sermons]);
 
+  useEffect(() => {
+    if (guides.length) {
+      setPromotedGuide(guides.filter(
+        (g) => g.highlight_first === true,
+      )[0]);
+      setEmptyState(false);
+    } else {
+      setEmptyState(true);
+      setSermons([]);
+    }
+  }, [guides]);
+
+  const loadContent = () => {
     if (loading === true || !church) { return; }
 
-    this.setState(
-      { loading: true },
-      () => {
-        this.setState({
-          church,
-          sermons: null,
-          latestSermon: null,
-          guides: null,
-          promotedGuide: null,
-        });
+    setLoading(true);
 
-        const guidelist = `${one21Api}church/${church.slug}/guides`;
-        this.requestJSON(guidelist)
-          .then(
-            (guides) => {
-              this.setState(
-                {
-                  guides,
-                  promotedGuide: guides.filter(
-                    (guide) => guide.highlight_first === true,
-                  )[0],
-                },
-                () => {
-                  if (guides.filter((guide) => guide.slug === "sermons").length !== 0) {
-                    this.loadSermons();
-                  } else {
-                    this.hasCompletedLoad();
-                  }
-                },
-              );
-            },
-          )
-          .catch(() => {
-            this.setState({
-              loading: false,
-              emptyState: true,
-            });
-          });
-      },
-    );
+    const guidelist = `${one21Api}church/${church.slug}/guides`;
+
+    requestJSON(guidelist)
+      .then(
+        (loadedGuides) => {
+          setGuides(loadedGuides);
+
+          if (loadedGuides.filter((guide) => guide.slug === "sermons").length !== 0) {
+            loadSermons();
+          } else {
+            hasCompletedLoad();
+          }
+        },
+      )
+      .catch(() => {
+        setLoading(false);
+        setLatestSermon(null);
+        setPromotedGuide(null);
+        setEmptyState(true);
+        setGuides([]);
+        setSermons([]);
+      });
+  };
+
+  useEffect(() => {
+    localStorage.setItem("bible", "ESV");
+    loadContent();
+  }, [church]);
+
+  if (title != null) {
+    header = <CoreHeader title={title} />;
   }
 
-  render() {
-    const {
-      church, guides, title, latestSermon, promotedGuide, emptyState,
-    } = this.state;
+  return (
+    <Router path="/">
+      <div className="app">
 
-    let header;
-    if (title != null) {
-      header = <CoreHeader title={title} />;
-    }
-    return (
-      <Router path="/">
-        <div className="app">
+        {header}
 
-          { header }
+        <ApiEndpoint.Provider value={one21Api}>
+          <div className="container">
+            <Route path="/guide" render={() => <Redirect to="/guides" />} />
+            <Route path="/help" render={() => <Redirect to="/about" />} />
+            <Route
+              path="/study/:slug"
+              render={({ match }) => (
+                <Redirect to={`/guides/sermons/${match.params.slug}`} />
+              )}
+            />
+            <Route
+              path="/study/"
+              render={() => <Redirect to="/guides/sermons" />}
+            />
 
-          <ApiEndpoint.Provider value={one21Api}>
-            <div className="container">
-              <Route
-                path="/calendar"
-                render={() => <Redirect to="/guides" />}
-              />
-              <Route path="/guide" render={() => <Redirect to="/guides" />} />
-              <Route path="/help" render={() => <Redirect to="/about" />} />
-              <Route
-                path="/study/:slug"
-                render={({ match }) => (
-                  <Redirect to={`/guides/sermons/${match.params.slug}`} />
-                )}
-              />
-              <Route
-                path="/study/"
-                render={() => <Redirect to="/guides/sermons" />}
-              />
+            <Route
+              path="/profile"
+              render={() => (
+                <Profile setTitle={setTitle} setView={setView} />
+              )}
+            />
 
-              <Route
-                path="/profile"
-                render={() => (
-                  <Profile setTitle={this.setTitle} setView={this.setView} />
-                )}
-              />
+            <Route
+              path="/about"
+              render={() => (
+                <About setTitle={setTitle} setView={setView} />
+              )}
+            />
 
-              <Route
-                path="/about"
-                render={() => (
-                  <About setTitle={this.setTitle} setView={this.setView} />
-                )}
-              />
+            <Route
+              path="/church/:churchSlug"
+              render={({ match }) => (
+                <ApiEndpoint.Consumer>
+                  {(endpoint) => (
+                    <Church
+                      setTitle={setTitle}
+                      setView={setView}
+                      setChurch={setChurch}
+                      apiEndpoint={endpoint}
+                      slug={match.params.churchSlug}
+                    />
+                  )}
+                </ApiEndpoint.Consumer>
+              )}
+            />
 
+            {guides && church && (
               <Route
-                path="/church/:churchSlug"
+                path="/guides/:guideSlug"
                 render={({ match }) => (
                   <ApiEndpoint.Consumer>
                     {(endpoint) => (
-                      <Church
-                        setTitle={this.setTitle}
-                        setView={this.setView}
+                      <Guide
+                        church={church}
+                        title={title}
+                        slug={match.params.guideSlug}
+                        studySlug={match.params.studySlug}
                         apiEndpoint={endpoint}
-                        slug={match.params.churchSlug}
+                        setTitle={setTitle}
+                        setView={setView}
                       />
                     )}
                   </ApiEndpoint.Consumer>
                 )}
               />
+            )}
 
-              {guides
-                && church && (
-                  <Route
-                    path="/guides/:guideSlug"
-                    render={({ match }) => (
-                      <ApiEndpoint.Consumer>
-                        {(endpoint) => (
-                          <Guide
-                            church={church}
-                            title={title}
-                            slug={match.params.guideSlug}
-                            studySlug={match.params.studySlug}
-                            apiEndpoint={endpoint}
-                            setTitle={this.setTitle}
-                            setView={this.setView}
-                          />
-                        )}
-                      </ApiEndpoint.Consumer>
-                    )}
-                  />
-              )}
-
-              {guides
-                && church && (
-                  <Route
-                    exact
-                    path="/guides"
-                    render={() => (
-                      <GuideList
-                        // eslint-disable-next-line react/jsx-props-no-spreading
-                        {...this.state}
-                        setTitle={this.setTitle}
-                        setView={this.setView}
-                      />
-                    )}
-                  />
-              )}
-
+            {guides && church && (
               <Route
                 exact
-                path="/"
+                path="/guides"
                 render={() => (
-                  <Landing
-                    study={latestSermon}
-                    guide={promotedGuide}
-                    emptyState={emptyState}
-                    setTitle={this.setTitle}
-                    setView={this.setView}
+                  <GuideList
+                    church={church}
+                    guides={guides}
+                    promotedGuide={promotedGuide}
+                    setTitle={setTitle}
+                    setView={setView}
                   />
                 )}
               />
-            </div>
-            <CoreNav {...this.state} />
-          </ApiEndpoint.Provider>
-        </div>
-      </Router>
-    );
-  }
-}
+            )}
+
+            <Route
+              exact
+              path="/"
+              render={() => (
+                <Landing
+                  study={latestSermon}
+                  guide={promotedGuide}
+                  emptyState={emptyState}
+                  setTitle={setTitle}
+                  setView={setView}
+                />
+              )}
+            />
+          </div>
+
+          <CoreNav view={view} guides={guides} />
+
+        </ApiEndpoint.Provider>
+      </div>
+    </Router>
+  );
+};
 
 export default App;
