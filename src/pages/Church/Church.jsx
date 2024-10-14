@@ -13,21 +13,21 @@ const requestJSON = (feedUrl) => new Promise((resolve) => {
 });
 
 const Church = ({
-  slug, apiEndpoint, setTitle, setView, history,
+  slug, apiEndpoint, setTitle, setView, setChurch, history,
 }) => {
   const [userChurch] = useState(JSON.parse(localStorage.getItem("church")));
-  const [displayedChurch, setdisplayedChurch] = useState(null);
+  const [displayedChurch, setDisplayedChurch] = useState(null);
   const [currentSlug, setCurrentSlug] = useState(null);
 
-  const setChurch = (ch) => {
-    setdisplayedChurch(ch);
+  const updateChurch = (ch) => {
+    setDisplayedChurch(ch);
     setTitle(ch.name);
     setCurrentSlug(ch.slug);
   };
 
   const lookup = () => {
     requestJSON(`${apiEndpoint}church/${slug}`).then((ch) => {
-      setChurch(ch);
+      updateChurch(ch);
     });
   };
 
@@ -38,6 +38,7 @@ const Church = ({
   }, [slug]);
 
   const confirmChurch = () => {
+    setChurch(displayedChurch);
     localStorage.setItem("church", JSON.stringify(displayedChurch));
     history.push("/");
   };
@@ -103,6 +104,7 @@ Church.propTypes = {
   apiEndpoint: PropTypes.string.isRequired,
   setTitle: PropTypes.func.isRequired,
   setView: PropTypes.func.isRequired,
+  setChurch: PropTypes.func.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
   history: PropTypes.objectOf(PropTypes.any).isRequired,
 };

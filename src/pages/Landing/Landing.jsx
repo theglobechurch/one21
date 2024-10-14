@@ -132,38 +132,3 @@ Landing.propTypes = {
     website_url: string,
   }),
 };
-
-// class Landing extends Component {
-//   constructor(props) {
-//     super(props);
-//     let churchData = null;
-//     if (localStorage.getItem("church")) {
-//       churchData = JSON.parse(localStorage.getItem("church"));
-//     }
-//     this.state = { churchData, guideDataPresent: false };
-//   }
-
-//   componentDidMount() {
-//     const { setTitle, setView } = this.props;
-//     setTitle(null);
-//     setView("/");
-//   }
-
-//   // TODO: Replace
-//   // eslint-disable-next-line
-//   UNSAFE_componentWillReceiveProps() {
-//     this.contentPresent();
-//   }
-
-//   contentPresent() {
-//     const { study, guide, emptyState } = this.props;
-//     this.setState({ guideDataPresent: (study != null || guide != null || emptyState != null) });
-//   }
-
-//   render() {
-//     const { study, guide, emptyState } = this.props;
-//     const { churchData, guideDataPresent } = this.state;
-//     return (
-//     );
-//   }
-// }
